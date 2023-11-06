@@ -1,0 +1,77 @@
+---
+import BBTextIcon from '@assets/svgs/bbText.svg?raw';
+import FacebookIcon from '@assets/svgs/facebook.svg?raw';
+import TelegramIcon from '@assets/svgs/telegram.svg?raw';
+---
+
+<footer>
+  <div class='flex px-20 pt-[3.25rem] pb-10 gap-8 justify-between'>
+    <!--- BeautyBooking -->
+    <div class='max-w-xs'>
+      <Fragment set:html={BBTextIcon} />
+
+      <div class='w-3 h-[3px] bg-[#697BC0] rounded-sm my-5'></div>
+
+      <div class='flex flex-col gap-2 text-paragraph text-opacity-semi'>
+        <p>Công ty TNHH GIẢI PHÁP PHẦN MỀM A.N.S</p>
+        <p>
+          37 Nguyễn Văn Thủ, Phường Dakao, Quận 1, Thành phố Hồ Chí Minh, Việt
+          Nam.
+        </p>
+        <p>
+          <span class='text-opacity-neutral'>MSDN:</span>
+          <a href='tel:0317596769'> 0317596769</a>
+        </p>
+      </div>
+    </div>
+
+    <!--- Về chúng tôi -->
+    <div class='text-sub-header'>
+      <p>Về chúng tôi</p>
+      <p class='text-opacity-neutral py-[0.62rem] mt-3 mb-2'>
+        <a href='#'> Điều khoản sử dụng</a>
+      </p>
+
+      <p class='text-opacity-neutral py-[0.62rem]'>
+        <a href='#'>Chính sách bảo mật</a>
+      </p>
+    </div>
+
+    <!--- Hỗ trợ khách hàng -->
+    <div class='text-sub-header'>
+      <p>Hỗ trợ khách hàng</p>
+      <p class='text-opacity-neutral py-[0.62rem] mt-3 mb-2'>
+        <a href='#'> Trung tâm hỗ trợ</a>
+      </p>
+
+      <p class='text-opacity-neutral py-[0.62rem]'>
+        <a href='#'> Hướng dẫn sử dụng Merchant</a>
+      </p>
+    </div>
+
+    <!--- Cộng đồng -->
+    <div class='text-sub-header'>
+      <p>Cộng đồng</p>
+      <p class='text-opacity-neutral py-[0.62rem] mt-3'>
+        <a href='#'> Tham gia cộng đồng làm đẹp của <br /> BeautyBooking</a>
+      </p>
+    </div>
+  </div>
+
+  <div
+    class='flex items-center justify-between px-20 py-8 border-t border-grey-400'
+  >
+    <p class='text-opacity-neutral'>
+      © 2023 A.N.S SS Co., LTD. All rights reserved.
+    </p>
+
+    <div class='flex gap-3'>
+      <a href='#'>
+        <Fragment set:html={FacebookIcon} />
+      </a>
+      <a href='#'>
+        <Fragment set:html={TelegramIcon} />
+      </a>
+    </div>
+  </div>
+</footer>
