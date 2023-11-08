@@ -1,20 +1,106 @@
-<div class='mx-20 text-center mt-[9.56rem]'>
-  <h1 class='text-h2 text-opacity-pure font-semibold'>
-    Tất cả các dịch vụ làm đẹp<br />
-     chỉ trong 1 ứng dụng
-  </h1>
+---
+import { Image } from "astro:assets";
 
-  <p class='text-title text-opacity-semi mt-4 mb-8'>
-    Bạn có thể tìm thấy tất cả các dịch vụ tại BeautyBooking,<br />
-     chỉ cần đó là dịch vụ làm đẹp và chăm sóc sức khỏe
-  </p>
+import SpaServiceImg from "@assets/images/spaService.png";
+import MassageServiceImg from "@assets/images/massageService.png";
+import HairSalonServiceImg from "@assets/images/hairSalonService.png";
+import NailSalonServiceImg from "@assets/images/nailSalonService.png";
+import BeautyClinicServiceImg from "@assets/images/nailSalonService.png";
+import DentalClinicServiceImg from "@assets/images/dentalClinicService.png";
+---
 
-  <div class='grid grid-cols-3 divide-y rounded-3xl p-8'>
-    <div class='p-8'></div>
-    <div class='p-8'></div>
-    <div class='p-8'></div>
-    <div class='p-8'></div>
-    <div class='p-8'></div>
-    <div class='p-8'></div>
+<div class="px-5 text-center mt-24 md:mx-20 md:mt-[9.56rem]">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
+      Tất cả các dịch vụ làm đẹp chỉ trong 1 ứng dụng
+    </h1>
+
+    <p class="text-title text-opacity-semi mt-4 mb-8 md:text-title md:mx-12">
+      Bạn có thể tìm thấy tất cả các dịch vụ tại BeautyBooking, chỉ cần đó là
+      dịch vụ làm đẹp và chăm sóc sức khỏe
+    </p>
+  </div>
+
+  <div class="service-list">
+    <div>
+      <Image src={SpaServiceImg} alt="Spa Service" />
+      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Spa</h2>
+      <p class="text-sub-header text-opacity-neutral">Thư giãn tinh thần</p>
+    </div>
+
+    <div>
+      <Image src={MassageServiceImg} alt="Massage Service" />
+      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Massage</h2>
+      <p class="text-sub-header text-opacity-neutral">Chăm sóc cá nhân</p>
+    </div>
+
+    <div>
+      <Image src={HairSalonServiceImg} alt="Hair Salon Service" />
+      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Hair Salon</h2>
+      <p class="text-sub-header text-opacity-neutral">Mái tóc hoàn hảo</p>
+    </div>
+
+    <div>
+      <Image src={NailSalonServiceImg} alt="Nail Salon Service" />
+      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Nail Salon</h2>
+      <p class="text-sub-header text-opacity-neutral">“Look at my nails”</p>
+    </div>
+
+    <div>
+      <Image src={BeautyClinicServiceImg} alt="Nail Salon Service" />
+      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Beauty Clinic</h2>
+      <p class="text-sub-header text-opacity-neutral">Xinh đẹp rạng ngời</p>
+    </div>
+
+    <div>
+      <Image src={DentalClinicServiceImg} alt="Nail Salon Service" />
+      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Dental Clinic</h2>
+      <p class="text-sub-header text-opacity-neutral">Tự tin nụ cười</p>
+    </div>
   </div>
 </div>
+
+<style>
+  .service-list {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 rounded-3xl p-8 shadow-md border-2 border-grey-300;
+  }
+  .service-list div {
+    @apply flex flex-col justify-center items-center p-8 sm:border-r-2 border-grey-300;
+  }
+
+  .service-list div:nth-child(n + 2) {
+    @apply border-t-2;
+  }
+
+  @media (min-width: 640px) {
+    .service-list div:nth-child(n + 2) {
+      @apply border-t-0;
+    }
+
+    .service-list div:nth-child(n + 3) {
+      @apply border-t-2;
+    }
+
+    .service-list div:nth-child(2n) {
+      @apply border-r-0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .service-list div:nth-child(n + 3) {
+      @apply border-t-0;
+    }
+
+    .service-list div:nth-child(2n) {
+      @apply border-r-2;
+    }
+
+    .service-list div:nth-child(n + 4) {
+      @apply border-t-2;
+    }
+
+    .service-list div:nth-child(3n) {
+      @apply border-r-0;
+    }
+  }
+</style>
