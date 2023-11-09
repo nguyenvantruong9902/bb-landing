@@ -7,6 +7,39 @@ import HairSalonServiceImg from "@assets/images/hairSalonService.png";
 import NailSalonServiceImg from "@assets/images/nailSalonService.png";
 import BeautyClinicServiceImg from "@assets/images/nailSalonService.png";
 import DentalClinicServiceImg from "@assets/images/dentalClinicService.png";
+
+const serviceList = [
+  {
+    icon: SpaServiceImg,
+    title: "Spa",
+    description: "Thư giãn tinh thần",
+  },
+  {
+    icon: MassageServiceImg,
+    title: "Massage",
+    description: "Chăm sóc cá nhân",
+  },
+  {
+    icon: HairSalonServiceImg,
+    title: "Hair Salon",
+    description: "Mái tóc hoàn hảo",
+  },
+  {
+    icon: NailSalonServiceImg,
+    title: "Nail Salon",
+    description: "“Look at my nails”",
+  },
+  {
+    icon: BeautyClinicServiceImg,
+    title: "Beauty Clinic",
+    description: "Xinh đẹp rạng ngời",
+  },
+  {
+    icon: DentalClinicServiceImg,
+    title: "Dental Clinic",
+    description: "Tự tin nụ cười",
+  },
+];
 ---
 
 <div class="px-5 text-center mt-24 md:mx-20 md:mt-[9.56rem]">
@@ -22,41 +55,15 @@ import DentalClinicServiceImg from "@assets/images/dentalClinicService.png";
   </div>
 
   <div class="service-list">
-    <div>
-      <Image src={SpaServiceImg} alt="Spa Service" />
-      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Spa</h2>
-      <p class="text-sub-header text-opacity-neutral">Thư giãn tinh thần</p>
-    </div>
-
-    <div>
-      <Image src={MassageServiceImg} alt="Massage Service" />
-      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Massage</h2>
-      <p class="text-sub-header text-opacity-neutral">Chăm sóc cá nhân</p>
-    </div>
-
-    <div>
-      <Image src={HairSalonServiceImg} alt="Hair Salon Service" />
-      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Hair Salon</h2>
-      <p class="text-sub-header text-opacity-neutral">Mái tóc hoàn hảo</p>
-    </div>
-
-    <div>
-      <Image src={NailSalonServiceImg} alt="Nail Salon Service" />
-      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Nail Salon</h2>
-      <p class="text-sub-header text-opacity-neutral">“Look at my nails”</p>
-    </div>
-
-    <div>
-      <Image src={BeautyClinicServiceImg} alt="Nail Salon Service" />
-      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Beauty Clinic</h2>
-      <p class="text-sub-header text-opacity-neutral">Xinh đẹp rạng ngời</p>
-    </div>
-
-    <div>
-      <Image src={DentalClinicServiceImg} alt="Nail Salon Service" />
-      <h2 class="text-title mt-4 mb-1 text-opacity-semi">Dental Clinic</h2>
-      <p class="text-sub-header text-opacity-neutral">Tự tin nụ cười</p>
-    </div>
+    {
+      serviceList.map(({ icon, title, description }) => (
+        <div>
+          <Image src={icon} alt="Spa Service" />
+          <h2 class="text-title mt-4 mb-1 text-opacity-semi">{title}</h2>
+          <p class="text-sub-header text-opacity-neutral">{description}</p>
+        </div>
+      ))
+    }
   </div>
 </div>
 
