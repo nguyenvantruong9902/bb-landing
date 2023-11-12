@@ -1,10 +1,9 @@
 ---
 import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
-import MenuIcon from "@assets/svgs/menu.svg?raw";
 ---
 
 <header
-  class="flex items-center justify-between py-4 px-5 max-w-[89.9375rem] mx-auto md:py-5 md:px-20"
+  class="flex items-center justify-between py-4 px-5 max-w-[89.9375rem] mx-auto md:static md:py-5 md:px-20"
 >
   <Fragment set:html={BBLogoTextIcon} />
 
@@ -14,8 +13,135 @@ import MenuIcon from "@assets/svgs/menu.svg?raw";
   </div>
 
   <div
-    class="flex justify-center items-center cursor-pointer w-11 h-11 rounded-lg shadow-xs md:hidden"
+    id="menu"
+    class="relative flex justify-center items-center cursor-pointer w-11 h-11 rounded-lg transition-all ease-in-out delay-150 md:hidden"
   >
-    <Fragment set:html={MenuIcon} />
   </div>
 </header>
+
+<script>
+  //Sticky header
+  const stickyClassName = [
+    "sticky",
+    "top-0",
+    "z-10",
+    "bg-white",
+    "shadow-sm",
+    "md:shadow-none",
+    "transition-all",
+    "ease-in-out",
+    "delay-150",
+  ];
+
+  document.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    if (window.scrollY > 0) {
+      header.classList.add(...stickyClassName);
+    } else {
+      header.classList.remove(...stickyClassName);
+    }
+  });
+
+  // Open and close menu
+  const menuIcon = `
+      <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 5H21M3 12H21M3 19H21"
+        stroke="#455571"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  `;
+  const closeIcon = `
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M4.7998 4.80005L19.1998 19.2M19.1998 4.80005L4.7998 19.2"
+      stroke="#364766"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+  `;
+  const menuClassClosed = ["shadow-xs", "rounded-b-lg"];
+  const menuClassOpening = ["shadow-lg", "rounded-b-none"];
+
+  const menu = document.querySelector("#menu");
+  menu.innerHTML = menuIcon;
+  menu.classList.add(...menuClassClosed);
+  menu.addEventListener("click", () => {
+    const menuItemsId = "menu-items";
+    const menuRendered = document.getElementById(menuItemsId);
+
+    if (menuRendered) {
+      // Remove menu items have rendered
+      menuRendered.remove();
+      // Update menu button
+      menu.innerHTML = menuIcon;
+      menu.classList.remove(...menuClassOpening);
+      menu.classList.add(...menuClassClosed);
+    } else {
+      // Create menu items
+      const menuItems = document.createElement("div");
+      menuItems.id = menuItemsId;
+      menuItems.className =
+        "transition-all ease-in-out delay-100 w-[13.7125rem] flex flex-col shadow-sm rounded-lg rounded-tr-none p-4 bg-white absolute top-11 right-0 z-50";
+      menuItems.innerHTML = `
+        <a href="#" class="py-[0.62rem]">Trang chủ</a>
+        <a href="#" class="py-[0.62rem]">Trở thành đối tác</a>
+        <a href="#" class="py-[0.62rem]">Về BeautyBooking</a>
+        <div class="flex gap-3 mt-6">
+          <a href="#">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.2656 12.5973L15.7211 9.70372H12.9157V7.8229C12.9157 7.03169 13.3073 6.25856 14.5597 6.25856H15.8531V3.79451C15.0999 3.6744 14.3388 3.60942 13.576 3.6001C11.2671 3.6001 9.75964 4.98811 9.75964 7.49737V9.70372H7.2002V12.5973H9.75964V19.5961H12.9157V12.5973H15.2656Z"
+                fill="#B0B7C3"
+              />
+            </svg>
+          </a>
+          <a href="#">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.35588 11.7661C2.35588 11.7661 10.6929 8.25468 13.5843 7.01822C14.6928 6.52368 18.4516 4.94101 18.4516 4.94101C18.4516 4.94101 20.1866 4.24865 20.042 5.93016C19.9937 6.62259 19.6082 9.04595 19.2227 11.6672C18.6444 15.3765 18.0179 19.4319 18.0179 19.4319C18.0179 19.4319 17.9215 20.5695 17.1023 20.7673C16.2831 20.9651 14.9337 20.075 14.6928 19.8771C14.5 19.7287 11.0784 17.5031 9.82547 16.4151C9.48812 16.1183 9.10262 15.5249 9.87363 14.8325C11.6085 13.2004 13.6807 11.1727 14.9337 9.88677C15.512 9.29325 16.0903 7.90847 13.6807 9.58998C10.2592 12.0134 6.88583 14.2884 6.88583 14.2884C6.88583 14.2884 6.11475 14.783 4.66904 14.3379C3.22326 13.8928 1.53658 13.2993 1.53658 13.2993C1.53658 13.2993 0.380063 12.5574 2.35588 11.7661Z"
+                fill="#B0B7C3"
+              />
+            </svg>
+          </a>
+        </div>
+      `;
+
+      // Update menu button
+      menu.innerHTML = closeIcon;
+      menu.classList.remove(...menuClassClosed);
+      menu.classList.add(...menuClassOpening);
+      // Append menu items
+      menu.appendChild(menuItems);
+    }
+  });
+</script>
