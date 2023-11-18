@@ -14,7 +14,7 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
 
   <div
     id="menu"
-    class="relative flex justify-center items-center cursor-pointer w-11 h-11 rounded-lg transition-all ease-in-out delay-150 md:hidden"
+    class="relative flex justify-center items-center cursor-pointer w-11 h-11 rounded-lg transition-all ease-in-out delay-150 bg-white shadow-sm md:hidden"
   >
   </div>
 </header>
@@ -25,7 +25,7 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
     "sticky",
     "top-0",
     "z-10",
-    "bg-white",
+    "bg-grey-100",
     "shadow-sm",
     "md:shadow-none",
     "transition-all",
@@ -77,8 +77,8 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
     />
   </svg>
   `;
-  const menuClassClosed = ["shadow-xs", "rounded-b-lg"];
-  const menuClassOpening = ["shadow-lg", "rounded-b-none"];
+  const menuClassClosed = ["rounded-b-lg"];
+  const menuClassOpening = ["rounded-b-none"];
 
   const menu = document.querySelector("#menu");
   menu.innerHTML = menuIcon;
@@ -99,7 +99,7 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
       const menuItems = document.createElement("div");
       menuItems.id = menuItemsId;
       menuItems.className =
-        "transition-all ease-in-out delay-100 w-[13.7125rem] flex flex-col shadow-sm rounded-lg rounded-tr-none p-4 bg-white absolute top-11 right-0 z-50";
+        "transition-all ease-in-out delay-100 w-[13.7125rem] flex flex-col shadow-sm rounded-lg rounded-tr-none p-4 bg-white absolute top-[2.72rem] right-0 z-50";
       menuItems.innerHTML = `
         <a href="#" class="py-[0.62rem]">Trang chủ</a>
         <a href="#" class="py-[0.62rem]">Trở thành đối tác</a>
