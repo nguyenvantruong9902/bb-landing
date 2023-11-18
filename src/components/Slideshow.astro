@@ -74,7 +74,9 @@ const position = (index: number, activeIndex: number) => {
 };
 ---
 
-<div class="relative h-[32rem] mt-16 overflow-hidden">
+<div
+  class="relative overflow-hidden h-[35rem] px-5 mt-[2.62rem] md:mt-16 md:px-0"
+>
   {
     items.map(({ title, content, owner }, index) => (
       <div
@@ -104,10 +106,10 @@ const position = (index: number, activeIndex: number) => {
   }
 
   <div
-    class="flex items-center gap-3 absolute left-1/2 -translate-x-1/2 bottom-0"
+    class="flex items-center gap-3 absolute left-1/2 -translate-x-1/2 top-[30.87rem] md:bottom-0"
   >
     <div
-      class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400"
+      class="hidden cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 md:block"
     >
       <Fragment set:html={LeftArrowIcon} />
     </div>
@@ -125,7 +127,7 @@ const position = (index: number, activeIndex: number) => {
     </div>
 
     <div
-      class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400"
+      class="hidden cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 md:block"
     >
       <Fragment set:html={RightArrowIcon} />
     </div>

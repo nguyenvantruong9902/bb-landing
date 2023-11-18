@@ -46,47 +46,49 @@ const partners = [
 ];
 ---
 
-<div class="md:mx-20">
-  <h1 class="text-h2 font-semibold mt-80 text-opacity-pure">
-    Đối tác của BeautyBooking
-  </h1>
-  <p class="text-title mt-4 text-opacity-semi">
-    Những nhận xét tuyệt vời từ các khách hàng hài lòng của BeautyBooking
-  </p>
+<div class="mt-60 md:mt-80">
+  <div class="px-5 md:px-20">
+    <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
+      Đối tác của BeautyBooking
+    </h1>
+    <p class="text-title mt-4 text-opacity-semi">
+      Những nhận xét tuyệt vời từ các khách hàng hài lòng của BeautyBooking
+    </p>
 
-  <div class="relative flex gap-3 my-8">
-    {
-      services.map((service, idx) => {
-        const activeClassName =
-          idx === 0 ? "bg-primary-700 text-white" : "bg-grey-300";
+    <div class="relative flex flex-wrap gap-3 my-8">
+      {
+        services.map((service, idx) => {
+          const activeClassName =
+            idx === 0 ? "bg-primary-700 text-white" : "bg-grey-300";
 
-        return (
-          <div
-            class={`cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph ${activeClassName}`}
-          >
-            {service}
-          </div>
-        );
-      })
-    }
+          return (
+            <div
+              class={`cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph ${activeClassName}`}
+            >
+              {service}
+            </div>
+          );
+        })
+      }
 
-    <div class="absolute right-0 flex gap-3">
-      <div
-        class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs"
-      >
-        <Fragment set:html={LeftArrowIcon} />
-      </div>
+      <div class="hidden md:flex md:gap-3 md:absolute md:right-0">
+        <div
+          class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs"
+        >
+          <Fragment set:html={LeftArrowIcon} />
+        </div>
 
-      <div
-        class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs"
-      >
-        <Fragment set:html={RightArrowIcon} />
+        <div
+          class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs"
+        >
+          <Fragment set:html={RightArrowIcon} />
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="relative w-full h-[30rem] overflow-hidden">
-    <div class="absolute left-2 flex gap-6">
+  <div class="relative overflow-hidden w-full h-[30rem] px-5 md:pl-20">
+    <div class="absolute flex gap-6">
       {
         partners.map(({ name, image, address, rating }) => (
           <div class="w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white">
