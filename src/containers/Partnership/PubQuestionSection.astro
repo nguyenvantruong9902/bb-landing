@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+
+import PlusIcon from "@assets/svgs/plus.svg";
+
+const questions = [
+  {
+    question: "BeautyBooking Merchant là gì?",
+    answer:
+      "Được phát triển vởi công ty giải pháp phần mềm A.N.S. BeautyBooking Merchant là một nền tảng quản lý và tiếp thị dành riêng cho các cơ sở làm đẹp. Nó giúp bạn quản lý lịch hẹn, tùy chỉnh dịch vụ, quảng bá cửa hàng của bạn nhằm thu hút khách hàng mới một cách dễ dàng và hiệu quả.",
+  },
+  {
+    question:
+      "Làm thế nào BeautyBooking Merchant có thể giúp tôi quản lý lịch hẹn hiệu quả?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+  },
+  {
+    question:
+      "Tôi có thể tùy chỉnh các dịch vụ và giá cả của mình trên nền tảng không?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+  },
+  {
+    question:
+      "BeautyBooking Merchant có giúp quản lý khách hàng và chương trình khách hàng thân thiết không?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+  },
+  {
+    question:
+      "Làm thế nào tôi có thể quảng bá cửa hàng của mình và thu hút khách hàng mới với BeautyBooking Merchant?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+  },
+  {
+    question:
+      "Làm thế nào BeautyBooking Merchant bảo vệ thông tin khách hàng của tôi?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+  },
+];
+---
+
+<div class="flex flex-col justify-between items-center px-5 mt-[9.875rem]">
+  <div class="max-w-[75rem]">
+    <h1
+      class="text-h3 text-opacity-pure text-center font-semibold md:text-display"
+    >
+      Câu hỏi thường gặp
+    </h1>
+
+    <div class="flex justify-center mt-4 mb-11">
+      <p class="text-center max-w-[52rem] text-title">
+        Chưa tìm được câu trả lời cho câu hỏi của minh? <br />
+         Tham gia cộng đồng làm đẹp của BeautyBooking để được trực tiếp giải
+        đáp.
+      </p>
+    </div>
+
+    {
+      questions.map(({ question, answer }) => (
+        <div class="collapsible">
+          <div class="flex items-center justify-between h-fit">
+            <h4 class="question">{question}</h4>
+            <button class="w-10 h-10 ml-4 rounded-full bg-grey-300 p-1.5">
+              <Image src={PlusIcon} alt="expand" class="m-auto" />
+            </button>
+          </div>
+
+          <p class="answer">{answer}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .collapsible {
+    @apply p-6 rounded-xl shadow-md text-title max-w-[52.875rem];
+  }
+
+  .collapsible .question {
+    @apply max-w-[calc(100%-3.75rem)];
+  }
+
+  .collapsible .answer {
+    @apply text-opacity-neutral h-0 overflow-hidden transition-all duration-300 ease-in-out;
+  }
+</style>
+
+<script>
+  const collapses = document.querySelectorAll<HTMLDivElement>(".collapsible");
+
+  for (let index = 0; index < collapses.length; index++) {
+    const collapse = collapses[index];
+    const answer = collapse.querySelector<HTMLDivElement>(".answer");
+    const expandBtn = collapse.querySelector("button");
+    const expandImg = collapse.querySelector("img");
+
+    expandBtn.addEventListener("click", () => {
+      if (answer.clientHeight) {
+        answer.classList.remove("mt-6");
+        answer.style.height = "0";
+        expandImg.setAttribute("src", "./src/assets/svgs/plus.svg");
+      } else {
+        answer.classList.add("mt-6");
+        answer.style.height = `${answer.scrollHeight}px`;
+        expandImg.setAttribute("src", "./src/assets/svgs/minus.svg");
+      }
+    });
+  }
+</script>

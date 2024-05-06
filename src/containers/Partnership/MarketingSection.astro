@@ -1,0 +1,219 @@
+---
+import Title from "@components/Title.astro";
+import Container from "@components/Container.astro";
+
+import HouseIcon from "@assets/svgs/house.svg?raw";
+import SpeakerIcon from "@assets/svgs/speaker.svg?raw";
+import UserGroupIcon from "@assets/svgs/userGroup.svg?raw";
+import StaringIcon from "@assets/svgs/starring.svg?raw";
+import PeopleIcon from "@assets/svgs/people.svg?raw";
+import HeartIcon from "@assets/svgs/heart.svg?raw";
+import GlobalIcon from "@assets/svgs/global.svg?raw";
+import CupIcon from "@assets/svgs/cup.svg?raw";
+
+const tabs = [
+  {
+    id: "tab-1",
+    name: "Cửa hàng mới",
+    sections: [
+      {
+        icon: HouseIcon,
+        title: "Cửa hàng trực tuyến",
+        subText:
+          "Với tài khoản trên BeautyBooking Merchant, cửa hàng của bạn sẽ đồng thời có cửa hàng trên ứng dụng đặt hẹn của BeautyBooking. Điều này giúp tăng độ uy tín và tạo sự nhận diện trong ngành dịch vụ làm đẹp.",
+      },
+      {
+        icon: SpeakerIcon,
+        title: "Quảng cáo & Khuyến mãi",
+        subText:
+          "Tạo, quản lý & quảng cáo dịch vụ, gói ưu đãi, giảm giá & chương trình khuyến mãi. Cửa hàng có thể nâng cao độ nhận diện và thu hút lượng lớn khách hàng ban đầu. Điều này đặc biệt hữu ích.",
+      },
+      {
+        icon: UserGroupIcon,
+        title: "Tiếp cận khách hàng mới",
+        subText:
+          "Chi tiết các dịch vụ được cập nhật rõ ràng, hình ảnh sinh động trên BeautyBooking Merchant, cửa hàng mới có cơ hội tiếp cận lượng lớn khách hàng tiềm năng đang tìm kiếm dịch vụ làm đẹp trong khu vực của họ.",
+      },
+      {
+        icon: StaringIcon,
+        title: "Đánh giá & Chia sẻ trải nghiệm",
+        subText:
+          "Các đánh giá tích cực từ khách hàng  có thể xây dựng niềm tin & uy tín cho doanh nghiệp. BeautyBooking Merchant cho phép khách hàng đánh giá sau khi đã trải nghiệm, điều này là một công cụ tiếp thị mạnh mẽ & giúp nâng cao chất lượng dịch vụ cho các cửa hàng mới.",
+      },
+    ],
+  },
+  {
+    id: "tab-2",
+    name: "Cửa hàng lâu năm",
+    sections: [
+      {
+        icon: PeopleIcon,
+        title: "Chăm sóc khách hàng hiện có",
+        subText:
+          "Các cửa hàng có thể sử dụng BeautyBooking Merchant để tương tác lại với cơ sở khách hàng hiện có của họ. Gửi thông báo về các ưu đãi đặc biệt hoặc lời nhắc về các cuộc hẹn sắp tới để duy trì mối quan hệ khách hàng mạnh mẽ.",
+      },
+      {
+        icon: HeartIcon,
+        title: "Ưu đãi với khách hàng thân thiết",
+        subText:
+          "BeautyBooking Merchant hỗ trợ việc triển khai các chương trình khách hàng thân thiết. Các cửa hàng có thể sử dụng các chương trình này để thưởng cho khách hàng quay lại, khuyến khích họ quay trở lại.",
+      },
+      {
+        icon: GlobalIcon,
+        title: "Mở rộng thương hiệu trực tuyến",
+        subText:
+          "Ngay cả các cửa hàng đã thành lập cũng có thể hưởng lợi từ việc mở rộng cửa hàng online. Cơ hội kết nối với khách hàng tiềm năng muốn đặt dịch vụ trực tuyến.",
+      },
+      {
+        icon: CupIcon,
+        title: "Tăng lợi thế cạnh tranh",
+        subText:
+          "Bằng cách duy trì cập nhật với các phương thức đặt lịch và tiếp thị hiện đại, các cửa hàng đã thành lập có thể duy trì lợi thế cạnh tranh trong ngành dịch vụ làm đẹp.",
+      },
+    ],
+  },
+];
+---
+
+<Container>
+  <div
+    class="flex flex-col justify-between items-center px-5 mt-[7.375rem] md:mt-[21.75rem]"
+  >
+    <div class="max-w-[75rem]">
+      <Title className="md:text-center">
+        Tiếp cận khách hàng hiệu quả,<br />
+         Xây dựng hình ảnh chuyên nghiệp
+      </Title>
+
+      <div class="flex justify-center mt-4">
+        <p class="text-center max-w-[52rem] text-title">
+          Tạo mối liên kết bền vững giữa doanh nghiệp & khách hàng.<br />
+           Nâng cao chất lượng dịch vụ & trải nghiệm sử dụng với BeautyBooking
+          Merchant.
+        </p>
+      </div>
+
+      <div class="mt-8 md:mt-12">
+        <div class="tabs">
+          {
+            tabs.map(({ id, name }) => (
+              <div class="tab-btn" data-id={id}>
+                {name}
+              </div>
+            ))
+          }
+
+          <div class="bg-slider">
+            <div class="bg-slider-rect">&nbsp;</div>
+          </div>
+        </div>
+
+        <div class="overflow-x-hidden">
+          <div class="tab-content">
+            {
+              tabs.map(({ id, sections }) => (
+                <div class="w-full" id={id}>
+                  {sections.map(({ icon, title, subText }) => (
+                    <div>
+                      <div>
+                        <Fragment set:html={icon} />
+                      </div>
+
+                      <div class="flex flex-col gap-y-2 mt-3">
+                        <h3 class="text-title md:text-h5 font-semibold">
+                          {title}
+                        </h3>
+                        <p class="text-paragraph md:text-title text-opacity-neutral">
+                          {subText}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Container>
+
+<style>
+  .tabs {
+    @apply flex relative gap-2 px-2 py-1.5 border border-primary-200 bg-grey-300 rounded-xl w-fit mx-auto;
+  }
+
+  .tab-btn {
+    @apply px-3 py-1.5 rounded-lg cursor-pointer text-dark text-opacity-neutral z-[1] md:text-title;
+  }
+
+  .tab-btn:hover,
+  .tab-btn.active {
+    @apply text-primary-800;
+  }
+
+  .bg-slider {
+    @apply pointer-events-none absolute top-1.5 left-2 right-2 bottom-1.5 z-0;
+  }
+
+  .bg-slider-rect {
+    @apply h-full rounded-lg bg-white shadow transition-all duration-1000 ease-in-out;
+  }
+
+  .tab-content {
+    @apply flex w-[200%] overflow-x-hidden mt-8;
+    @apply transition-all duration-1000 ease-in-out;
+  }
+
+  .tab-content > div {
+    @apply grid grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-20 md:gap-y-14;
+  }
+</style>
+
+<script>
+  const tabBtns = document.querySelectorAll<HTMLElement>(".tab-btn");
+  const tabContent = document.querySelector<HTMLElement>(".tab-content");
+  const bgSliderRect = document.querySelector<HTMLElement>(
+    ".bg-slider>.bg-slider-rect",
+  );
+  const tabIds = Array.from(tabBtns).map((el) => el.dataset.id);
+
+  let tabActive = tabBtns[0];
+  let tabIdxActive = 0;
+
+  const loadBgSliderRect = () => {
+    let bgSliderRectTranslateX = 0;
+
+    if (tabIdxActive > 0) {
+      bgSliderRectTranslateX = tabBtns[tabIdxActive - 1].clientWidth + 8; // apply when there are 2 tabs
+    }
+
+    bgSliderRect.style.width = `${tabActive.clientWidth}px`;
+    bgSliderRect.style.transform = `translateX(${bgSliderRectTranslateX}px)`;
+  };
+
+  const openTab = (elm: HTMLElement) => {
+    const id = elm.dataset.id;
+
+    tabActive = elm;
+    tabIdxActive = tabIds.indexOf(id);
+
+    tabBtns.forEach((el) => el.classList.remove("active"));
+    elm.classList.add("active");
+
+    loadBgSliderRect();
+
+    tabContent.style.transform = `translateX(-${tabIdxActive * 50}%)`;
+  };
+
+  // initialize
+  tabActive.classList.add("active");
+  loadBgSliderRect();
+
+  // reload background for slider rect
+  window.addEventListener("resize", () => loadBgSliderRect());
+
+  // add event when clicking on a tab button
+  tabBtns.forEach((el) => el.addEventListener("click", () => openTab(el)));
+</script>

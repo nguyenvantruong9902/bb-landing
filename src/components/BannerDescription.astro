@@ -1,15 +1,11 @@
 ---
+import DownloadOn from "./DownloadOn.astro";
+
 interface Props {
   isMobile?: boolean;
 }
 
 const { isMobile } = Astro.props;
-
-import { Image } from "astro:assets";
-
-import AppStoreImg from "@assets/images/appStore.png";
-import PlayStoreImg from "@assets/images/playStore.png";
-import BBLogoIcon from "@assets/svgs/bbLogo.svg?raw";
 
 const statistics = [
   {
@@ -31,32 +27,15 @@ const className = isMobile ? "mt-8 md:hidden" : "hidden md:block";
 
 <div class={className}>
   <p class="text-title text-opacity-semi text-center md:text-left md:mt-8">
-    Không còn những lần đợi chờ, những lần trải nghiệm dịch vụ không như ý. Tải
-    BeautyBooking và đặt lịch làm đẹp ngay hôm nay, tất cả những gì bạn cần làm
-    là tận hưởng.
+    Không còn những lần đợi chờ, những trải nghiệm dịch vụ không như mong đợi.
+    Tải BeautyBooking & đặt lịch làm đẹp ngay hôm nay, những gì bạn cần làm là
+    tận hưởng.
   </p>
 
-  <div
-    class="flex items-center justify-center my-8 md:mt-[5.5rem] md:justify-start"
-  >
-    <div
-      class="relative p-[0.62rem] rounded-lg border border-primary-200 shadow-sm items-center hidden md:flex"
-    >
-      <a href="#">
-        <Fragment set:html={BBLogoIcon} />
-      </a>
-      <p class="text-h5 absolute -top-[1.125rem] -right-2">👋</p>
-    </div>
+  <div class="md:mt-11">
+    <p class="text-caption text-opacity-neutral font-semibold">Tải ngay</p>
 
-    <div class="w-[0.125rem] h-10 mx-5 bg-grey-400 hidden md:flex"></div>
-
-    <a href="#" class="mr-4">
-      <Image src={AppStoreImg} alt="App Store" />
-    </a>
-
-    <a href="#">
-      <Image src={PlayStoreImg} alt="Google Play" />
-    </a>
+    <DownloadOn className="mt-3 md:justify-start" />
   </div>
 
   <div

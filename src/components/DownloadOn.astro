@@ -1,0 +1,46 @@
+---
+import AppStoreIcon from "@assets/svgs/appStore.svg?raw";
+import GGPlayIcon from "@assets/svgs/ggPlay.svg?raw";
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<div class={`flex items-center justify-center ${className}`}>
+  <a href="#" class="mr-4">
+    <div
+      class="flex items-center gap-2 h-[4.375rem] rounded-xl bg-white border-2 border-black border-opacity-10 py-3 pl-3 pr-6"
+    >
+      <div>
+        <Fragment set:html={AppStoreIcon} />
+      </div>
+
+      <div>
+        <span class="font-bold text-tiny text-dark text-opacity-neutral">
+          DOWLOAD ON THE
+        </span>
+        <p>App Store</p>
+      </div>
+    </div>
+  </a>
+
+  <a href="#">
+    <div
+      class="flex items-center gap-2 h-[4.375rem] rounded-xl bg-white border-2 border-black border-opacity-10 py-3 pl-3 pr-6"
+    >
+      <div>
+        <Fragment set:html={GGPlayIcon} />
+      </div>
+
+      <div>
+        <span class="font-bold text-tiny text-dark text-opacity-neutral"
+          >GET IT ON</span
+        >
+        <p>Google Play</p>
+      </div>
+    </div>
+  </a>
+</div>

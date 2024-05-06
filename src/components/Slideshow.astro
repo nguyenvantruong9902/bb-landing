@@ -1,113 +1,75 @@
 ---
-import QuoteIcon from "@assets/svgs/quote.svg?raw";
 import StarIcon from "@assets/svgs/star.svg?raw";
 import LeftArrowIcon from "@assets/svgs/leftArrow.svg?raw";
 import RightArrowIcon from "@assets/svgs/rightArrow.svg?raw";
 
-const items = [
-  {
-    title: "App cần nhiều store gội đầu hơn",
-    content:
-      "Buổi trưa muốn đi gội đầu nhanh 1 chút mà app hơi ít. Hy vọng sẽ có nhiều store có dịch vụ gội đầu, thư giãn nhiều hơn cho các chị em trong buổi trưa nóng nực của trời Sài Gòn",
-    owner: "Bita_TT - 05/04/2023",
-  },
-  {
-    title: "10 điểm chất lượng",
-    content:
-      "App có giao diện dễ sử dụng, khá là tiện lợi. Spa nhiệt tình, tư vấn trả lời nhanh, m down app trúng dịp được giảm 10% rất là okela nhaa",
-    owner: "RosieSorie - 10/04/2023",
-  },
-  {
-    title: "App tiện ghê",
-    content:
-      "Mình từ Tây Ninh xuống muốn đi gội cái đầu mà ko biết tiệm nào, coi GG 1 núi comment linh tinh. Hên có app biết cái nào gần ks qua làm cái một. Mãi yêu",
-    owner: "xthuoongxx - 26/05/2023",
-  },
-  {
-    title: "App cần nhiều thêm cửa hàng gội đầu",
-    content: "App tiện lắm nhưng mà hơi ít cơ sở gội đầu bên Bình Thạnh.",
-    owner: "RosieSorie - 10/04/2023",
-  },
-  {
-    title: "Rất hay & thực tế",
-    content:
-      "Mình khá thích giao diện và màu sắc của app. Ưng dụng dễ hiểu dễ sử dụng lắm. Mong app phát triển đến tay nhiều người dùng hơn nha. Trong tương lại sẽ có nhiều cải tiến và trải nghiệm đa dạng hơn nữa",
-    owner: "Bita_TT - 05/04/2023",
-  },
+const columns = [
+  [
+    {
+      content:
+        "Buổi trưa muốn đi gội đầu nhanh 1 chút mà app hơi ít. Hy vọng sẽ có nhiều store có dịch vụ gội đầu, thư giãn nhiều hơn cho các chị em trong buổi trưa nóng nực của trời Sài Gòn",
+      owner: "Bita_TT - 05/04/2023",
+    },
+    {
+      content:
+        "App có giao diện dễ sử dụng, khá là tiện lợi. Spa nhiệt tình, tư vấn trả lời nhanh, m down app trúng dịp được giảm 10% rất là okela nhaa",
+      owner: "RosieSorie - 10/04/2023",
+    },
+  ],
+  [
+    {
+      content: "App tiện lắm nhưng mà hơi ít cơ sở gội đầu bên Bình Thạnh.",
+      owner: "RosieSorie - 10/04/2023",
+    },
+    {
+      content:
+        "Mình khá thích giao diện và màu sắc của app. Ưng dụng dễ hiểu dễ sử dụng lắm. Mong app phát triển đến tay nhiều người dùng hơn nha. Trong tương lại sẽ có nhiều cải tiến và trải nghiệm đa dạng hơn nữa",
+      owner: "Bita_TT - 05/04/2023",
+    },
+  ],
+  [
+    {
+      content:
+        "Mình từ Tây Ninh xuống muốn đi gội cái đầu mà ko biết tiệm nào, coi GG 1 núi comment linh tinh. Hên có app biết cái nào gần ks qua làm cái một. Mãi yêu",
+      owner: "xthuoongxx - 26/05/2023",
+    },
+    {
+      content:
+        "Giao diện trực quan dễ nhìn, rất thích sử dụng app này. Hy vọng sẽ thêm nhiều nhóm hàng để đi trải nghiệm",
+      owner: "Des Thuc - 05/04/2024",
+    },
+  ],
 ];
-
-const position = (index: number, activeIndex: number) => {
-  if (index === activeIndex)
-    return {
-      left: "50%",
-      bottom: "7.5rem",
-      transform: "translateX(-50%)",
-    };
-  if (index < activeIndex) {
-    const step = activeIndex - index;
-
-    const left =
-      step > 1
-        ? `calc(50% - (${step * 23}rem + 12rem + ${step * 5 - 0.2}rem))`
-        : `calc(50% - 40rem)`;
-    const bottom = step > 1 ? `${120 - (step * 40 + 40)}px` : "86px";
-
-    return {
-      left,
-      bottom,
-      transform: `rotate(-${step * 7}deg)`,
-    };
-  }
-
-  const step = index - activeIndex;
-  const right =
-    step > 1
-      ? `calc(50% - (${step * 23}rem + 12rem + ${step * 5 - 0.2}rem))`
-      : `calc(50% - 40rem)`;
-  const bottom = step > 1 ? `${120 - (step * 40 + 40)}px` : "86px";
-
-  return {
-    right,
-    bottom,
-    transform: `rotate(${step * 7}deg)`,
-  };
-};
 ---
 
-<div
-  class="relative overflow-hidden h-[35rem] px-5 mt-[2.62rem] md:mt-16 md:px-0"
->
-  {
-    items.map(({ title, content, owner }, index) => (
-      <div
-        class="absolute flex flex-col justify-between bg-white rounded-3xl pt-10 pb-8 px-8 w-[23.75rem] h-[26.25rem] text-left text-title shadow-md"
-        style={position(index, 2)}
-      >
-        <p>{content}</p>
+<div class="relative px-5 mx-auto mt-[2.62rem] md:mt-16 md:px-0">
+  <div class="review-slide">
+    {
+      columns.map((column) => (
+        <div class="flex flex-col gap-5">
+          {column.map(({ content, owner }) => (
+            <div class="review">
+              <div>{content}</div>
 
-        <div class="relative">
-          <div class="flex justify-end">
-            <Fragment set:html={QuoteIcon} />
-          </div>
-
-          <div class="flex">
-            <span class="mr-2">5.0</span>
-            <Fragment set:html={StarIcon} />
-            <Fragment set:html={StarIcon} />
-            <Fragment set:html={StarIcon} />
-            <Fragment set:html={StarIcon} />
-            <Fragment set:html={StarIcon} />
-          </div>
-          <p class="my-1">{title}</p>
-          <p class="text-sub-header text-opacity-neutral">{owner}</p>
+              <div class="relative mt-11">
+                <div class="flex">
+                  <span class="mr-2">5.0</span>
+                  <Fragment set:html={StarIcon} />
+                  <Fragment set:html={StarIcon} />
+                  <Fragment set:html={StarIcon} />
+                  <Fragment set:html={StarIcon} />
+                  <Fragment set:html={StarIcon} />
+                </div>
+                <p class="text-sub-header text-opacity-neutral">{owner}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))
-  }
+      ))
+    }
+  </div>
 
-  <div
-    class="flex items-center gap-3 absolute left-1/2 -translate-x-1/2 top-[30.87rem] md:bottom-0"
-  >
+  <div class="flex items-center gap-3 md:bottom-0 md:hidden">
     <div
       class="hidden cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 md:block"
     >
@@ -116,7 +78,7 @@ const position = (index: number, activeIndex: number) => {
 
     <div class="flex gap-2">
       {
-        items.map((_, idx) => {
+        columns.map((_, idx) => {
           const activeClassName =
             idx === 2 ? "bg-primary-600" : "bg-primary-300";
           return (
@@ -133,3 +95,68 @@ const position = (index: number, activeIndex: number) => {
     </div>
   </div>
 </div>
+
+<style>
+  .review-slide {
+    @apply max-w-7xl m-auto grid md:grid-cols-1 xl:grid-cols-3 gap-5;
+  }
+  .review-slide .review {
+    @apply relative inline-block bg-white rounded-3xl pt-10 pb-8 px-8 w-[25.75rem] h-fit text-left text-title shadow-md;
+  }
+</style>
+
+<script>
+  let pressed = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
+  const reviewSlide = document.querySelector<HTMLDivElement>(".review-slide");
+
+  const active = () => {
+    const center = reviewSlide.offsetWidth / 2 - 190; // 190 = 23.75rem / 2
+    for (let idx = 0; idx < reviewSlide.children.length; idx++) {
+      const item = reviewSlide.children[2] as HTMLDivElement;
+      item.style.transform = `translateX(${center}px)`;
+    }
+  };
+
+  const start = (pageX: number) => {
+    pressed = true;
+    startX = pageX - reviewSlide.offsetLeft;
+    scrollLeft = reviewSlide.scrollLeft;
+  };
+
+  const move = (pageX: number) => {
+    const x = pageX - reviewSlide.offsetLeft;
+    const dist = x - startX;
+    reviewSlide.scrollLeft = scrollLeft - dist;
+    active();
+  };
+
+  const touchMove = (evt: TouchEvent) => {
+    if (!pressed) return;
+
+    evt.preventDefault();
+    move(evt.touches[0].pageX);
+  };
+
+  const moveMove = (evt: MouseEvent) => {
+    if (!pressed) return;
+
+    evt.preventDefault();
+    move(evt.pageX);
+  };
+
+  const end = () => {
+    pressed = false;
+  };
+
+  reviewSlide.addEventListener("touchstart", (e) => start(e.touches[0].pageX));
+  reviewSlide.addEventListener("mousedown", (e) => start(e.pageX));
+
+  reviewSlide.addEventListener("touchmove", touchMove);
+  reviewSlide.addEventListener("mousemove", moveMove);
+
+  reviewSlide.addEventListener("mouseup", end);
+  reviewSlide.addEventListener("mouseleave", end);
+</script>

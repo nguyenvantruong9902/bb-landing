@@ -1,40 +1,57 @@
 ---
 import { Image } from "astro:assets";
 
-import ExploreChecklist from "@components/ExploreChecklist.astro";
+import Checklist from "@components/Checklist.astro";
+import Container from "@components/Container.astro";
 
 import ExploreImg from "@assets/images/explore.png";
+
+const checklist = [
+  {
+    title: "Đa dạng các loại dịch vụ",
+    description: "Tất cả các dịch vụ làm đẹp mà bạn đang tìm kiếm",
+  },
+  {
+    title: "Khung thời gian trống phù hợp",
+    description: "Khung thời gian phù hợp với sự bận rộn của bạn",
+  },
+  {
+    title: "Giá cả rõ ràng",
+    description: "Giá dịch vụ/sản phẩm đc thể hiện trực tiếp & minh bạch",
+  },
+  {
+    title: "Tham khảo trải nghiệm",
+    description: "Đánh giá rõ ràng đến từ những trải nghiệm thực tế",
+  },
+];
 ---
 
-<div
-  class="flex flex-col justify-between items-center px-5 mt-24 md:mx-20 md:mt-[15.25rem] md:flex-row"
->
-  <div class="relative flex flex-col max-w-[32.4375rem]">
-    <h1
-      class="text-h3 text-opacity-pure text-center font-semibold md:text-left md:text-h2"
-    >
-      Khám phá, đặt hẹn & tận hưởng
-    </h1>
+<Container>
+  <div
+    class="flex flex-col justify-between items-center px-5 mt-24 md:mx-20 md:mt-[15.25rem] md:flex-row"
+  >
+    <div class="relative flex flex-col max-w-[32.4375rem]">
+      <h1
+        class="text-h3 text-opacity-pure text-center font-semibold md:text-left md:text-h2"
+      >
+        Thư giãn & Tiết kiệm
+      </h1>
 
-    <div
-      class="text-title text-opacity-semi text-center mt-4 md:text-left md:mt-8"
-    >
-      <p class="mb-8">
-        Dễ dàng tìm kiếm và đặt hẹn bất mọi lúc mọi nơi, tiết kiệm thời gian và
-        công sức.
-      </p>
+      <div class="text-title text-opacity-semi text-center mt-4 md:text-left">
+        <p>
+          Luôn yên tâm về giá cả cũng như chất lượng của các dịch vụ.
+          BeautyBooking luôn có những ưu đãi hấp dẫn, cùng những tham khảo đánh
+          giá chất lượng uy tín. Bạn sẽ có những trải nghiệm làm đẹp tuyệt vời.
+        </p>
+      </div>
 
-      <p>
-        BeautyBooking cung cấp chi tiết về các dịch vụ, đánh giá của người dùng
-        và nhiều ưu đãi hấp dẫn khác, giúp bạn tận hưởng những trải nghiệm làm
-        đẹp tuyệt vời.
-      </p>
+      <Checklist checklist={checklist} />
     </div>
 
-    <ExploreChecklist />
+    <div class="mt-12 md:mt-0">
+      <Image src={ExploreImg} alt="Explore" />
+    </div>
+
+    <Checklist checklist={checklist} isMobile />
   </div>
-
-  <Image src={ExploreImg} alt="Explore" class="mt-12 md:mt-0" />
-
-  <ExploreChecklist isMobile />
-</div>
+</Container>

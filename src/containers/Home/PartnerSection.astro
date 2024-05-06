@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets";
 
+import Container from "@components/Container.astro";
+
 import AndiBeautyImg from "@assets/images/andiBeauty.png";
 import OppaBeautyImg from "@assets/images/oppaBeauty.png";
 import LasolBeautyImg from "@assets/images/lasolBeauty.png";
-import JMBeautyImg from "@assets/images/jmBeauty.png";
 import StarIcon from "@assets/svgs/star.svg?raw";
 import LeftArrowIcon from "@assets/svgs/leftArrow.svg?raw";
 import RightArrowIcon from "@assets/svgs/rightArrow.svg?raw";
 
-const services = [
+const serviceNames = [
   "Spa Center",
   "Massage Center",
   "Nail Salon",
@@ -39,15 +40,39 @@ const partners = [
   },
   {
     name: "JM Beauty Lounge",
-    image: JMBeautyImg,
+    image: AndiBeautyImg,
+    address: "1741 Lý Tự Trọng, P.Bến Thành, Q.1, HCM",
+    rating: "(48 nhận xét )",
+  },
+  {
+    name: "JM Beauty Lounge",
+    image: AndiBeautyImg,
+    address: "1741 Lý Tự Trọng, P.Bến Thành, Q.1, HCM",
+    rating: "(48 nhận xét)",
+  },
+  {
+    name: "Oppa Beauty Nails - Hoa Cúc",
+    image: OppaBeautyImg,
+    address: "39 Hoa Cúc, P.7, Phú Nhuận, HCM",
+    rating: "(48 nhận xét )",
+  },
+  {
+    name: "Lasol Beauty Clinic",
+    image: LasolBeautyImg,
+    address: "32 Đặng Văn Ngữ, P.12, Q.10, HCM",
+    rating: "(48 nhận xét )",
+  },
+  {
+    name: "JM Beauty Lounge",
+    image: AndiBeautyImg,
     address: "1741 Lý Tự Trọng, P.Bến Thành, Q.1, HCM",
     rating: "(48 nhận xét )",
   },
 ];
 ---
 
-<div class="mt-60 md:mt-80">
-  <div class="px-5 md:px-20">
+<Container>
+  <div class="mt-60 px-5 md:mt-80">
     <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
       Đối tác của BeautyBooking
     </h1>
@@ -55,59 +80,194 @@ const partners = [
       Những nhận xét tuyệt vời từ các khách hàng hài lòng của BeautyBooking
     </p>
 
-    <div class="relative flex flex-wrap gap-3 my-8">
+    <div class="service-names">
       {
-        services.map((service, idx) => {
-          const activeClassName =
-            idx === 0 ? "bg-primary-700 text-white" : "bg-grey-300";
-
-          return (
-            <div
-              class={`cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph ${activeClassName}`}
-            >
-              {service}
-            </div>
-          );
-        })
+        serviceNames.map((name, idx) => (
+          <div class="service-name" data-idx={idx}>
+            {name}
+          </div>
+        ))
       }
 
       <div class="hidden md:flex md:gap-3 md:absolute md:right-0">
-        <div
-          class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs"
-        >
+        <div class="prev">
           <Fragment set:html={LeftArrowIcon} />
         </div>
 
-        <div
-          class="cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs"
-        >
+        <div class="next">
           <Fragment set:html={RightArrowIcon} />
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="relative overflow-hidden w-full h-[30rem] px-5 md:pl-20">
-    <div class="absolute flex gap-6">
-      {
-        partners.map(({ name, image, address, rating }) => (
-          <div class="w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white">
-            <Image src={image} alt="Partner" class="rounded-t-3xl" />
+    <div class="relative">
+      <div class="partner-slide">
+        {
+          partners.map(({ name, image, address, rating }) => (
+            <div class="partner">
+              <Image src={image} alt="Partner" class="rounded-t-3xl" />
 
-            <div class="px-5 py-4">
-              <h5 class="text-title text-opacity-pure">{name}</h5>
-              <p class="text-sub-header text-opacity-neutral mt-1 mb-3">
-                {address}
-              </p>
-              <div class="flex items-center gap-1 text-sub-header">
-                <Fragment set:html={StarIcon} />
-                <span>4.5</span>
-                <p class="text-opacity-neutral">{rating}</p>
+              <div class="px-5 py-4">
+                <h5 class="text-title text-opacity-pure">{name}</h5>
+                <p class="text-sub-header text-opacity-neutral mt-1 mb-3">
+                  {address}
+                </p>
+                <div class="flex items-center gap-1 text-sub-header">
+                  <Fragment set:html={StarIcon} />
+                  <span>4.5</span>
+                  <p class="text-opacity-neutral">{rating}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
-</div>
+</Container>
+
+<style>
+  .service-names {
+    @apply relative flex flex-wrap gap-3 my-8;
+  }
+  .service-name {
+    @apply cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph bg-grey-300;
+  }
+
+  .service-name.active {
+    @apply bg-primary-700 text-white;
+  }
+
+  .prev,
+  .next {
+    @apply cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs;
+  }
+
+  .partner-slide {
+    @apply relative whitespace-nowrap overflow-hidden py-4 px-2 transition-all ease-linear duration-300;
+  }
+
+  .partner-slide .partner {
+    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 first:ml-0;
+  }
+</style>
+
+<script>
+  // Handle select services
+  const services = document.querySelector<HTMLDivElement>(".service-names");
+  services.addEventListener("click", (evt) => {
+    const serviceNameElm = evt.target as Element;
+    if (serviceNameElm.classList.contains("active")) {
+      serviceNameElm.classList.remove("active");
+    } else {
+      serviceNameElm.classList.add("active");
+    }
+  });
+  // Handle slideshow
+  const prevButton = document.querySelector<HTMLDivElement>(".prev");
+  const nextButton = document.querySelector<HTMLDivElement>(".next");
+  const partnerSlide = document.querySelector<HTMLDivElement>(".partner-slide");
+
+  let pressed = false;
+  let startX = 0;
+
+  const sideScroll = (
+    element: HTMLDivElement,
+    direction: "left" | "right",
+    distance: number,
+    step: number,
+  ) => {
+    let scrollAmount = 0;
+    let scrollLeft = element.scrollLeft;
+    const scrolledLeft = scrollLeft;
+    const maxScrollLeft = element.scrollWidth - element.clientWidth;
+
+    const slideTimer = setInterval(() => {
+      if (direction === "right") {
+        scrollLeft += step;
+      } else {
+        scrollLeft -= step;
+      }
+
+      scrollAmount += step;
+
+      if (scrollAmount > distance) {
+        if (direction === "right") {
+          scrollLeft = scrolledLeft + distance;
+        }
+
+        if (direction === "left") {
+          scrollLeft = scrolledLeft - distance;
+        }
+      }
+
+      element.scrollLeft = scrollLeft;
+
+      if (
+        scrollAmount >= distance ||
+        scrollLeft <= 0 ||
+        scrollLeft >= maxScrollLeft
+      ) {
+        window.clearInterval(slideTimer);
+      }
+    }, 0);
+  };
+
+  const prev = () => {
+    const isToLeft = partnerSlide.scrollLeft === 0;
+    if (isToLeft) return;
+
+    sideScroll(partnerSlide, "left", 404, 8);
+  };
+
+  const next = () => {
+    const isToRight =
+      partnerSlide.scrollLeft ===
+      partnerSlide.scrollWidth - partnerSlide.clientWidth;
+    if (isToRight) return;
+
+    sideScroll(partnerSlide, "right", 404, 8);
+  };
+
+  const start = (pageX: number) => {
+    pressed = true;
+    startX = pageX - partnerSlide.offsetLeft;
+  };
+
+  const move = (pageX: number) => {
+    const x = pageX - partnerSlide.offsetLeft;
+    const dist = x - startX;
+    // partnerSlide.scrollLeft = scrollLeftElm - dist;
+  };
+
+  const touchMove = (evt: TouchEvent) => {
+    if (!pressed) return;
+
+    evt.preventDefault();
+    move(evt.touches[0].pageX);
+  };
+
+  const moveMove = (evt: MouseEvent) => {
+    if (!pressed) return;
+
+    evt.preventDefault();
+    move(evt.pageX);
+  };
+
+  const end = () => {
+    pressed = false;
+  };
+
+  prevButton.addEventListener("click", prev);
+
+  nextButton.addEventListener("click", next);
+
+  partnerSlide.addEventListener("touchstart", (e) => start(e.touches[0].pageX));
+  partnerSlide.addEventListener("mousedown", (e) => start(e.pageX));
+
+  partnerSlide.addEventListener("touchmove", touchMove);
+  partnerSlide.addEventListener("mousemove", moveMove);
+
+  partnerSlide.addEventListener("mouseup", end);
+  partnerSlide.addEventListener("mouseleave", end);
+</script>

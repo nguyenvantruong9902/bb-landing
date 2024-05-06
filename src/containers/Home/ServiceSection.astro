@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
 
-import SpaServiceImg from "@assets/images/spaService.png";
-import MassageServiceImg from "@assets/images/massageService.png";
-import HairSalonServiceImg from "@assets/images/hairSalonService.png";
-import NailSalonServiceImg from "@assets/images/nailSalonService.png";
-import BeautyClinicServiceImg from "@assets/images/nailSalonService.png";
+import Container from "@components/Container.astro";
+
+import BeautyClinicServiceImg from "@assets/images/beautyClinicService.png";
 import DentalClinicServiceImg from "@assets/images/dentalClinicService.png";
+import HairSalonServiceImg from "@assets/images/hairSalonService.png";
+import MassageServiceImg from "@assets/images/massageService.png";
+import NailSalonServiceImg from "@assets/images/nailSalonService.png";
+import SpaServiceImg from "@assets/images/spaService.png";
 
 const serviceList = [
   {
@@ -42,34 +44,38 @@ const serviceList = [
 ];
 ---
 
-<div class="px-5 text-center mt-24 md:mx-20 md:mt-[9.56rem]">
-  <div class="mx-auto md:max-w-2xl">
-    <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
-      Tất cả các dịch vụ làm đẹp chỉ trong 1 ứng dụng
-    </h1>
+<Container className="bg-white md:py-20">
+  <div class="px-5 text-center md:mx-20">
+    <div class="mx-auto md:max-w-2xl">
+      <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
+        Tất cả các dịch vụ làm đẹp chỉ trong 1 ứng dụng
+      </h1>
 
-    <p class="text-title text-opacity-semi mt-4 mb-8 md:text-title md:mx-12">
-      Bạn có thể tìm thấy tất cả các dịch vụ tại BeautyBooking, chỉ cần đó là
-      dịch vụ làm đẹp và chăm sóc sức khỏe
-    </p>
-  </div>
+      <p class="text-title text-opacity-semi mt-4 mb-8 md:text-title md:mx-12">
+        Từ những store nhỏ xinh gội đầu sảng khoái,<br /> đến các cửa hàng làm
+        đẹp thẩm mỹ hoành tráng uy tín.<br /> Tất cả đều có trên BeautyBooking
+      </p>
+    </div>
 
-  <div class="service-list">
-    {
-      serviceList.map(({ icon, title, description }) => (
-        <div>
-          <Image src={icon} alt="Spa Service" />
-          <h2 class="text-title mt-4 mb-1 text-opacity-semi">{title}</h2>
-          <p class="text-sub-header text-opacity-neutral">{description}</p>
-        </div>
-      ))
-    }
+    <div class="service-list">
+      {
+        serviceList.map(({ icon, title, description }) => (
+          <div>
+            <Image src={icon} alt="Spa Service" />
+            <h2 class="text-title mt-4 mb-1 text-opacity-semi font-bold">
+              {title}
+            </h2>
+            <p class="text-sub-header text-opacity-neutral">{description}</p>
+          </div>
+        ))
+      }
+    </div>
   </div>
-</div>
+</Container>
 
 <style>
   .service-list {
-    @apply grid grid-cols-2 rounded-3xl py-8 px-2 shadow-md border-2 border-grey-300 md:grid-cols-3 md:px-8;
+    @apply grid grid-cols-2 rounded-3xl py-8 px-2 md:grid-cols-3 md:px-8;
   }
   .service-list div {
     @apply flex flex-col justify-center items-center py-10 px-0 border-r-2 border-grey-300 md:p-8;

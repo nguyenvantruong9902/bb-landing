@@ -1,0 +1,153 @@
+---
+import { Image } from "astro:assets";
+
+import Container from "@components/Container.astro";
+import Title from "@components/Title.astro";
+
+import CloverLogoImg from "@assets/images/clover.png";
+import GNailsLogoImg from "@assets/images/gNails.png";
+import HanaLogoImg from "@assets/images/hana.png";
+import HazuLogoImg from "@assets/images/hazu.png";
+import JessiLogoImg from "@assets/images/jessi.png";
+import KimSaNguLogoImg from "@assets/images/kimSaNgu.png";
+import LaSolLogoImg from "@assets/images/laSol.png";
+import LizLogoImg from "@assets/images/liz.png";
+import LuaSpaLogoImg from "@assets/images/luaSpa.png";
+import LunaLogoImg from "@assets/images/luna.png";
+import MamHomeLogoImg from "@assets/images/mamHome.png";
+import NeoLogoImg from "@assets/images/neo.png";
+import OmotenashiLogoImg from "@assets/images/omotenashi.png";
+import PartnershipBannerImg from "@assets/images/partnershipBanner.png";
+import PrettyMeLogoImg from "@assets/images/prettyMe.png";
+import RakuLogoImg from "@assets/images/raku.png";
+import SamLogoImg from "@assets/images/sam.png";
+import VyAnLogoImg from "@assets/images/vyAn.png";
+import ArrowIcon from "@assets/svgs/arrow.svg?raw";
+
+const storeLogos = [
+  LizLogoImg,
+  LunaLogoImg,
+  GNailsLogoImg,
+  HazuLogoImg,
+  KimSaNguLogoImg,
+  HanaLogoImg,
+  CloverLogoImg,
+  MamHomeLogoImg,
+  PrettyMeLogoImg,
+  SamLogoImg,
+  VyAnLogoImg,
+  JessiLogoImg,
+  NeoLogoImg,
+  OmotenashiLogoImg,
+  LaSolLogoImg,
+  RakuLogoImg,
+  LuaSpaLogoImg,
+];
+---
+
+<Container>
+  <div class="flex flex-col justify-between items-center px-5 mt-16">
+    <div>
+      <Title className="md:text-center">
+        Quản lý hiệu quả,<br /> doanh thu tối đa cùng BB Merchant
+      </Title>
+
+      <div class="flex justify-center mt-4">
+        <p class="text-center text-title">
+          Quản lý và phát triển doanh nghiệp của bạn<br /> cùng BeautyBooking
+          đưa thương hiệu đến gần hơn với người tiêu dùng
+        </p>
+      </div>
+    </div>
+
+    <div class="relative">
+      <button
+        class="mt-11 bg-primary-600 p-5 w-[25rem] rounded-xl text-white text-title hover:bg-opacity-80"
+      >
+        Mở cửa hàng ngay
+      </button>
+
+      <div class="absolute left-[calc(100%+0.5rem)] top-[calc(100%-0.75rem)]">
+        <Fragment set:html={ArrowIcon} />
+      </div>
+    </div>
+
+    <div class="my-20">
+      <Image src={PartnershipBannerImg} alt="Partnership" />
+    </div>
+
+    <!-- Row 1 -->
+    <div class="store-logos">
+      <div class="inner">
+        {
+          storeLogos.slice(0, 8).map((logo) => (
+            <div class="cursor-pointer w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+        <!-- Duplicated -->
+        {
+          storeLogos.slice(0, 8).map((logo) => (
+            <div class="cursor-pointer w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="store-logos">
+      <div class="inner direction-reverse">
+        {
+          storeLogos.slice(8, storeLogos.length).map((logo) => (
+            <div class="cursor-pointer w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+        <!-- Duplicated -->
+        {
+          storeLogos.slice(8, storeLogos.length).map((logo) => (
+            <div class="cursor-pointer w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Container>
+
+<style>
+  .store-logos {
+    @apply w-full whitespace-nowrap overflow-hidden;
+  }
+
+  .store-logos .inner {
+    @apply w-fit;
+    animation: scrolling 20s linear infinite;
+  }
+
+  .store-logos .inner.direction-reverse {
+    animation-direction: reverse;
+  }
+
+  .store-logos .inner > div:hover {
+    @apply transition-all duration-200 scale-125;
+  }
+
+  .store-logos .inner:has(> div:hover) {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrolling {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

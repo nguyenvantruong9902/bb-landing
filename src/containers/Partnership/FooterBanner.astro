@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+
+import Container from "@components/Container.astro";
+
+import PartnershipFooter from "@assets/images/partnershipFooter.png";
+---
+
+<Container className="mt-96">
+  <div
+    class="relative mx-20 rounded-t-[2rem] p-20"
+    style="background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%);"
+  >
+    <div class="max-w-lg">
+      <h3 class="text-h3 text-white font-semibold text-opacity-pure">
+        Tham gia cộng đồng BeautyBooking
+      </h3>
+      <p class="mt-4 text-title text-white text-opacity-semi">
+        Tham gia ngay hôm nay để tiếp cận nguồn khách hàng đa dạng & phát triển
+        kinh doanh cơ sở của bạn.
+      </p>
+
+      <button
+        class="mt-11 bg-white p-5 w-[25rem] rounded-xl text-title hover:bg-opacity-80"
+      >
+        Mở cửa hàng ngay
+      </button>
+    </div>
+
+    <div class="absolute bottom-0 right-16 max-w-xl">
+      <Image src={PartnershipFooter} alt="footer" />
+    </div>
+  </div>
+</Container>
