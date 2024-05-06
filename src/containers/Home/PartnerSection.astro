@@ -170,6 +170,7 @@ const partners = [
 
   let pressed = false;
   let startX = 0;
+  let scrollLeft = 0;
 
   const sideScroll = (
     element: HTMLDivElement,
@@ -232,12 +233,13 @@ const partners = [
   const start = (pageX: number) => {
     pressed = true;
     startX = pageX - partnerSlide.offsetLeft;
+    scrollLeft = partnerSlide.scrollLeft;
   };
 
   const move = (pageX: number) => {
     const x = pageX - partnerSlide.offsetLeft;
     const dist = x - startX;
-    // partnerSlide.scrollLeft = scrollLeftElm - dist;
+    partnerSlide.scrollLeft = scrollLeft - dist;
   };
 
   const touchMove = (evt: TouchEvent) => {
