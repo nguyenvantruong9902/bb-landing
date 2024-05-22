@@ -1,6 +1,8 @@
 ---
 import DownloadOn from "./DownloadOn.astro";
 
+import StarIcon from "@assets/svgs/star.svg?raw";
+
 interface Props {
   isMobile?: boolean;
 }
@@ -9,18 +11,19 @@ const { isMobile } = Astro.props;
 
 const statistics = [
   {
-    title: "70+",
-    description: "Cơ sở",
-  },
-  {
-    title: "800+",
+    title: "1,000+",
     description: "Dịch vụ",
   },
   {
-    title: "5.0",
-    description: "Đánh giá",
+    title: "100+",
+    description: "Cơ sở",
+  },
+  {
+    description: "80+ Đánh giá",
   },
 ];
+
+const lastIdx = statistics.length - 1;
 
 const className = isMobile ? "mt-8 md:hidden" : "hidden md:block";
 ---
@@ -38,14 +41,69 @@ const className = isMobile ? "mt-8 md:hidden" : "hidden md:block";
     <DownloadOn className="mt-3 md:justify-start" />
   </div>
 
-  <div
-    class="w-full py-4 grid grid-cols-3 divide-x divide-grey-400 bg-grey-200 text-center border border-grey-400 rounded-xl md:hidden"
-  >
+  <div class="w-full flex gap-8 mt-6">
     {
-      statistics.map(({ title, description }) => (
-        <div>
-          <h5 class="text-opacity-pure text-h5 font-semibold">{title}</h5>
-          <p class="text-opacity-neutral text-paragraph">{description}</p>
+      statistics.map(({ title, description }, idx) => (
+        <div class="flex items-center gap-8">
+          <div>
+            <h5 class="text-opacity-pure text-h5">{title}</h5>
+            {idx === lastIdx && (
+              <div class="flex">
+                <Fragment set:html={StarIcon} />
+                <Fragment set:html={StarIcon} />
+                <Fragment set:html={StarIcon} />
+                <Fragment set:html={StarIcon} />
+                <Fragment set:html={StarIcon} />
+              </div>
+            )}
+            <p class="text-opacity-neutral text-paragraph">{description}</p>
+          </div>
+
+          {idx !== lastIdx && (
+            <svg
+              width="10"
+              height="30"
+              viewBox="0 0 10 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                y="4.34589"
+                width="10"
+                height="1.5"
+                transform="rotate(-20 0 4.34589)"
+                fill="#C9CED6"
+              />
+              <rect
+                y="10.1756"
+                width="10"
+                height="1.5"
+                transform="rotate(-20 0 10.1756)"
+                fill="#C9CED6"
+              />
+              <rect
+                y="16.0054"
+                width="10"
+                height="1.5"
+                transform="rotate(-20 0 16.0054)"
+                fill="#C9CED6"
+              />
+              <rect
+                y="21.8351"
+                width="10"
+                height="1.5"
+                transform="rotate(-20 0 21.8351)"
+                fill="#C9CED6"
+              />
+              <rect
+                y="27.6648"
+                width="10"
+                height="1.5"
+                transform="rotate(-20 0 27.6648)"
+                fill="#C9CED6"
+              />
+            </svg>
+          )}
         </div>
       ))
     }

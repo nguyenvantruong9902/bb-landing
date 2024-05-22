@@ -1,54 +1,52 @@
 ---
 import { Image } from "astro:assets";
 
-import Checklist from "@components/Checklist.astro";
 import Container from "@components/Container.astro";
-
-import NeedingImg from "@assets/images/needing.png";
+import DownloadOn from "@components/DownloadOn.astro";
 import Title from "@components/Title.astro";
 
-const checklist = [
-  {
-    title: "Quản lý lịch hẹn linh hoạt",
-    description: "Tất cả các dịch vụ làm đẹp mà bạn đang tìm",
-  },
-  {
-    title: "Quản lý thu chi hiệu quả",
-    description: "Khung thời gian phù hợp với sự bận rộn của bạn",
-  },
-  {
-    title: "Giá cả rõ ràng",
-    description: "Giá dịch vụ/sản phẩm đc thể hiện trực tiếp & minh bạch",
-  },
-  {
-    title: "Quản lý chuỗi cửa hàng",
-    description: "Đánh giá rõ ràng đến từ những trải nghiệm thực tế",
-  },
-];
+import NeedingImg from "@assets/images/needing.png";
+import BBMerchantLogoIcon from "@assets/svgs/bbMerchantLogo.svg?raw";
 ---
 
 <Container>
   <div
     class="flex flex-col justify-between items-center mt-24 md:mt-[15.25rem] md:flex-row"
   >
-    <div class="relative flex flex-col max-w-lg">
+    <div class="relative flex flex-col max-w-xl pr-4">
+      <div class="flex items-center gap-4 md:mb-8">
+        <Fragment set:html={BBMerchantLogoIcon} />
+
+        <span class="text-title text-opacity-neutral">
+          BeautyBooking<br />
+           Merchant
+        </span>
+      </div>
+
       <Title>Không bao giờ bỏ lỡ với BB Merchant Mobile</Title>
 
       <div
         class="text-title text-opacity-semi text-center mt-4 md:text-left md:mt-8"
       >
-        Sử dụng BeautyBooking ngay để quản lý kinh doanh làm đẹp của bạn hiệu
-        quả hơn. Với phần mềm quản lý tổng hợp, giải quyết mọi vấn đề từ quản lý
-        khách hàng, hàng hoá đến quảng cáo thương mại.
+        <p>
+          Luôn nắm rõ tình hình kinh doanh cũng như lượng khách mỗi ngày. Chủ
+          doanh nghiệp không còn phải lo lắng hay phải liên tục có mặt ở cửa
+          hàng.
+        </p>
+        <br />
+
+        <p>BB Merchant Mobile đã thay bạn làm điều đó.</p>
       </div>
 
-      <Checklist checklist={checklist} />
+      <div class="mt-8">
+        <p class="text-caption text-opacity-neutral font-semibold">Tải ngay</p>
+
+        <DownloadOn className="mt-3 md:justify-start" />
+      </div>
     </div>
 
     <div>
       <Image src={NeedingImg} alt="Needing" class="mt-12 md:mt-0" />
     </div>
-
-    <Checklist checklist={checklist} isMobile />
   </div>
 </Container>

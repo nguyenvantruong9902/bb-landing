@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import PlusIcon from "@assets/svgs/plus.svg";
+import MinusIcon from "@assets/svgs/minus.svg";
 
 const questions = [
   {
@@ -13,31 +14,31 @@ const questions = [
     question:
       "Làm thế nào BeautyBooking Merchant có thể giúp tôi quản lý lịch hẹn hiệu quả?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+      "Khách hàng được cung cấp một hệ thống quản lý thân thiện để lên lịch, thay đổi lịch, và theo dõi lịch hẹn một cách dễ dàng, giúp giảm thiểu xung đột giữa khách vãng lai, khách đặt online và khách của BeautyBooking.",
   },
   {
     question:
       "Tôi có thể tùy chỉnh các dịch vụ và giá cả của mình trên nền tảng không?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+      "Tất nhiên, bạn hoàn toàn có quyền tùy chỉnh các dịch vụ, giá cả và sự sẵn sàng để phù hợp với các dịch vụ độc đáo của tiệm làm đẹp của bạn.",
   },
   {
     question:
       "BeautyBooking Merchant có giúp quản lý khách hàng và chương trình khách hàng thân thiết không?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+      "Có, nền tảng cung cấp các công cụ quản lý khách hàng mạnh mẽ để theo dõi sở thích của khách hàng, lịch sử và thậm chí tạo chương trình khuyến mãi hấp dẫn để thu hút khách hàng mới và giữ chân khách hàng thân thiết.",
   },
   {
     question:
       "Làm thế nào tôi có thể quảng bá cửa hàng của mình và thu hút khách hàng mới với BeautyBooking Merchant?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+      "BeautyBooking Merchant cung cấp các tính năng tiếp thị để tạo các khuyến mãi, giảm giá, và cho phép bạn tiếp cận khách hàng mới thông qua ứng dụng đặt BeautyBooking.",
   },
   {
     question:
       "Làm thế nào BeautyBooking Merchant bảo vệ thông tin khách hàng của tôi?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum similique hic consequatur illo et deserunt recusandae nemo? Deleniti voluptate numquam voluptas incidunt dignissimos, praesentium consequatur fugiat placeat fuga at expedita.",
+      "BeautyBooking Merchant tuân thủ nghiêm ngặt các quy tắc bảo mật dữ liệu và cung cấp các tính năng an ninh để đảm bảo thông tin cá nhân của khách hàng được bảo vệ. Xem thêm Điều khoản sử dụng & Chính sách bảo mật",
   },
 ];
 ---
@@ -52,7 +53,7 @@ const questions = [
 
     <div class="flex justify-center mt-4 mb-11">
       <p class="text-center max-w-[52rem] text-title">
-        Chưa tìm được câu trả lời cho câu hỏi của minh? <br />
+        Chưa tìm được câu trả lời cho câu hỏi của minh?<br />
          Tham gia cộng đồng làm đẹp của BeautyBooking để được trực tiếp giải
         đáp.
       </p>
@@ -64,7 +65,13 @@ const questions = [
           <div class="flex items-center justify-between h-fit">
             <h4 class="question">{question}</h4>
             <button class="w-10 h-10 ml-4 rounded-full bg-grey-300 p-1.5">
-              <Image src={PlusIcon} alt="expand" class="m-auto" />
+              <Image
+                src={PlusIcon}
+                data-expanded={MinusIcon.src}
+                data-collapsed={PlusIcon.src}
+                alt="expand"
+                class="m-auto"
+              />
             </button>
           </div>
 
@@ -95,18 +102,20 @@ const questions = [
   for (let index = 0; index < collapses.length; index++) {
     const collapse = collapses[index];
     const answer = collapse.querySelector<HTMLDivElement>(".answer");
-    const expandBtn = collapse.querySelector("button");
-    const expandImg = collapse.querySelector("img");
+    const collapseBtn = collapse.querySelector("button");
+    const collapseImg = collapse.querySelector("img");
 
-    expandBtn.addEventListener("click", () => {
+    collapseBtn.addEventListener("click", () => {
       if (answer.clientHeight) {
         answer.classList.remove("mt-6");
         answer.style.height = "0";
-        expandImg.setAttribute("src", "./src/assets/svgs/plus.svg");
+
+        collapseImg.setAttribute("src", collapseImg.dataset.collapsed);
       } else {
         answer.classList.add("mt-6");
         answer.style.height = `${answer.scrollHeight}px`;
-        expandImg.setAttribute("src", "./src/assets/svgs/minus.svg");
+
+        collapseImg.setAttribute("src", collapseImg.dataset.expanded);
       }
     });
   }

@@ -168,6 +168,9 @@ const partners = [
   const nextButton = document.querySelector<HTMLDivElement>(".next");
   const partnerSlide = document.querySelector<HTMLDivElement>(".partner-slide");
 
+  const itemW = 404;
+  const step = 8;
+
   let pressed = false;
   let startX = 0;
   let scrollLeft = 0;
@@ -218,7 +221,7 @@ const partners = [
     const isToLeft = partnerSlide.scrollLeft === 0;
     if (isToLeft) return;
 
-    sideScroll(partnerSlide, "left", 404, 8);
+    sideScroll(partnerSlide, "left", itemW, step);
   };
 
   const next = () => {
@@ -227,7 +230,7 @@ const partners = [
       partnerSlide.scrollWidth - partnerSlide.clientWidth;
     if (isToRight) return;
 
-    sideScroll(partnerSlide, "right", 404, 8);
+    sideScroll(partnerSlide, "right", itemW, step);
   };
 
   const start = (pageX: number) => {
@@ -239,7 +242,37 @@ const partners = [
   const move = (pageX: number) => {
     const x = pageX - partnerSlide.offsetLeft;
     const dist = x - startX;
+
     partnerSlide.scrollLeft = scrollLeft - dist;
+    // let scrolledLeft = partnerSlide.scrollLeft;
+
+    // if (scrolledLeft < scrollLeft - dist) {
+    //   if (scrolledLeft < itemW) {
+    //     scrolledLeft = 0;
+    //   } else {
+    //     scrolledLeft = partnerSlide.scrollLeft - itemW;
+    //   }
+    // }
+
+    // if (scrolledLeft < itemW) {
+    //   scrolledLeft = itemW;
+    // } else {
+    //   const itemsRounded = Math.ceil(scrolledLeft / itemW);
+    //   scrolledLeft = itemsRounded * itemW;
+    // }
+
+    // const slideTimer = setInterval(() => {
+    //   if (scrolledLeft < partnerSlide.scrollLeft) {
+    //     partnerSlide.scrollLeft -= step;
+    //   } else {
+    //     partnerSlide.scrollLeft += step;
+    //   }
+
+    //   if (scrolledLeft <= partnerSlide.scrollLeft) {
+    //     partnerSlide.scrollLeft = scrolledLeft;
+    //     window.clearInterval(slideTimer);
+    //   }
+    // }, 50);
   };
 
   const touchMove = (evt: TouchEvent) => {

@@ -6,7 +6,6 @@ import Container from "@components/Container.astro";
 import Title from "@components/Title.astro";
 
 import UserHeroImg from "@assets/images/userHero.png";
-import HeroLashIcon from "@assets/svgs/heroLash.svg?raw";
 
 interface Props {
   isMobile?: boolean;
@@ -14,7 +13,9 @@ interface Props {
 ---
 
 <Container>
-  <div class="flex flex-col justify-between items-center md:flex-row md:pr-16">
+  <div
+    class="flex flex-col justify-between items-center md:flex-row md:pr-16 md:pb-20"
+  >
     <div class="relative flex flex-col max-w-[34rem]">
       <Title>
         Đặt hẹn & Tận hưởng<br /> với BeautyBooking
@@ -25,7 +26,27 @@ interface Props {
 
     <div class="relative mt-16 max-w-lg">
       <div class="absolute -left-16 -top-16">
-        <Fragment set:html={HeroLashIcon} />
+        <!-- <Fragment set:html={HeroLashIcon} /> -->
+        <svg
+          width="123"
+          height="119"
+          viewBox="0 0 123 119"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M25.223 6.92011C26.3715 14.5651 36.6241 31.2609 47.8137 43.7066C62.4755 60.0133 90.9802 78.7512 115.597 88.2638C123.705 91.3971 126.041 88.5713 118.091 85.2493C78.1887 68.5736 46.1148 41.9948 32.6205 14.4207C30.3921 9.86886 28.5694 4.8823 28.5694 3.33785C28.5694 1.79483 27.5999 0.532104 26.4172 0.532104C24.9944 0.532104 24.5906 2.70005 25.223 6.92011ZM0 28.1491C0 30.0167 9.60884 42.8371 16.2769 49.8686C38.2049 72.9867 86.0758 100.825 109.992 104.366C114.032 104.964 116.182 104.724 116.182 103.674C116.182 102.789 114.996 102.065 113.546 102.065C112.095 102.065 104.168 99.5068 95.9284 96.3793C60.5119 82.9384 21.3128 54.7822 8.75747 33.7663C6.76523 30.4315 3.98067 27.7029 2.56744 27.7029C1.15611 27.7029 0 27.9031 0 28.1491ZM9.52313 70.4484C9.52313 73.6202 23.2498 86.2475 33.409 92.421C52.3906 103.959 101.002 121.185 105.352 117.919C106.651 116.943 105.781 116.055 102.684 115.193C100.157 114.489 93.1419 112.539 87.0966 110.859C72.4272 106.78 58.4358 101.386 45.711 94.8992C34.8756 89.3778 19.3301 77.7773 15.4294 72.3031C13.2067 69.1842 9.52313 68.0273 9.52313 70.4484Z"
+            fill="black"
+            fill-opacity="0.224"></path>
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M25.7163 6.00059C28.2437 21.0404 50.9278 48.9005 73.5757 64.7811C90.8278 76.8778 126.039 93.954 120.927 87.7447C120.27 86.9468 116.455 85.0377 112.447 83.5032C98.7377 78.2521 73.9223 63.0407 62.1956 52.6987C48.9641 41.0324 36.3384 24.9129 31.3616 13.3324C26.0362 0.948248 24.5411 -0.996614 25.7163 6.00059ZM1.90463 29.1902C1.90463 34.7445 26.7067 60.817 41.4275 70.7387C58.5482 82.2763 78.6496 93.1331 92.3744 98.2556C108.4 104.236 114.278 105.667 114.278 103.591C114.278 102.752 113.182 102.065 111.843 102.065C106.57 102.065 82.057 92.0177 67.5304 83.9022C39.9019 68.4663 20.0462 51.792 7.84706 33.7806C3.76926 27.7601 1.90463 26.3186 1.90463 29.1902ZM12.4924 73.6273C17.1207 80.3471 30.1159 90.336 42.3398 96.5695C61.8127 106.497 101.052 119.622 104.198 117.259C104.804 116.805 103.676 116.004 101.694 115.479C58.3254 104.006 27.7199 89.3321 16.8369 74.7928C11.8772 68.1674 8.02038 67.1335 12.4924 73.6273Z"
+            fill="black"
+            fill-opacity="0.859"></path>
+        </svg>
       </div>
 
       <Image src={UserHeroImg} alt="banner" />
@@ -34,3 +55,25 @@ interface Props {
     <BannerDescription isMobile />
   </div>
 </Container>
+
+<style>
+  svg path {
+    @apply fill-transparent stroke-black;
+
+    stroke-width: 0.1px;
+    animation: drawing 3s linear forwards;
+  }
+
+  svg path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+
+  @keyframes drawing {
+    to {
+      @apply fill-black stroke-none;
+
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
