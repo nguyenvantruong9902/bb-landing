@@ -68,32 +68,6 @@ const columns = [
       ))
     }
   </div>
-
-  <div class="flex items-center gap-3 md:bottom-0 md:hidden">
-    <div
-      class="hidden cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 md:block"
-    >
-      <Fragment set:html={LeftArrowIcon} />
-    </div>
-
-    <div class="flex gap-2">
-      {
-        columns.map((_, idx) => {
-          const activeClassName =
-            idx === 2 ? "bg-primary-600" : "bg-primary-300";
-          return (
-            <div class={`cursor-pointer w-10 h-2 rounded ${activeClassName}`} />
-          );
-        })
-      }
-    </div>
-
-    <div
-      class="hidden cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 md:block"
-    >
-      <Fragment set:html={RightArrowIcon} />
-    </div>
-  </div>
 </div>
 
 <style>
@@ -104,59 +78,3 @@ const columns = [
     @apply relative inline-block bg-white rounded-3xl pt-10 pb-8 px-8 w-[25.75rem] h-fit text-left text-title shadow-md;
   }
 </style>
-
-<script>
-  let pressed = false;
-  let startX = 0;
-  let scrollLeft = 0;
-
-  const reviewSlide = document.querySelector<HTMLDivElement>(".review-slide");
-
-  const active = () => {
-    const center = reviewSlide.offsetWidth / 2 - 190; // 190 = 23.75rem / 2
-    for (let idx = 0; idx < reviewSlide.children.length; idx++) {
-      const item = reviewSlide.children[2] as HTMLDivElement;
-      item.style.transform = `translateX(${center}px)`;
-    }
-  };
-
-  const start = (pageX: number) => {
-    pressed = true;
-    startX = pageX - reviewSlide.offsetLeft;
-    scrollLeft = reviewSlide.scrollLeft;
-  };
-
-  const move = (pageX: number) => {
-    const x = pageX - reviewSlide.offsetLeft;
-    const dist = x - startX;
-    reviewSlide.scrollLeft = scrollLeft - dist;
-    active();
-  };
-
-  const touchMove = (evt: TouchEvent) => {
-    if (!pressed) return;
-
-    evt.preventDefault();
-    move(evt.touches[0].pageX);
-  };
-
-  const moveMove = (evt: MouseEvent) => {
-    if (!pressed) return;
-
-    evt.preventDefault();
-    move(evt.pageX);
-  };
-
-  const end = () => {
-    pressed = false;
-  };
-
-  reviewSlide.addEventListener("touchstart", (e) => start(e.touches[0].pageX));
-  reviewSlide.addEventListener("mousedown", (e) => start(e.pageX));
-
-  reviewSlide.addEventListener("touchmove", touchMove);
-  reviewSlide.addEventListener("mousemove", moveMove);
-
-  reviewSlide.addEventListener("mouseup", end);
-  reviewSlide.addEventListener("mouseleave", end);
-</script>
