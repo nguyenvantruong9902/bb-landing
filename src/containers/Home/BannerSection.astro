@@ -1,32 +1,128 @@
 ---
 import { Image } from "astro:assets";
 
-import BannerDescription from "@components/BannerDescription.astro";
 import Container from "@components/Container.astro";
+import DownloadOn from "@components/DownloadOn.astro";
 import Title from "@components/Title.astro";
 
 import UserHeroImg from "@assets/images/userHero.png";
+import StarIcon from "@assets/svgs/star.svg?raw";
 
-interface Props {
-  isMobile?: boolean;
-}
+const statistics = [
+  {
+    title: "1,000+",
+    description: "Dịch vụ",
+  },
+  {
+    title: "100+",
+    description: "Cơ sở",
+  },
+  {
+    description: "80+ Đánh giá",
+  },
+];
+
+const lastIdx = statistics.length - 1;
 ---
 
 <Container>
   <div
     class="flex flex-col justify-between items-center md:flex-row md:pr-16 md:pb-20"
   >
-    <div class="relative flex flex-col max-w-[34rem]">
+    <div class="relative flex flex-col max-w-[34rem] mx-5">
       <Title>
         Đặt hẹn & Tận hưởng<br /> với BeautyBooking
       </Title>
 
-      <BannerDescription />
+      <div class="mt-8">
+        <p class="text-title text-opacity-semi text-center md:text-left my-8">
+          Không còn những lần đợi chờ, những trải nghiệm dịch vụ không như mong
+          đợi. Tải BeautyBooking & đặt lịch làm đẹp ngay hôm nay, những gì bạn
+          cần làm là tận hưởng.
+        </p>
+
+        <div class="md:mt-11">
+          <p class="text-caption text-opacity-neutral font-semibold">
+            Tải ngay
+          </p>
+
+          <DownloadOn className="mt-3 md:justify-start" />
+        </div>
+
+        <div class="w-full flex gap-8 mt-6">
+          {
+            statistics.map(({ title, description }, idx) => (
+              <div class="flex items-center gap-8">
+                <div>
+                  <h5 class="text-opacity-pure text-h5">{title}</h5>
+                  {idx === lastIdx && (
+                    <div class="flex">
+                      <Fragment set:html={StarIcon} />
+                      <Fragment set:html={StarIcon} />
+                      <Fragment set:html={StarIcon} />
+                      <Fragment set:html={StarIcon} />
+                      <Fragment set:html={StarIcon} />
+                    </div>
+                  )}
+                  <p class="text-opacity-neutral text-paragraph">
+                    {description}
+                  </p>
+                </div>
+
+                {idx !== lastIdx && (
+                  <svg
+                    width="10"
+                    height="30"
+                    viewBox="0 0 10 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      y="4.34589"
+                      width="10"
+                      height="1.5"
+                      transform="rotate(-20 0 4.34589)"
+                      fill="#C9CED6"
+                    />
+                    <rect
+                      y="10.1756"
+                      width="10"
+                      height="1.5"
+                      transform="rotate(-20 0 10.1756)"
+                      fill="#C9CED6"
+                    />
+                    <rect
+                      y="16.0054"
+                      width="10"
+                      height="1.5"
+                      transform="rotate(-20 0 16.0054)"
+                      fill="#C9CED6"
+                    />
+                    <rect
+                      y="21.8351"
+                      width="10"
+                      height="1.5"
+                      transform="rotate(-20 0 21.8351)"
+                      fill="#C9CED6"
+                    />
+                    <rect
+                      y="27.6648"
+                      width="10"
+                      height="1.5"
+                      transform="rotate(-20 0 27.6648)"
+                      fill="#C9CED6"
+                    />
+                  </svg>
+                )}
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
 
     <div class="relative mt-16 max-w-lg">
-      <div class="absolute -left-16 -top-16">
-        <!-- <Fragment set:html={HeroLashIcon} /> -->
+      <div class="hidden md:block absolute -left-16 -top-16">
         <svg
           width="123"
           height="119"
@@ -51,8 +147,6 @@ interface Props {
 
       <Image src={UserHeroImg} alt="banner" />
     </div>
-
-    <BannerDescription isMobile />
   </div>
 </Container>
 
