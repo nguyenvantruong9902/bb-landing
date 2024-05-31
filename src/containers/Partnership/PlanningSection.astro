@@ -109,52 +109,67 @@ const plans = [
       />BB còn là 1 người bạn đồng hành cùng phát triển với doanh nghiệp
     </p>
 
-    <div class="flex gap-6 justify-center flex-wrap">
+    <div
+      class="flex gap-6 justify-center snap-x snap-mandatory pb-4 overflow-auto md:flex-wrap md:snap-none md:overflow-visible md:pb-0"
+    >
       {
         plans.map((plan) => (
-          <div class="px-8 py-6 shadow-md rounded-3xl max-w-[410px]">
-            <div class="flex justify-between">
-              <p class="text-title font-bold text-dark">{plan.name}</p>
-              {plan?.isBestPrice && (
-                <p
-                  class="text-tiny px-3 py-2 rounded-2xl text-white font-bold"
-                  style="background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%)"
-                >
-                  GIÁ TỐT NHẤT
-                </p>
-              )}
-            </div>
-            <p class="text-caption text-opacity-neutral mt-1 mb-4">
-              {plan.happening}
-            </p>
-            <p class="text-h2 text-primary-800 font-semibold">
-              {plan.discountPrice}
-            </p>
-            <del class="text-title text-primary-400 font-semibold">
-              {plan.price}
-            </del>
-            <p class="mt-1 mb-4">{plan.context}</p>
-            <button class="p-4 w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white">
-              Liên hệ dùng thử
-            </button>
+          <div
+            class="shadow-md max-w-[410px] min-w-[23.75rem] snap-start"
+            style={
+              plan?.isBestPrice
+                ? "background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%); border-radius: 26px; padding: 2px;"
+                : "border-radius: 24px"
+            }
+          >
+            <div class="px-8 py-6 rounded-3xl bg-white">
+              <div class="flex justify-between">
+                <p class="text-title font-bold text-dark">{plan.name}</p>
+                {plan?.isBestPrice && (
+                  <p
+                    class="text-tiny px-3 py-2 rounded-2xl text-white font-bold"
+                    style="background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%)"
+                  >
+                    GIÁ TỐT NHẤT
+                  </p>
+                )}
+              </div>
+              <p class="text-caption text-opacity-neutral mt-1 mb-4">
+                {plan.happening}
+              </p>
+              <p class="text-h2 text-primary-800 font-semibold">
+                {plan.discountPrice}
+              </p>
+              <del class="text-title text-primary-400 font-semibold">
+                {plan.price}
+              </del>
+              <p class="mt-1 mb-4">{plan.context}</p>
+              <button
+                class={`p-4 w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white ${
+                  plan?.isBestPrice ? "bg-primary-600 text-white" : ""
+                }`}
+              >
+                Liên hệ dùng thử
+              </button>
 
-            <div class="flex flex-col gap-y-4 pt-6 mt-6 border-t border-grey-400">
-              {plan.includeList.map((include) => (
-                <div class="flex gap-x-2">
-                  <span>
-                    <Fragment set:html={TickIcon} />
-                  </span>
+              <div class="flex flex-col gap-y-4 pt-6 mt-6 border-t border-grey-400">
+                {plan.includeList.map((include) => (
+                  <div class="flex gap-x-2">
+                    <span>
+                      <Fragment set:html={TickIcon} />
+                    </span>
 
-                  <div>
-                    <p class="text-sub-header text-opacity-semi">
-                      {include.title}
-                    </p>
-                    <p class="text-paragraph text-opacity-neutral">
-                      {include.description}
-                    </p>
+                    <div>
+                      <p class="text-sub-header text-opacity-semi">
+                        {include.title}
+                      </p>
+                      <p class="text-paragraph text-opacity-neutral">
+                        {include.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         ))

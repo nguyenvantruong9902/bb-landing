@@ -144,11 +144,12 @@ const partners = [
   }
 
   .partner-slide {
-    @apply relative whitespace-nowrap overflow-hidden py-4 px-2 transition-all ease-linear duration-300;
+    @apply relative whitespace-nowrap py-4 px-2 transition-all ease-linear duration-300;
+    @apply overflow-auto snap-x snap-mandatory md:overflow-hidden md:snap-none;
   }
 
   .partner-slide .partner {
-    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 first:ml-0;
+    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 snap-start md:first:ml-0;
   }
 </style>
 
@@ -170,10 +171,6 @@ const partners = [
 
   const itemW = 404;
   const step = 8;
-
-  let pressed = false;
-  let startX = 0;
-  let scrollLeft = 0;
 
   const sideScroll = (
     element: HTMLDivElement,
@@ -233,76 +230,7 @@ const partners = [
     sideScroll(partnerSlide, "right", itemW, step);
   };
 
-  const start = (pageX: number) => {
-    pressed = true;
-    startX = pageX - partnerSlide.offsetLeft;
-    scrollLeft = partnerSlide.scrollLeft;
-  };
-
-  const move = (pageX: number) => {
-    const x = pageX - partnerSlide.offsetLeft;
-    const dist = x - startX;
-
-    partnerSlide.scrollLeft = scrollLeft - dist;
-    // let scrolledLeft = partnerSlide.scrollLeft;
-
-    // if (scrolledLeft < scrollLeft - dist) {
-    //   if (scrolledLeft < itemW) {
-    //     scrolledLeft = 0;
-    //   } else {
-    //     scrolledLeft = partnerSlide.scrollLeft - itemW;
-    //   }
-    // }
-
-    // if (scrolledLeft < itemW) {
-    //   scrolledLeft = itemW;
-    // } else {
-    //   const itemsRounded = Math.ceil(scrolledLeft / itemW);
-    //   scrolledLeft = itemsRounded * itemW;
-    // }
-
-    // const slideTimer = setInterval(() => {
-    //   if (scrolledLeft < partnerSlide.scrollLeft) {
-    //     partnerSlide.scrollLeft -= step;
-    //   } else {
-    //     partnerSlide.scrollLeft += step;
-    //   }
-
-    //   if (scrolledLeft <= partnerSlide.scrollLeft) {
-    //     partnerSlide.scrollLeft = scrolledLeft;
-    //     window.clearInterval(slideTimer);
-    //   }
-    // }, 50);
-  };
-
-  const touchMove = (evt: TouchEvent) => {
-    if (!pressed) return;
-
-    evt.preventDefault();
-    move(evt.touches[0].pageX);
-  };
-
-  const moveMove = (evt: MouseEvent) => {
-    if (!pressed) return;
-
-    evt.preventDefault();
-    move(evt.pageX);
-  };
-
-  const end = () => {
-    pressed = false;
-  };
-
   prevButton.addEventListener("click", prev);
 
   nextButton.addEventListener("click", next);
-
-  partnerSlide.addEventListener("touchstart", (e) => start(e.touches[0].pageX));
-  partnerSlide.addEventListener("mousedown", (e) => start(e.pageX));
-
-  partnerSlide.addEventListener("touchmove", touchMove);
-  partnerSlide.addEventListener("mousemove", moveMove);
-
-  partnerSlide.addEventListener("mouseup", end);
-  partnerSlide.addEventListener("mouseleave", end);
 </script>
