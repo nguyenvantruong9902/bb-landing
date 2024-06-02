@@ -25,36 +25,42 @@ const statistics = [
 const lastIdx = statistics.length - 1;
 ---
 
-<Container>
+<Container className="mt-12 xl:mt-[5.5rem]">
   <div
-    class="flex flex-col justify-between items-center md:flex-row md:pr-16 md:pb-20"
+    class="flex flex-col justify-between items-center md:flex-row md:gap-5 md:pb-24 xl:gap-28"
   >
-    <div class="relative flex flex-col max-w-[34rem] mx-5">
-      <Title>
-        Đặt hẹn & Tận hưởng<br /> với BeautyBooking
+    <div
+      class="relative flex flex-col px-5 md:px-0 md:min-w-[22.5rem] md:max-w-[50%] xl:max-w-[calc(50%-3.5rem)]"
+    >
+      <Title size="large" className="!font-bold">
+        Đặt hẹn & Tận hưởng<br class="hidden xl:block" /> với BeautyBooking
       </Title>
 
-      <div class="mt-8">
-        <p class="text-title text-opacity-semi text-center md:text-left my-8">
+      <div class="mt-3 md:mt-4">
+        <p class="text-title text-opacity-semi text-center md:text-left">
           Không còn những lần đợi chờ, những trải nghiệm dịch vụ không như mong
           đợi. Tải BeautyBooking & đặt lịch làm đẹp ngay hôm nay, những gì bạn
           cần làm là tận hưởng.
         </p>
 
-        <div class="md:mt-11">
-          <p class="text-caption text-opacity-neutral font-semibold">
-            Tải ngay
+        <div class="mt-8 md:mt-6 xl:mt-11">
+          <p
+            class="hidden text-caption text-opacity-neutral font-semibold md:block"
+          >
+            TẢI NGAY
           </p>
 
           <DownloadOn className="mt-3 md:justify-start" />
         </div>
 
-        <div class="w-full flex gap-8 mt-6">
+        <div class="w-full flex mt-6 gap-6 md:gap-7 xl:gap-8">
           {
             statistics.map(({ title, description }, idx) => (
-              <div class="flex items-center gap-8">
+              <div class="flex items-center gap-6 mx-auto md:mx-0 md:gap-7 xl:gap-8">
                 <div>
-                  <h5 class="text-opacity-pure text-h5">{title}</h5>
+                  <h5 class="text-opacity-pure md:text-title xl:text-h5">
+                    {title}
+                  </h5>
                   {idx === lastIdx && (
                     <div class="flex">
                       <Fragment set:html={StarIcon} />
@@ -121,7 +127,7 @@ const lastIdx = statistics.length - 1;
       </div>
     </div>
 
-    <div class="relative mt-16 max-w-lg">
+    <div class="relative">
       <div class="hidden md:block absolute -left-16 -top-16">
         <svg
           width="123"
@@ -145,7 +151,11 @@ const lastIdx = statistics.length - 1;
         </svg>
       </div>
 
-      <Image src={UserHeroImg} alt="banner" />
+      <Image
+        src={UserHeroImg}
+        alt="user-hero"
+        class="mt-12 md:mt-0 md:rounded-3xl"
+      />
     </div>
   </div>
 </Container>

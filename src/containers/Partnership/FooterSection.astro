@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+
+import FooterBgImg from "@assets/images/footerBg.png";
+import PartnershipFooterImg from "@assets/images/partnershipFooter.png";
+---
+
+<div class="max-w-[90rem] mx-auto mt-32 md:px-0 xl:mt-[11.75rem] xl:px-20">
+  <div class="wrapper">
+    <div class="relative md:max-w-[22.625rem] lg:max-w-lg">
+      <h3 class="text-h3 text-white font-semibold text-opacity-pure">
+        Tham gia cộng đồng BeautyBooking
+      </h3>
+      <p class="mt-4 text-title text-white text-opacity-semi">
+        Tham gia ngay hôm nay để tiếp cận nguồn khách hàng đa dạng & phát triển
+        kinh doanh cơ sở của bạn.
+      </p>
+
+      <div class="hidden md:block md:pb-12 xl:pb-20">
+        <button class="mt-11"> Trở thành đối tác ngay!</button>
+      </div>
+    </div>
+
+    <div
+      class="relative mt-8 md:absolute md:bottom-0 md:right-12 md:max-w-[22rem] xl:mt-0 xl:right-16 xl:max-w-[37.5rem]"
+    >
+      <Image src={PartnershipFooterImg} alt="footer" />
+
+      <div class="block md:hidden">
+        <button> Trở thành đối tác ngay!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ footerBgUrl: `url(${FooterBgImg.src})` }}>
+  .wrapper {
+    @apply relative rounded-t-[2rem] pt-12 pb-[3.25rem] px-6 md:px-12 md:pb-0 xl:pt-20 xl:px-20;
+
+    background: linear-gradient(180deg, #7f55f1 0%, #5a39f0 100%);
+  }
+
+  .wrapper::before {
+    background: var(--footerBgUrl) no-repeat;
+    background-position: 50% 0;
+
+    @apply content-[''] block absolute left-0 top-0 w-full h-full opacity-20 bg-cover rounded-t-[2rem];
+  }
+
+  .wrapper button {
+    @apply bg-white p-5 w-full rounded-xl text-title hover:bg-opacity-80 md:rounded-2xl md:max-w-xs md:w-[25rem];
+  }
+</style>

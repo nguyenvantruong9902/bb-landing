@@ -99,8 +99,8 @@ const plans = [
 ];
 ---
 
-<Container className="mt-52">
-  <div class="px-5 md:px-0">
+<Container className="mt-32 px-5 md:mt-44 xl:mt-52">
+  <div>
     <Title className="md:text-center">Trở thành đối tác</Title>
 
     <p class="mt-4 mb-11 text-title text-center text-opacity-semi">
@@ -110,19 +110,19 @@ const plans = [
     </p>
 
     <div
-      class="flex gap-6 justify-center snap-x snap-mandatory pb-4 overflow-auto md:flex-wrap md:snap-none md:overflow-visible md:pb-0"
+      class="flex gap-6 snap-x snap-mandatory scroll-px-1 pb-4 overflow-auto px-1 xl:justify-center xl:px-0 xl:flex-wrap xl:snap-none xl:overflow-visible xl:pb-0"
     >
       {
         plans.map((plan) => (
           <div
-            class="shadow-md max-w-[410px] min-w-[23.75rem] snap-start"
+            class="planning"
             style={
               plan?.isBestPrice
-                ? "background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%); border-radius: 26px; padding: 2px;"
-                : "border-radius: 24px"
+                ? "background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%);"
+                : ""
             }
           >
-            <div class="px-8 py-6 rounded-3xl bg-white">
+            <div class="px-8 py-6 rounded-3xl h-full bg-white">
               <div class="flex justify-between">
                 <p class="text-title font-bold text-dark">{plan.name}</p>
                 {plan?.isBestPrice && (
@@ -145,7 +145,7 @@ const plans = [
               </del>
               <p class="mt-1 mb-4">{plan.context}</p>
               <button
-                class={`p-4 w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white ${
+                class={`p-4 w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white md:rounded-2xl ${
                   plan?.isBestPrice ? "bg-primary-600 text-white" : ""
                 }`}
               >
@@ -177,3 +177,20 @@ const plans = [
     </div>
   </div>
 </Container>
+
+<style>
+  .planning {
+    @apply shadow-md max-w-[410px] min-w-[23.75rem] snap-center cursor-pointer bg-transparent;
+
+    padding: 2px;
+    border-radius: 26px;
+  }
+
+  .planning:hover {
+    background: linear-gradient(180deg, #7f55f1 0%, #5a39f0 100%);
+  }
+
+  .planning:hover button {
+    @apply bg-primary-600 text-white;
+  }
+</style>

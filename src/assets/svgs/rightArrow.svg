@@ -1,20 +1,13 @@
 <svg
-  width="21"
-  height="21"
-  viewBox="0 0 21 21"
+  width="32"
+  height="32"
+  viewBox="0 0 32 32"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M4.08984 10.5075H16.5815"
-    stroke="#717D92"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-  <path
-    d="M11.5923 5.51416L16.6231 10.5242L11.5923 15.5342"
-    stroke="#717D92"
+    d="M5.97314 15.9732H25.9598M17.9771 7.98389L26.0265 15.9999L17.9771 24.0159"
+    stroke="#455571"
     stroke-width="1.5"
     stroke-linecap="round"
     stroke-linejoin="round"

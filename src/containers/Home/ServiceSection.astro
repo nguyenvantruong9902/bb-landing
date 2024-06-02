@@ -1,69 +1,69 @@
 ---
-import { Image } from "astro:assets";
-
 import Container from "@components/Container.astro";
+import Title from "@components/Title.astro";
 
-import BeautyClinicServiceImg from "@assets/images/beautyClinicService.png";
-import DentalClinicServiceImg from "@assets/images/dentalClinicService.png";
-import HairSalonServiceImg from "@assets/images/hairSalonService.png";
-import MassageServiceImg from "@assets/images/massageService.png";
-import NailSalonServiceImg from "@assets/images/nailSalonService.png";
-import SpaServiceImg from "@assets/images/spaService.png";
+import BeautyClinicServiceIcon from "@assets/svgs/home/beautyClinicService.svg?raw";
+import DentalClinicServiceIcon from "@assets/svgs/home/dentalClinicService.svg?raw";
+import HairSalonServiceIcon from "@assets/svgs/home/hairSalonService.svg?raw";
+import MassageServiceIcon from "@assets/svgs/home/massageService.svg?raw";
+import NailSalonServiceIcon from "@assets/svgs/home/nailSalonService.svg?raw";
+import SpaServiceIcon from "@assets/svgs/home/spaService.svg?raw";
 
-const serviceList = [
+const services = [
   {
-    icon: SpaServiceImg,
+    icon: SpaServiceIcon,
     title: "Spa",
     description: "Thư giãn tinh thần",
   },
   {
-    icon: MassageServiceImg,
+    icon: MassageServiceIcon,
     title: "Massage",
     description: "Chăm sóc cá nhân",
   },
   {
-    icon: HairSalonServiceImg,
+    icon: HairSalonServiceIcon,
     title: "Hair Salon",
     description: "Mái tóc hoàn hảo",
   },
   {
-    icon: NailSalonServiceImg,
+    icon: NailSalonServiceIcon,
     title: "Nail Salon",
     description: "“Look at my nails”",
   },
   {
-    icon: BeautyClinicServiceImg,
+    icon: BeautyClinicServiceIcon,
     title: "Beauty Clinic",
     description: "Xinh đẹp rạng ngời",
   },
   {
-    icon: DentalClinicServiceImg,
+    icon: DentalClinicServiceIcon,
     title: "Dental Clinic",
     description: "Tự tin nụ cười",
   },
 ];
 ---
 
-<Container className="bg-white py-20">
-  <div class="px-5 text-center md:mx-20">
-    <div class="mx-auto md:max-w-2xl">
-      <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
-        Tất cả các dịch vụ làm đẹp chỉ trong 1 ứng dụng
-      </h1>
+<Container className="bg-white pt-20 pb-4">
+  <div class="text-center">
+    <div class="mx-5 md:m-auto md:max-w-2xl">
+      <Title centered>
+        Tất cả các dịch vụ làm đẹp<br class="hidden sm:block" /> chỉ trong 1 ứng
+        dụng
+      </Title>
 
-      <p class="text-title text-opacity-semi mt-4 mb-8 md:text-title md:mx-12">
+      <p class="text-title text-opacity-semi mt-4">
         Từ những store nhỏ xinh gội đầu sảng khoái,<br
-          class="hidden md:block"
+          class="hidden sm:block"
         /> đến các cửa hàng làm đẹp thẩm mỹ hoành tráng uy tín.<br /> Tất cả đều
         có trên BeautyBooking
       </p>
     </div>
 
-    <div class="service-list">
+    <div class="services">
       {
-        serviceList.map(({ icon, title, description }) => (
+        services.map(({ icon, title, description }) => (
           <div>
-            <Image src={icon} alt="Spa Service" />
+            <Fragment set:html={icon} alt="service" />
             <h2 class="text-title mt-4 mb-1 text-opacity-semi font-bold">
               {title}
             </h2>
@@ -76,35 +76,35 @@ const serviceList = [
 </Container>
 
 <style>
-  .service-list {
-    @apply grid grid-cols-2 rounded-3xl py-8 px-2 md:grid-cols-3 md:px-8;
+  .services {
+    @apply grid grid-cols-2 rounded-3xl px-2 py-16 lg:grid-cols-3 lg:px-8;
   }
-  .service-list div {
-    @apply flex flex-col justify-center items-center py-10 px-0 border-r-2 border-grey-300 md:p-8;
+  .services div {
+    @apply flex flex-col justify-center items-center py-10 px-0 border-r-2 border-grey-300 lg:p-8;
   }
 
-  .service-list div:nth-child(n + 3) {
+  .services div:nth-child(n + 3) {
     @apply border-t-2;
   }
 
-  .service-list div:nth-child(2n) {
+  .services div:nth-child(2n) {
     @apply border-r-0;
   }
 
-  @media (min-width: 768px) {
-    .service-list div:nth-child(n + 3) {
+  @media (min-width: 1024px) {
+    .services div:nth-child(n + 3) {
       @apply border-t-0;
     }
 
-    .service-list div:nth-child(2n) {
+    .services div:nth-child(2n) {
       @apply border-r-2;
     }
 
-    .service-list div:nth-child(n + 4) {
+    .services div:nth-child(n + 4) {
       @apply border-t-2;
     }
 
-    .service-list div:nth-child(3n) {
+    .services div:nth-child(3n) {
       @apply border-r-0;
     }
   }

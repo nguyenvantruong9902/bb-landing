@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 
 import Container from "@components/Container.astro";
+import DownloadOn from "@components/DownloadOn.astro";
+import Title from "@components/Title.astro";
 
 import ExploreImg from "@assets/images/explore.png";
 import CheckedIcon from "@assets/svgs/checked.svg?raw";
@@ -26,35 +28,29 @@ const checklist = [
 ];
 ---
 
-<Container>
-  <div
-    class="flex flex-col justify-between items-center px-5 mt-24 md:mx-20 md:mt-[15.25rem] md:flex-row"
-  >
-    <div class="relative flex flex-col max-w-[32.4375rem]">
-      <h1
-        class="text-h3 text-opacity-pure text-center font-semibold md:text-left md:text-h2"
-      >
-        Thư giãn & Tiết kiệm
-      </h1>
+<Container className="mt-20 xl:mt-32">
+  <div class="flex flex-col justify-between items-center xl:flex-row xl:gap-16">
+    <div
+      class="relative w-full flex flex-col px-5 xl:px-0 xl:min-w-[22.5rem] xl:max-w-[39.125rem]"
+    >
+      <Title centered className="xl:text-left">Thư giãn & Tiết kiệm</Title>
 
-      <div class="text-title text-opacity-semi text-center mt-4 md:text-left">
-        <p>
-          Luôn yên tâm về giá cả cũng như chất lượng của các dịch vụ.
-          BeautyBooking luôn có những ưu đãi hấp dẫn, cùng những tham khảo đánh
-          giá chất lượng uy tín. Bạn sẽ có những trải nghiệm làm đẹp tuyệt vời.
-        </p>
+      <div class="text-title text-opacity-semi text-center mt-4 xl:text-left">
+        Luôn yên tâm về giá cả cũng như chất lượng của các dịch vụ.
+        BeautyBooking luôn có những ưu đãi hấp dẫn, cùng những tham khảo đánh
+        giá chất lượng uy tín. Bạn sẽ có những trải nghiệm làm đẹp tuyệt vời.
       </div>
 
       <div
-        class="grid grid-cols-2 gap-x-3 gap-y-6 mt-12 md:mt-8 md:flex md:flex-col md:gap-y-5"
+        class="grid grid-cols-2 gap-x-3 gap-y-6 mt-8 xl:flex xl:flex-col xl:gap-y-5"
       >
         {
           checklist.map(({ title, description }) => (
             <div class="flex flex-col md:flex-row">
-              <div class="flex justify-center items-center border-2 border-primary-600 rounded-full w-7 h-7 ml-2 mb-2 md:min-w-[1.75rem] md:mt-2">
+              <div class="flex justify-center items-center border-2 border-primary-600 rounded-full w-6 h-6 ml-2 mb-2 md:min-w-[1.5rem] md:mt-1">
                 <Fragment set:html={CheckedIcon} />
               </div>
-              <div class="ml-2 md:ml-4">
+              <div class="ml-2 xl:ml-4">
                 <h4 class="text-title text-opacity-pure mb-1">{title}</h4>
                 <p class="text-paragraph text-opacity-neutral">{description}</p>
               </div>
@@ -62,10 +58,20 @@ const checklist = [
           ))
         }
       </div>
+
+      <div class="mt-8">
+        <p
+          class="text-center text-caption text-opacity-neutral font-semibold xl:text-left"
+        >
+          TẢI NGAY
+        </p>
+
+        <DownloadOn className="mt-3 md:justify-center xl:justify-start" />
+      </div>
     </div>
 
-    <div class="mt-12 md:mt-0">
-      <Image src={ExploreImg} alt="Explore" />
+    <div class="mt-16 md:mt-12 xl:mt-0">
+      <Image src={ExploreImg} alt="explore" />
     </div>
   </div>
 </Container>

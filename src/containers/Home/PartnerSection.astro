@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import Container from "@components/Container.astro";
+import Title from "@components/Title.astro";
 
 import AndiBeautyImg from "@assets/images/andiBeauty.png";
 import OppaBeautyImg from "@assets/images/oppaBeauty.png";
@@ -71,15 +72,15 @@ const partners = [
 ];
 ---
 
-<Container>
-  <div class="mt-60 px-5 md:mt-80">
-    <h1 class="text-h3 font-semibold text-opacity-pure md:text-h2">
-      Đối tác của BeautyBooking
-    </h1>
+<Container className="mt-32 px-5 md:mt-44 xl:mt-64">
+  <div class="text-center xl:text-left">
+    <Title centered className="xl:text-left">Đối tác của BeautyBooking</Title>
     <p class="text-title mt-4 text-opacity-semi">
-      Những nhận xét tuyệt vời từ các khách hàng hài lòng của BeautyBooking
+      Hơn 100 cửa hàng đã tin tưởng BeautyBooking
     </p>
+  </div>
 
+  <div class="relative flex items-start my-8">
     <div class="service-names">
       {
         serviceNames.map((name, idx) => (
@@ -88,50 +89,56 @@ const partners = [
           </div>
         ))
       }
-
-      <div class="hidden md:flex md:gap-3 md:absolute md:right-0">
-        <div class="prev">
-          <Fragment set:html={LeftArrowIcon} />
-        </div>
-
-        <div class="next">
-          <Fragment set:html={RightArrowIcon} />
-        </div>
-      </div>
     </div>
 
-    <div class="relative">
-      <div class="partner-slide">
-        {
-          partners.map(({ name, image, address, rating }) => (
-            <div class="partner">
-              <Image src={image} alt="Partner" class="rounded-t-3xl" />
+    <div class="hidden lg:flex lg:gap-3 lg:absolute lg:right-0 lg:-top-0.5">
+      <div class="prev">
+        <Fragment set:html={LeftArrowIcon} />
+      </div>
 
-              <div class="px-5 py-4">
-                <h5 class="text-title text-opacity-pure">{name}</h5>
-                <p class="text-sub-header text-opacity-neutral mt-1 mb-3">
-                  {address}
-                </p>
-                <div class="flex items-center gap-1 text-sub-header">
-                  <Fragment set:html={StarIcon} />
-                  <span>4.5</span>
-                  <p class="text-opacity-neutral">{rating}</p>
-                </div>
+      <div class="next">
+        <Fragment set:html={RightArrowIcon} />
+      </div>
+    </div>
+  </div>
+
+  <div class="relative">
+    <div class="partner-slide">
+      {
+        partners.map(({ name, image, address, rating }) => (
+          <div class="partner">
+            <Image src={image} alt="Partner" class="rounded-t-3xl" />
+
+            <div class="px-5 py-4">
+              <h5 class="text-title text-opacity-pure">{name}</h5>
+              <p class="text-sub-header text-opacity-neutral mt-1 mb-3">
+                {address}
+              </p>
+              <div class="flex items-center gap-1 text-sub-header">
+                <Fragment set:html={StarIcon} />
+                <span>4.5</span>
+                <p class="text-opacity-neutral">{rating}</p>
               </div>
             </div>
-          ))
-        }
-      </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </Container>
 
 <style>
   .service-names {
-    @apply relative flex flex-wrap gap-3 my-8;
+    @apply relative flex whitespace-nowrap gap-3 xl:flex-wrap;
+    @apply overflow-auto snap-x snap-mandatory w-full xl:snap-none xl:overflow-visible;
+
+    @media screen and (min-width: 1024px) {
+      max-width: calc(100% - 8rem);
+    }
   }
   .service-name {
     @apply cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph bg-grey-300;
+    @apply snap-start;
   }
 
   .service-name.active {
@@ -140,16 +147,21 @@ const partners = [
 
   .prev,
   .next {
-    @apply cursor-pointer p-3 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs;
+    @apply cursor-pointer p-2.5 rounded-full border-[1.5px] border-solid border-grey-400 shadow-xs;
+  }
+
+  .prev:hover,
+  .next:hover {
+    @apply border-grey-700;
   }
 
   .partner-slide {
     @apply relative whitespace-nowrap py-4 px-2 transition-all ease-linear duration-300;
-    @apply overflow-auto snap-x snap-mandatory md:overflow-hidden md:snap-none;
+    @apply overflow-auto snap-x snap-mandatory scroll-px-1 xl:overflow-hidden xl:snap-none;
   }
 
   .partner-slide .partner {
-    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 snap-start md:first:ml-0;
+    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 snap-start xl:first:ml-0 xl:mr-0;
   }
 </style>
 

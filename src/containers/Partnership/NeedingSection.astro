@@ -9,12 +9,10 @@ import NeedingImg from "@assets/images/needing.png";
 import BBMerchantLogoIcon from "@assets/svgs/bbMerchantLogo.svg?raw";
 ---
 
-<Container className="mx-5">
-  <div
-    class="flex flex-col justify-between items-center mt-24 md:mt-[15.25rem] md:flex-row"
-  >
-    <div class="relative flex flex-col max-w-xl pr-4">
-      <div class="flex items-center gap-4 self-center mb-8 md:self-auto">
+<Container className="mt-32">
+  <div class="flex flex-col justify-between items-center xl:flex-row xl:gap-20">
+    <div class="relative flex flex-col max-w-[31.25rem] px-5 md:px-0">
+      <div class="flex items-center gap-4 self-center mb-8 xl:self-auto">
         <Fragment set:html={BBMerchantLogoIcon} />
 
         <span class="text-title text-opacity-neutral">
@@ -23,10 +21,12 @@ import BBMerchantLogoIcon from "@assets/svgs/bbMerchantLogo.svg?raw";
         </span>
       </div>
 
-      <Title>Không bao giờ bỏ lỡ với BB Merchant Mobile</Title>
+      <Title centered className="xl:text-left">
+        Không bao giờ bỏ lỡ<br /> với BB Merchant Mobile
+      </Title>
 
       <div
-        class="text-title text-opacity-semi text-center mt-4 md:text-left md:mt-8"
+        class="text-title text-opacity-semi text-center mt-4 xl:text-left md:mt-8"
       >
         <p>
           Luôn nắm rõ tình hình kinh doanh cũng như lượng khách mỗi ngày. Chủ
@@ -39,14 +39,18 @@ import BBMerchantLogoIcon from "@assets/svgs/bbMerchantLogo.svg?raw";
       </div>
 
       <div class="mt-8">
-        <p class="text-caption text-opacity-neutral font-semibold">Tải ngay</p>
+        <p
+          class="text-caption text-opacity-neutral font-semibold text-center xl:text-left"
+        >
+          TẢI NGAY
+        </p>
 
-        <DownloadOn className="mt-3 md:justify-start" />
+        <DownloadOn className="mt-3 md:justify-center xl:justify-start" />
       </div>
     </div>
 
-    <div>
-      <Image src={NeedingImg} alt="Needing" class="mt-12 md:mt-0" />
+    <div class="mt-16 md:mt-12 xl:mt0">
+      <Image src={NeedingImg} alt="Needing" />
     </div>
   </div>
 </Container>

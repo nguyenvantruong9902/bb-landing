@@ -29,4 +29,10 @@ import Header from "./Header.astro";
   body {
     @apply bg-grey-100;
   }
+
+  body *::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 </style>

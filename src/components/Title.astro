@@ -1,13 +1,19 @@
 ---
 interface Props {
+  size?: "large" | "medium";
   className?: string;
+  centered?: boolean;
 }
 
-const { className = "" } = Astro.props;
+const { size = "medium", className = "", centered } = Astro.props;
+
+const sizeClass =
+  size === "large" ? "text-h3 xl:text-h2" : "text-h4 md:text-h3";
+const centerdClass = centered ? "md:text-center" : "md:text-left";
 ---
 
 <h1
-  class={`text-h4 text-opacity-pure text-center font-semibold md:text-left md:text-h2 ${className}`}
+  class={`text-opacity-pure text-center font-semibold ${sizeClass} ${centerdClass} ${className}`}
 >
   <slot />
 </h1>

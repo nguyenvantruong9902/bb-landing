@@ -13,42 +13,50 @@ const { className = "" } = Astro.props;
   class={`flex items-center justify-center gap-4 flex-col-reverse md:flex-row ${className}`}
 >
   <a
-    href="#"
-    class="w-full rounded-xl bg-white border-2 border-black border-opacity-10"
+    href="https://apps.apple.com/vn/app/beautybooking/id1546090400"
+    target="_blank"
+    class="download-item"
   >
-    <div
-      class="w-fit m-auto flex items-center gap-2 h-[4.375rem] py-3 pl-3 pr-6"
-    >
+    <div class="inner">
       <div>
         <Fragment set:html={AppStoreIcon} />
       </div>
 
-      <div>
+      <div class="-mt-2">
         <span class="font-bold text-tiny text-dark text-opacity-neutral">
           DOWLOAD ON THE
         </span>
-        <p>App Store</p>
+        <p class="-mt-2 text-sub-header lg:text-title">App Store</p>
       </div>
     </div>
   </a>
 
   <a
-    href="#"
-    class="w-full rounded-xl bg-white border-2 border-black border-opacity-10"
+    href="https://play.google.com/store/apps/details?id=com.ans.beautybooking&pcampaignid=web_share&fbclid=IwZXh0bgNhZW0CMTAAAR1uD3O15ut1uPlCl-75vMQ4yScZe2Oxpw6MKXVDRCDXPt9MQwT0gl72HIA_aem_AaY0LBZrEcsLQCYmRLuC1CFp2B_xfCVApVDdH0Lg5f72TIiIA7xIZQ9pF-YeTYSPG2dtWEH7ODLU1r0PpbebanQW"
+    target="_blank"
+    class="download-item"
   >
-    <div
-      class="w-fit m-auto flex items-center gap-2 h-[4.375rem] py-3 pl-3 pr-6"
-    >
+    <div class="inner">
       <div>
         <Fragment set:html={GGPlayIcon} />
       </div>
 
-      <div>
+      <div class="-mt-2">
         <span class="font-bold text-tiny text-dark text-opacity-neutral"
           >GET IT ON</span
         >
-        <p>Google Play</p>
+        <p class="-mt-2 text-sub-header lg:text-title">Google Play</p>
       </div>
     </div>
   </a>
 </div>
+
+<style>
+  .download-item {
+    @apply w-full rounded-xl bg-white border-2 border-black border-opacity-10 hover:border-opacity-20 md:w-auto;
+  }
+
+  .download-item .inner {
+    @apply w-fit m-auto flex items-center gap-2 py-1.5 text-title md:pr-4 md:pl-3 xl:pr-6 xl:pl-4 xl:h-[4.16725rem] xl:w-[12.375rem];
+  }
+</style>

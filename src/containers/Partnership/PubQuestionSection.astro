@@ -1,6 +1,9 @@
 ---
 import { Image } from "astro:assets";
 
+import Container from "@components/Container.astro";
+import Title from "@components/Title.astro";
+
 import PlusIcon from "@assets/svgs/plus.svg";
 import MinusIcon from "@assets/svgs/minus.svg";
 
@@ -43,19 +46,17 @@ const questions = [
 ];
 ---
 
-<div class="flex flex-col justify-between items-center px-5 mt-[9.875rem]">
+<Container
+  className="flex flex-col justify-between items-center mt-32 px-5 md:mt-44 xl:mt-52"
+>
   <div class="max-w-[75rem]">
-    <h1
-      class="text-h3 text-opacity-pure text-center font-semibold md:text-display"
-    >
-      Câu hỏi thường gặp
-    </h1>
+    <Title centered>Câu hỏi thường gặp</Title>
 
     <div class="flex justify-center mt-4 mb-11">
       <p class="text-center max-w-[52rem] text-title">
-        Chưa tìm được câu trả lời cho câu hỏi của minh?<br />
-         Tham gia cộng đồng làm đẹp của BeautyBooking để được trực tiếp giải
-        đáp.
+        Vẫn còn nhiều thắc mắc?<br />
+        <a href="#" class="underline text-primary-700">Liên hệ</a>
+         BeautyBooking để được trực tiếp giải đáp.
       </p>
     </div>
 
@@ -80,19 +81,19 @@ const questions = [
       ))
     }
   </div>
-</div>
+</Container>
 
 <style>
   .collapsible {
-    @apply p-6 rounded-xl shadow-md text-title max-w-[52.875rem];
+    @apply p-6 rounded-xl shadow-md text-opacity-semi max-w-[52.875rem] mb-3 last:mb-4;
   }
 
   .collapsible .question {
-    @apply max-w-[calc(100%-3.75rem)];
+    @apply text-sub-header font-bold max-w-[calc(100%-3.75rem)];
   }
 
   .collapsible .answer {
-    @apply text-opacity-neutral h-0 overflow-hidden transition-all duration-300 ease-in-out;
+    @apply h-0 overflow-hidden transition-all duration-300 ease-in-out;
   }
 </style>
 

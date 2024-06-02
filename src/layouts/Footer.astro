@@ -6,9 +6,12 @@ import TelegramIcon from "@assets/svgs/telegram.svg?raw";
 import WhatsappIcon from "@assets/svgs/whatsapp.svg?raw";
 ---
 
-<footer class="bg-white shadow">
+<footer
+  class="bg-white"
+  style="box-shadow: 16px 0px 32px 0px rgba(0, 0, 0, 0.16);"
+>
   <div
-    class="flex flex-wrap px-6 pt-[3.25rem] pb-10 gap-8 justify-between mx-auto max-w-[90rem] md:px-20"
+    class="flex flex-wrap px-6 pt-[3.25rem] pb-10 gap-8 justify-between mx-auto max-w-[90rem] md:px-12 xl:px-20"
   >
     <!--- BeautyBooking -->
     <div class="max-w-xs">
@@ -58,16 +61,19 @@ import WhatsappIcon from "@assets/svgs/whatsapp.svg?raw";
       <p>Các liên kết khác</p>
 
       <div class="flex gap-3 mt-3">
-        <a href="#">
+        <a href="https://www.facebook.com/beautybooking.vn/" target="_blank">
           <Fragment set:html={FacebookIcon} />
         </a>
-        <a href="#">
+        <a href="https://www.instagram.com/beautybookingvn/" target="_blank">
           <Fragment set:html={InstagramIcon} />
         </a>
-        <a href="#">
+        <a href="https://t.me/beautybooking_official" target="_blank">
           <Fragment set:html={TelegramIcon} />
         </a>
-        <a href="#">
+        <a
+          href="https://chat.whatsapp.com/JhnhsmZDnFVEbFiq474xkR"
+          target="_blank"
+        >
           <Fragment set:html={WhatsappIcon} />
         </a>
       </div>
