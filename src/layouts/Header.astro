@@ -2,7 +2,7 @@
 import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
 ---
 
-<header class="bg-white border-b border-b-grey-300">
+<header>
   <div
     class="flex items-center justify-between max-w-[90rem] py-4 px-5 mx-auto md:static md:py-5 md:px-16 xl:px-20"
   >
@@ -24,41 +24,16 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
       <div class="menu-items">
         <a href="/" class="py-[0.62rem]">Trang chủ</a>
         <a href="/partnership" class="py-[0.62rem]">Trở thành đối tác</a>
-        <a href="#" class="py-[0.62rem]">Về BeautyBooking</a>
-        <div class="flex gap-3 mt-6">
-          <a href="#">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.2656 12.5973L15.7211 9.70372H12.9157V7.8229C12.9157 7.03169 13.3073 6.25856 14.5597 6.25856H15.8531V3.79451C15.0999 3.6744 14.3388 3.60942 13.576 3.6001C11.2671 3.6001 9.75964 4.98811 9.75964 7.49737V9.70372H7.2002V12.5973H9.75964V19.5961H12.9157V12.5973H15.2656Z"
-                fill="#B0B7C3"></path>
-            </svg>
-          </a>
-          <a href="#">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.35588 11.7661C2.35588 11.7661 10.6929 8.25468 13.5843 7.01822C14.6928 6.52368 18.4516 4.94101 18.4516 4.94101C18.4516 4.94101 20.1866 4.24865 20.042 5.93016C19.9937 6.62259 19.6082 9.04595 19.2227 11.6672C18.6444 15.3765 18.0179 19.4319 18.0179 19.4319C18.0179 19.4319 17.9215 20.5695 17.1023 20.7673C16.2831 20.9651 14.9337 20.075 14.6928 19.8771C14.5 19.7287 11.0784 17.5031 9.82547 16.4151C9.48812 16.1183 9.10262 15.5249 9.87363 14.8325C11.6085 13.2004 13.6807 11.1727 14.9337 9.88677C15.512 9.29325 16.0903 7.90847 13.6807 9.58998C10.2592 12.0134 6.88583 14.2884 6.88583 14.2884C6.88583 14.2884 6.11475 14.783 4.66904 14.3379C3.22326 13.8928 1.53658 13.2993 1.53658 13.2993C1.53658 13.2993 0.380063 12.5574 2.35588 11.7661Z"
-                fill="#B0B7C3"></path>
-            </svg>
-          </a>
-        </div>
       </div>
     </div>
   </div>
 </header>
 
 <style>
+  header {
+    @apply bg-white border-b border-b-grey-300 z-10 sticky md:static;
+  }
+
   .menu {
     @apply relative md:hidden;
   }
@@ -104,9 +79,7 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
 <script>
   // Sticky header
   const stickyClassName = [
-    "sticky",
     "top-0",
-    "z-10",
     "bg-grey-100",
     "shadow-sm",
     "md:shadow-none",

@@ -5,7 +5,6 @@ import Container from "@components/Container.astro";
 import Title from "@components/Title.astro";
 
 import PlusIcon from "@assets/svgs/plus.svg";
-import MinusIcon from "@assets/svgs/minus.svg";
 
 const questions = [
   {
@@ -66,13 +65,7 @@ const questions = [
           <div class="flex items-center justify-between h-fit">
             <h4 class="question">{question}</h4>
             <button class="w-10 h-10 ml-4 rounded-full bg-grey-300 p-1.5">
-              <Image
-                src={PlusIcon}
-                data-expanded={MinusIcon.src}
-                data-collapsed={PlusIcon.src}
-                alt="expand"
-                class="m-auto"
-              />
+              <Image src={PlusIcon} alt="expand" class="m-auto" />
             </button>
           </div>
 
@@ -85,7 +78,7 @@ const questions = [
 
 <style>
   .collapsible {
-    @apply p-6 rounded-xl shadow-md text-opacity-semi max-w-[52.875rem] mb-3 last:mb-4;
+    @apply p-6 rounded-xl shadow-md text-opacity-semi max-w-[52.875rem] mb-3 last:mb-0;
   }
 
   .collapsible .question {
@@ -98,6 +91,9 @@ const questions = [
 </style>
 
 <script>
+  import PlusIcon from "@assets/svgs/plus.svg";
+  import MinusIcon from "@assets/svgs/minus.svg";
+
   const collapses = document.querySelectorAll<HTMLDivElement>(".collapsible");
 
   for (let index = 0; index < collapses.length; index++) {
@@ -111,12 +107,12 @@ const questions = [
         answer.classList.remove("mt-6");
         answer.style.height = "0";
 
-        collapseImg.setAttribute("src", collapseImg.dataset.collapsed);
+        collapseImg.setAttribute("src", PlusIcon.src);
       } else {
         answer.classList.add("mt-6");
         answer.style.height = `${answer.scrollHeight}px`;
 
-        collapseImg.setAttribute("src", collapseImg.dataset.expanded);
+        collapseImg.setAttribute("src", MinusIcon.src);
       }
     });
   }

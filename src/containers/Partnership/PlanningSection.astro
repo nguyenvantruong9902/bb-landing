@@ -145,7 +145,7 @@ const plans = [
               </del>
               <p class="mt-1 mb-4">{plan.context}</p>
               <button
-                class={`p-4 w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white md:rounded-2xl ${
+                class={`py-[0.94125rem] w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white md:rounded-2xl ${
                   plan?.isBestPrice ? "bg-primary-600 text-white" : ""
                 }`}
               >
@@ -180,7 +180,7 @@ const plans = [
 
 <style>
   .planning {
-    @apply shadow-md max-w-[410px] min-w-[23.75rem] snap-center cursor-pointer bg-transparent;
+    @apply shadow-md max-w-[410px] snap-center cursor-pointer bg-transparent min-w-[calc(100%-0.25rem)] xs:min-w-[23.75rem];
 
     padding: 2px;
     border-radius: 26px;

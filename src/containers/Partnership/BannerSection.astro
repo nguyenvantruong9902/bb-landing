@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Container from "@components/Container.astro";
 import Title from "@components/Title.astro";
 
+import AvatarNotifyImg from "@assets/images/avatarNotify.png";
 import CloverLogoImg from "@assets/images/clover.png";
 import GNailsLogoImg from "@assets/images/gNails.png";
 import HanaLogoImg from "@assets/images/hana.png";
@@ -64,7 +65,7 @@ const storeLogos = [
 
       <div class="relative w-full px-5 mt-6 md:w-auto md:px-0 xl:mt-8">
         <button
-          class="bg-primary-600 p-4 w-full rounded-xl text-white text-title hover:bg-opacity-80 md:rounded-2xl md:w-fit"
+          class="bg-primary-600 px-4 py-3 w-full rounded-xl text-white text-title hover:bg-opacity-80 md:rounded-2xl md:w-fit xl:py-[1.1875rem]"
         >
           Trở thành đối tác ngay!
         </button>
@@ -86,8 +87,52 @@ const storeLogos = [
         </div>
       </div>
 
-      <div class="mt-16 mb-14 px-5 md:px-0 md:mt-20 md:mb-[4.125rem]">
-        <Image src={PartnershipBannerImg} alt="Partnership" />
+      <div class="relative mt-16 mb-14 px-5 md:px-0 md:mt-20 md:mb-[4.125rem]">
+        <Image src={PartnershipBannerImg} alt="partnership-panner" />
+
+        <div class="notification">
+          <Image src={AvatarNotifyImg} alt="avatar-notify" class="w-10 h-10" />
+
+          <div>
+            <p class="flex justify-between text-caption m-auto">
+              <span class="text-primary-800">BB #101123 - 184012</span>
+              <span class="text-opacity-neutral">11:32</span>
+            </p>
+
+            <p class="font-semibold">
+              Jenny
+              <span class="text-opacity-neutral">đã đặt 1 lịch hẹn vào</span>
+               9:20-Thứ 3, 17/10/2024.
+            </p>
+          </div>
+        </div>
+
+        <div class="revenue">
+          <p class="font-semibold text-title">8,122,450,000 đ</p>
+          <p class="mt-0.5 mb-2 text-caption text-opacity-neutral">
+            Tổng doanh thu năm
+          </p>
+
+          <div class="flex gap-x-4">
+            {
+              Array.from(Array(12)).map((_, idx) => {
+                const height = Math.floor(Math.random() * 20) + 20;
+
+                return (
+                  <div class="mt-auto">
+                    <p
+                      class="w-2.5 rounded-full bg-primary-600"
+                      style={`height: ${height}px;`}
+                    />
+                    <p class="text-tiny text-opacity-neutral font-semibold">
+                      {idx + 1}
+                    </p>
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
       </div>
 
       <div class="w-full">
@@ -150,6 +195,26 @@ const storeLogos = [
     @apply relative flex flex-col justify-between items-center;
   }
 
+  .notification {
+    @apply absolute bg-white top-16 w-80 px-5 py-3 shadow-lg rounded-xl;
+    @apply gap-x-4 cursor-pointer right-2 md:right-0 lg:-right-6 xl:-right-16;
+    @apply hidden md:flex;
+  }
+
+  .revenue {
+    @apply absolute bg-white pb-1.5 rounded-xl bottom-[40%] text-center cursor-pointer;
+    @apply p-2.5 left-2 md:left-0 lg:-left-6 xl:-left-14 xl:p-4;
+    @apply hidden md:block;
+
+    box-shadow:
+      0px 9.7px 33.94px -3.23px rgba(24, 39, 75, 0.12),
+      0px 6.46px 14.55px -4.85px rgba(24, 39, 75, 0.12);
+  }
+
+  .notification:hover,
+  .revenue:hover {
+    animation: shake 1s linear;
+  }
   svg path {
     @apply fill-transparent stroke-primary-700;
 
@@ -189,6 +254,27 @@ const storeLogos = [
       @apply fill-primary-700 stroke-none;
 
       stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(2px, 2px) rotate(0deg);
+    }
+    20% {
+      transform: translate(-3px, 0px) rotate(-2deg);
+    }
+    40% {
+      transform: translate(2px, -2px) rotate(2deg);
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    80% {
+      transform: translate(-2px, -2px) rotate(2deg);
+    }
+    100% {
+      transform: translate(1px, -2px) rotate(-2deg);
     }
   }
 </style>

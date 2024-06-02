@@ -5,8 +5,11 @@ import Container from "@components/Container.astro";
 import DownloadOn from "@components/DownloadOn.astro";
 import Title from "@components/Title.astro";
 
+import IncomeBookingImg from "@assets/images/incomeBooking.png";
 import UserHeroImg from "@assets/images/userHero.png";
+import ArrowDownIcon from "@assets/svgs/arrowDown.svg";
 import StarIcon from "@assets/svgs/star.svg?raw";
+import InfoIcon from "@assets/svgs/info.svg?raw";
 
 const statistics = [
   {
@@ -58,9 +61,7 @@ const lastIdx = statistics.length - 1;
             statistics.map(({ title, description }, idx) => (
               <div class="flex items-center gap-6 mx-auto md:mx-0 md:gap-7 xl:gap-8">
                 <div>
-                  <h5 class="text-opacity-pure md:text-title xl:text-h5">
-                    {title}
-                  </h5>
+                  <h5 class="md:text-title xl:text-h5">{title}</h5>
                   {idx === lastIdx && (
                     <div class="flex">
                       <Fragment set:html={StarIcon} />
@@ -128,7 +129,7 @@ const lastIdx = statistics.length - 1;
     </div>
 
     <div class="relative">
-      <div class="hidden md:block absolute -left-16 -top-16">
+      <div class="hidden md:block absolute z-10 -left-16 -top-16">
         <svg
           width="123"
           height="119"
@@ -151,11 +152,103 @@ const lastIdx = statistics.length - 1;
         </svg>
       </div>
 
-      <Image
-        src={UserHeroImg}
-        alt="user-hero"
-        class="mt-12 md:mt-0 md:rounded-3xl"
-      />
+      <div class="relative">
+        <Image
+          src={UserHeroImg}
+          alt="user-hero"
+          class="mt-12 md:mt-0 md:rounded-3xl"
+        />
+
+        <div class="income-booking">
+          <div class="flex gap-x-3">
+            <Image
+              src={IncomeBookingImg}
+              alt="income-booking"
+              class="max-w-[7rem]"
+            />
+
+            <div class="w-full">
+              <div class="flex justify-between text-tiny">
+                <div class="text-opacity-semi">
+                  <p class="font-bold">12:00 - 14:45</p>
+                  <p class="font-bold">Thứ 5, 20/06/24</p>
+                </div>
+
+                <div
+                  class="py-0.5 px-2 rounded-md bg-primary-200 text-primary-800 h-fit"
+                >
+                  ĐÃ XÁC NHẬN
+                </div>
+              </div>
+
+              <div class="h-[1px] w-8 bg-primary-200 my-2"></div>
+
+              <div>
+                <p class="text-base">Luxe Nails & Salon</p>
+                <p class="text-tiny text-opacity-neutral">
+                  375 Nguyễn Thượng Hiền, Phường 11, Quận 10, Thành phố Hồ Chí
+                  Minh
+                </p>
+              </div>
+
+              <div class="collapsible">
+                <div class="flex items-center justify-between mt-4">
+                  <p class="text-caption font-semibold text-primary-600">
+                    Đã đặt 2 dịch vụ
+                  </p>
+
+                  <button class="bg-white rounded-full p-1">
+                    <Image src={ArrowDownIcon} alt="collapse" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking">
+            <p class="detail title">
+              <span>DỊCH VỤ</span>
+              <span>SỐ TIỀN</span>
+            </p>
+
+            <p class="detail row">
+              <span>Phun Mí Mắt Makeup Hàn Quốc</span>
+              <span>400,000 đ</span>
+            </p>
+
+            <p class="detail row">
+              <span>Điều trị mụn an toàn - triệt để bằng ánh sinh học</span>
+              <span>320,000 đ</span>
+            </p>
+
+            <div class="h-[1px] w-full bg-grey-400 my-3"></div>
+
+            <p class="detail text-caption">
+              <span class="text-opacity-neutral">Tạm tính</span>
+              <span class="text-opacity-neutral">720,000 đ</span>
+            </p>
+
+            <div class="detail mt-2 text-caption">
+              <p class="flex items-center gap-1">
+                <Fragment set:html={InfoIcon} />
+
+                <span class="text-primary-600"
+                  >Giảm giá 10% cho booking đầu tiên</span
+                >
+              </p>
+
+              <span class="text-primary-600">-72,000 đ</span>
+            </div>
+
+            <div class="h-[1px] w-full bg-grey-400 my-3"></div>
+
+            <p class="detail">
+              <span class="text-sub-header font-semibold">Tổng tiền</span>
+              <span class="text-sub-header font-semibold">648,000 đ</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </Container>
@@ -180,4 +273,62 @@ const lastIdx = statistics.length - 1;
       stroke-dashoffset: 0;
     }
   }
+
+  .income-booking {
+    @apply absolute bottom-6 left-6 p-4 bg-white rounded-xl;
+    @apply cursor-pointer bg-opacity-80 hover:bg-opacity w-[calc(100%-3rem)] lg:max-w-[23.375rem];
+  }
+
+  .income-booking:hover button {
+    @apply bg-primary-200;
+  }
+
+  .income-booking .booking {
+    @apply h-0 overflow-hidden transition-all duration-300 ease-in-out;
+  }
+
+  .income-booking .booking .detail {
+    @apply flex justify-between;
+  }
+
+  .income-booking .detail.title span {
+    @apply text-tiny font-bold text-opacity-neutral;
+  }
+
+  .income-booking .detail.row {
+    @apply mt-2;
+  }
+
+  .income-booking .detail.row span {
+    @apply text-base;
+  }
+
+  .income-booking .detail * {
+    @apply first:max-w-[14.75rem];
+  }
 </style>
+
+<script>
+  import ArrowUpIcon from "@assets/svgs/arrowUp.svg";
+  import ArrowDownIcon from "@assets/svgs/arrowDown.svg";
+
+  const collapse = document.querySelector<HTMLDivElement>(".collapsible");
+
+  const booking = document.querySelector<HTMLDivElement>(".booking");
+  const collapseBtn = collapse.querySelector("button");
+  const collapseImg = collapse.querySelector("img");
+
+  collapseBtn.addEventListener("click", () => {
+    if (booking.clientHeight) {
+      booking.style.height = "0";
+      booking.style.marginTop = "0";
+
+      collapseImg.setAttribute("src", ArrowDownIcon.src);
+    } else {
+      booking.style.height = `${booking.scrollHeight}px`;
+      booking.style.marginTop = "2.5rem";
+
+      collapseImg.setAttribute("src", ArrowUpIcon.src);
+    }
+  });
+</script>

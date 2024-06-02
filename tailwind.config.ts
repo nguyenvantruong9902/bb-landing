@@ -113,7 +113,6 @@ export default {
     opacity: {
       DEFAULT: "1",
 
-      pure: "1",
       semi: "0.87",
       neutral: "0.52",
       light: "0.24",
