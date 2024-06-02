@@ -157,11 +157,11 @@ const partners = [
 
   .partner-slide {
     @apply relative whitespace-nowrap py-4 px-2 transition-all ease-linear duration-300;
-    @apply overflow-auto snap-x snap-mandatory scroll-px-1 xl:overflow-hidden xl:snap-none;
+    @apply overflow-auto snap-x snap-mandatory scroll-px-1 lg:overflow-hidden lg:snap-none lg:scroll-px-0;
   }
 
   .partner-slide .partner {
-    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 snap-start xl:first:ml-0 xl:mr-0;
+    @apply cursor-pointer w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-6 snap-start lg:first:ml-0 lg:mr-0;
   }
 </style>
 
@@ -183,6 +183,24 @@ const partners = [
 
   const itemW = 404;
   const step = 8;
+  const disabledClass = [
+    "opacity-50",
+    "!shadow-none",
+    "border-none",
+    "pointer-events-none",
+  ];
+
+  // Initialize states
+  prevButton.classList.add(...disabledClass);
+
+  const onChangeButtonState = (isPrev: boolean, isNext: boolean) => {
+    if (isPrev) prevButton.classList.add(...disabledClass);
+    else if (isNext) nextButton.classList.add(...disabledClass);
+    else {
+      prevButton.classList.remove(...disabledClass);
+      nextButton.classList.remove(...disabledClass);
+    }
+  };
 
   const sideScroll = (
     element: HTMLDivElement,
@@ -222,6 +240,7 @@ const partners = [
         scrollLeft >= maxScrollLeft
       ) {
         window.clearInterval(slideTimer);
+        onChangeButtonState(scrollLeft <= 0, scrollLeft >= maxScrollLeft - 2);
       }
     }, 0);
   };
