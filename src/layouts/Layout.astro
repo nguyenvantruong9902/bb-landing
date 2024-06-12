@@ -1,4 +1,6 @@
 ---
+import BubbleChat from "@components/BubbleChat.astro";
+
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 ---
@@ -16,6 +18,7 @@ import Header from "./Header.astro";
   <body>
     <Header />
     <slot />
+    <BubbleChat />
     <Footer />
   </body>
 </html>

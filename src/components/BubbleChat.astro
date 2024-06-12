@@ -1,0 +1,401 @@
+---
+import BBLogoIcon from "@assets/svgs/bbLogo.svg?raw";
+import BubbleChatIcon from "@assets/svgs/bubbleChat.svg?raw";
+import CloseIcon from "@assets/svgs/close.svg?raw";
+import MessengerIcon from "@assets/svgs/messenger.svg";
+import TelegramIcon from "@assets/svgs/telegram.svg";
+import WhatAppIcon from "@assets/svgs/whatsapp.svg";
+import ZaloIcon from "@assets/svgs/zalo.svg";
+import CustomerAvatarImg from "@assets/images/customerAvatar.png";
+
+interface Option {
+  id: string;
+  label: string;
+  question: string;
+}
+
+const days = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+
+const welcome =
+  "Chào bạn 👋 ! Hôm nay là 1 ngày tuyệt vời. BB có thể hỗ trợ bạn điều gì?";
+const options: Option[] = [
+  {
+    id: "collab",
+    label: "🤝 Hợp tác với BB",
+    question: "🤝 Mình muốn hợp tác tới BB",
+  },
+  {
+    id: "contact",
+    label: "🖥️ Liên hệ dùng thử",
+    question: "🖥️ Mình muốn dùng thử BB Merchant",
+  },
+  {
+    id: "call",
+    label: "📞 Gọi cho BB",
+    question: "📞 Mình sẽ gọi trực tiếp cho BB",
+  },
+];
+
+const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
+  "en-GB",
+)}`;
+---
+
+<div class="bb-chat">
+  <div class="bb-chat-button">
+    <Fragment set:html={BubbleChatIcon} />
+  </div>
+
+  <div class="bubble-chat">
+    <div class="bubble-chat-header">
+      <div class="flex gap-x-3 items-center">
+        <div class="w-11 h-11 avatar">
+          <Fragment set:html={BBLogoIcon} />
+        </div>
+
+        <div>
+          <p class="text-sub-header font-bold">BeautyBooking</p>
+          <p class="text-opacity-neutral">
+            Hôm nay • {today}
+          </p>
+        </div>
+      </div>
+
+      <div class="close-button">
+        <Fragment set:html={CloseIcon} />
+      </div>
+    </div>
+
+    <div class="bubble-chat-content">
+      <!-- Welcome message -->
+      <div class="flex gap-x-2 items-end">
+        <div class="avatar">
+          <Fragment set:html={BBLogoIcon} />
+        </div>
+
+        <div class="system-message">
+          {welcome}
+        </div>
+      </div>
+
+      <div class="ml-10 flex flex-wrap gap-2">
+        {
+          options.map((option) => (
+            <div class="question-option" data-question-id={option.id}>
+              {option.label}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .bb-chat {
+    @apply fixed text-base bottom-5 right-5 xl:bottom-20 xl:right-20;
+  }
+
+  .bb-chat-button {
+    @apply bg-white relative rounded-full p-3.5 cursor-pointer w-fit hover:bg-grey-400;
+
+    box-shadow:
+      0px 6.77px 20.31px -3.38px #18274b14,
+      0px 5.08px 10.15px -5.08px #18274b1f;
+  }
+
+  .bb-chat .bubble-chat {
+    @apply absolute bottom-[calc(100%+1.75rem)] right-0 max-h-0 rounded-xl shadow-lg bg-white overflow-hidden;
+    @apply w-max max-w-[calc(100vw-2.5rem)] transition-all duration-1000 ease-in-out md:max-w-[28.75rem];
+  }
+
+  .bb-chat .bubble-chat.active {
+    max-height: 30.625rem;
+  }
+
+  .bb-chat .bubble-chat.shake {
+    animation: chat-shake 1s linear;
+  }
+
+  .bb-chat .bubble-chat .avatar {
+    @apply flex items-center justify-center rounded-full bg-primary-100;
+  }
+
+  .bb-chat .bubble-chat .bubble-chat-header {
+    @apply flex justify-between items-center px-3 py-4 rounded-t-xl;
+
+    box-shadow: 0px 1px 12px 0px #0000001f;
+  }
+
+  .bb-chat .bubble-chat-header .close-button {
+    @apply p-2 bg-grey-200 rounded-full cursor-pointer hover:bg-grey-400;
+  }
+
+  .bb-chat .bubble-chat .question-option {
+    @apply cursor-pointer px-3 py-2 border-[1.5px] rounded-[1.125rem] border-primary-600 text-primary-800;
+  }
+
+  .bb-chat .bubble-chat .bubble-chat-content {
+    @apply flex flex-col gap-y-4 px-4 py-[1.5rem] overflow-y-auto;
+
+    max-height: 25.75rem;
+  }
+
+  .bb-chat .bubble-chat .bubble-chat-content .avatar {
+    @apply w-[2rem] h-[2rem];
+  }
+
+  .bb-chat .bubble-chat .bubble-chat-content .system-message {
+    @apply bg-grey-100 border border-grey-300;
+
+    padding: 6px 12px 8px 12px;
+    border-radius: 12px 12px 12px 2px;
+  }
+
+  .bb-chat .bubble-chat .bubble-chat-content .customer-message {
+    @apply text-white;
+
+    padding: 6px 12px 8px 12px;
+    border-radius: 12px 12px 2px 12px;
+    background: linear-gradient(180deg, #7f55f1 0%, #5a39f0 100%);
+  }
+
+  .bb-chat .bubble-chat .bubble-chat-content .system-message a {
+    @apply text-primary-600;
+  }
+
+  .bb-chat .system-message.loading::before,
+  .bb-chat .customer-message.loading::before,
+  .bb-chat .message-loading::before,
+  .bb-chat .message-loading::after {
+    @apply relative block content-[''] w-1.5 h-1.5 rounded-full bg-grey-700 mt-1 -mb-1;
+
+    -webkit-animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
+    animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
+  }
+
+  .bb-chat .system-message::before,
+  .bb-chat .customer-message::before {
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
+  }
+
+  .bb-chat .message-loading::before {
+    @apply -ml-2;
+  }
+
+  .bb-chat .message-loading::after {
+    @apply ml-2;
+
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+  }
+
+  @-webkit-keyframes ball {
+    from {
+      transform: translateY(0) scaleY(0.8);
+    }
+    to {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes ball {
+    from {
+      transform: translateY(0) scaleY(0.8);
+    }
+    to {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes chat-shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+</style>
+
+<script
+  define:vars={{
+    options,
+    customerAvatarSrc: CustomerAvatarImg.src,
+    bbLogoIcon: BBLogoIcon,
+    messengerSrc: MessengerIcon.src,
+    telegramSrc: TelegramIcon.src,
+    zaloSrc: ZaloIcon.src,
+    whatAppSrc: WhatAppIcon.src,
+  }}
+  is:inline
+>
+  // Opening bubble chat
+  const bbChatVisibleButtons = document.querySelectorAll(".bb-chat-visible");
+  const bbChatButton = document.querySelector(".bb-chat-button");
+  const bubbleChat = document.querySelector(".bubble-chat");
+  const closeButton = bubbleChat.querySelector(".close-button");
+
+  const onVisibleChange = () => {
+    if (bubbleChat.clientHeight) {
+      bubbleChat.classList.remove("active");
+    } else {
+      bubbleChat.classList.add("active");
+    }
+  };
+
+  for (let index = 0; index < bbChatVisibleButtons.length; index++) {
+    bbChatVisibleButtons[index].addEventListener("click", () => {
+      if (bubbleChat.clientHeight) {
+        bubbleChat.classList.add("shake");
+      } else {
+        bubbleChat.classList.add("active");
+      }
+
+      const shakeTimeout = setTimeout(() => {
+        bubbleChat.classList.remove("shake");
+        clearTimeout(shakeTimeout);
+      }, 1000);
+    });
+  }
+
+  bbChatButton.addEventListener("click", onVisibleChange);
+  closeButton.addEventListener("click", () => {
+    bubbleChat.classList.remove("active");
+  });
+
+  const bubbleChatContent = bubbleChat.querySelector(".bubble-chat-content");
+  const questionOptions = bubbleChat.querySelectorAll(".question-option");
+
+  for (let index = 0; index < questionOptions.length; index++) {
+    const option = questionOptions[index];
+    const optionId = option.dataset.questionId;
+
+    option.addEventListener("click", () => {
+      questionOptions.forEach((opt) => {
+        opt.classList.add("pointer-events-none", "opacity-50");
+      });
+
+      const customerMsgSection = document.createElement("div");
+      customerMsgSection.className = "flex gap-x-2 items-end justify-end";
+
+      const question = options.find(({ id }) => id === optionId).question;
+      customerMsgSection.innerHTML = `<div class="customer-message">${question}</div>
+      <div class="avatar"><img src="${customerAvatarSrc}"/></div>`;
+
+      bubbleChatContent.append(customerMsgSection);
+      bubbleChatContent.scrollTo({
+        top: bubbleChatContent.scrollHeight,
+        behavior: "smooth",
+      });
+
+      const loadingTimeout = setTimeout(
+        () => {
+          const systemMsgSection = document.createElement("div");
+          systemMsgSection.className = "flex gap-x-2 items-end";
+          systemMsgSection.innerHTML = `<div class="avatar">${bbLogoIcon}</div>
+          <div class="system-message loading">
+            <span class="message-loading"></span>
+          </div>`;
+
+          bubbleChatContent.append(systemMsgSection);
+          bubbleChatContent.scrollTo({
+            top: bubbleChatContent.scrollHeight,
+            behavior: "smooth",
+          });
+          clearTimeout(loadingTimeout);
+
+          const timeout = setTimeout(
+            () => {
+              const systemMsg =
+                systemMsgSection.querySelector(".system-message");
+              systemMsg.classList.remove("loading");
+              if (["collab", "contact"].includes(optionId)) {
+                systemMsg.innerHTML =
+                  "Tuyệt vời 🥳️ ! Vui lòng liên hệ trực tiếp với BB qua các nền tảng bên dưới. BB sẽ liên hệ ngay, bạn sẽ không phải đợi lâu đâu 😘.";
+                const contact = document.createElement("div");
+                contact.className = "ml-10 flex flex-wrap gap-2";
+                contact.innerHTML = `<a class="flex gap-2 question-option" href="https://m.me/399989640412052" target="_blank">
+                  <img width="20" src="${messengerSrc}"/>
+                  <span>Messenger</span>
+                </a>
+                <a class="flex gap-2 question-option" href="#">
+                  <img width="20" src="${zaloSrc}"/>
+                  <span>Zalo</span>
+                </a>
+                <a class="flex gap-2 question-option" href="https://t.me/beautybooking_official" target="_blank">
+                  <img width="20" src="${telegramSrc}"/>
+                  <span>Telegram</span>
+                </a>
+                <a class="flex gap-2 question-option" href="https://chat.whatsapp.com/JhnhsmZDnFVEbFiq474xkR" target="_blank">
+                  <img width="20" src="${whatAppSrc}"/>
+                  <span>WhatApp</span>
+                </a>
+                <a class="flex gap-2 question-option" href="tel:0915276769">
+                  <div class="w-1.25">📞</div>
+                  <span>Gọi cho BB</span>
+                </a>`;
+                bubbleChatContent.append(contact);
+                bubbleChatContent.scrollTo({
+                  top: bubbleChatContent.scrollHeight,
+                  behavior: "smooth",
+                });
+
+                const repTimeout = setTimeout(
+                  () => {
+                    const thankMsgSection = document.createElement("div");
+                    thankMsgSection.className = "flex gap-x-2 items-end";
+                    thankMsgSection.innerHTML = `<div class="avatar">${bbLogoIcon}</div>
+          <div class="system-message">
+            Cảm ơn bạn đã quan tâm và ủng hộ ! Rất mong được thấy cửa hàng của
+              bạn trên ứng dụng của BeautyBooking.<br/> Nếu bạn có bất kỳ câu hỏi nào
+              khác, vui lòng <a href="#">liên hệ</a> đội ngũ hỗ trợ của chúng tôi.
+              Chúc bạn một ngày tốt lành! 🌸
+          </div>`;
+
+                    bubbleChatContent.append(thankMsgSection);
+                    bubbleChatContent.scrollTo({
+                      top: bubbleChatContent.scrollHeight,
+                      behavior: "smooth",
+                    });
+                    clearTimeout(repTimeout);
+                  },
+                  30000 + Math.random() * 20 * 100,
+                );
+              } else {
+                systemMsg.innerHTML = `Cảm ơn bạn đã quan tâm và ủng hộ ! Rất mong được thấy cửa hàng của
+              bạn trên ứng dụng của BeautyBooking. Nếu bạn có bất kỳ câu hỏi nào
+              khác, vui lòng <a href="#">liên hệ</a> đội ngũ hỗ trợ của chúng tôi.
+              Chúc bạn một ngày tốt lành! 🌸`;
+
+                bubbleChatContent.scrollTo({
+                  top: bubbleChatContent.scrollHeight,
+                  behavior: "smooth",
+                });
+              }
+
+              questionOptions.forEach((opt) => {
+                opt.classList.remove("pointer-events-none", "opacity-50");
+              });
+              clearTimeout(timeout);
+            },
+            3000 + Math.random() * 20 * 100,
+          );
+        },
+        1000 + Math.random() * 20 * 100,
+      );
+    });
+  }
+</script>

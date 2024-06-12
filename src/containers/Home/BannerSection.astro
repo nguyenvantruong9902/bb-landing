@@ -11,6 +11,8 @@ import ArrowDownIcon from "@assets/svgs/arrowDown.svg";
 import StarIcon from "@assets/svgs/star.svg?raw";
 import InfoIcon from "@assets/svgs/info.svg?raw";
 
+const days = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+
 const statistics = [
   {
     title: "1,000+",
@@ -24,6 +26,10 @@ const statistics = [
     description: "80+ Đánh giá",
   },
 ];
+
+const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
+  "en-GB",
+)}`;
 
 const lastIdx = statistics.length - 1;
 ---
@@ -171,7 +177,7 @@ const lastIdx = statistics.length - 1;
               <div class="flex justify-between text-tiny">
                 <div class="text-opacity-semi">
                   <p class="font-bold">12:00 - 14:45</p>
-                  <p class="font-bold">Thứ 5, 20/06/24</p>
+                  <p class="font-bold">{today}</p>
                 </div>
 
                 <div
