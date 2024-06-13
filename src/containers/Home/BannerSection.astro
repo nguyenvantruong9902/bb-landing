@@ -5,8 +5,12 @@ import Container from "@components/Container.astro";
 import DownloadOn from "@components/DownloadOn.astro";
 import Title from "@components/Title.astro";
 
-import IncomeBookingImg from "@assets/images/incomeBooking.png";
-import UserHeroImg from "@assets/images/userHero.png";
+import IncomeBookingImg from "@assets/images/home/incomeBooking.png";
+import UserHeroImg from "@assets/images/home/userHero.png";
+import FirstRateAvtImg from "@assets/images/home/firstRateAvt.png";
+import SecondRateAvtImg from "@assets/images/home/secondRateAvt.png";
+import ThirdRateAvtImg from "@assets/images/home/thirdRateAvt.png";
+import FourthRateAvtImg from "@assets/images/home/fourthRateAvt.png";
 import ArrowDownIcon from "@assets/svgs/arrowDown.svg";
 import StarIcon from "@assets/svgs/star.svg?raw";
 import InfoIcon from "@assets/svgs/info.svg?raw";
@@ -68,18 +72,50 @@ const lastIdx = statistics.length - 1;
               <div class="flex items-center gap-6 mx-auto md:mx-0 md:gap-7 xl:gap-8">
                 <div>
                   <h5 class="md:text-title xl:text-h5">{title}</h5>
-                  {idx === lastIdx && (
-                    <div class="flex">
-                      <Fragment set:html={StarIcon} />
-                      <Fragment set:html={StarIcon} />
-                      <Fragment set:html={StarIcon} />
-                      <Fragment set:html={StarIcon} />
-                      <Fragment set:html={StarIcon} />
+                  {idx === lastIdx ? (
+                    <div class="flex items-center gap-x-3">
+                      <div class="hidden xl:flex">
+                        <Image
+                          class="w-10 z-[4] border-2 border-white rounded-full"
+                          src={FirstRateAvtImg}
+                          alt="first-avt"
+                        />
+                        <Image
+                          class="w-10 -ml-3 z-[3] border-2 border-white rounded-full"
+                          src={SecondRateAvtImg}
+                          alt="second-avt"
+                        />
+                        <Image
+                          class="w-10 -ml-3 z-[2] border-2 border-white rounded-full"
+                          src={ThirdRateAvtImg}
+                          alt="third-avt"
+                        />
+                        <Image
+                          class="w-10 -ml-3 border-2 border-white rounded-full"
+                          src={FourthRateAvtImg}
+                          alt="fourth-avt"
+                        />
+                      </div>
+
+                      <div>
+                        <div class="flex">
+                          <Fragment set:html={StarIcon} />
+                          <Fragment set:html={StarIcon} />
+                          <Fragment set:html={StarIcon} />
+                          <Fragment set:html={StarIcon} />
+                          <Fragment set:html={StarIcon} />
+                        </div>
+
+                        <p class="text-opacity-neutral text-paragraph">
+                          {description}
+                        </p>
+                      </div>
                     </div>
+                  ) : (
+                    <p class="text-opacity-neutral text-paragraph">
+                      {description}
+                    </p>
                   )}
-                  <p class="text-opacity-neutral text-paragraph">
-                    {description}
-                  </p>
                 </div>
 
                 {idx !== lastIdx && (

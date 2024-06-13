@@ -5,7 +5,7 @@ import Container from "@components/Container.astro";
 import DownloadOn from "@components/DownloadOn.astro";
 import Title from "@components/Title.astro";
 
-import ExploreImg from "@assets/images/explore.png";
+import ExploreImg from "@assets/images/home/explore.png";
 import CheckedIcon from "@assets/svgs/checked.svg?raw";
 
 const checklist = [
@@ -26,6 +26,12 @@ const checklist = [
     description: "Đánh giá rõ ràng đến từ những trải nghiệm thực tế",
   },
 ];
+
+const days = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+
+const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
+  "en-GB",
+)}`;
 ---
 
 <Container className="mt-20 xl:mt-32">
@@ -70,8 +76,45 @@ const checklist = [
       </div>
     </div>
 
-    <div class="mt-16 md:mt-12 xl:mt-0">
+    <div class="relative mt-16 md:mt-12 xl:mt-0">
       <Image src={ExploreImg} alt="explore" />
+
+      <div
+        class="absolute cursor-pointer bottom-6 left-6 p-4 rounded-xl bg-white bg-opacity-80 max-w-[23.375rem] flex flex-col gap-2 hover:bg-opacity"
+      >
+        <p class="text-base">
+          Highly Recommend!!!!!! Sau bao ngày lặn lội tìm chỗ cắt tóc thì e đã
+          tìm được 1 nơi chân ái và các a chị nhân viên hỗ trợ tư vấn rất nhiệt
+          tình về cách chăm sóc tóc tại nhà nữa.
+        </p>
+
+        <p class="text-caption">
+          <span class="text-opacity-neutral">Dịch vụ:</span> Nhuộm tóc balayage,
+          Sấy và tạo kiểu tóc
+        </p>
+
+        <div class="flex items-center text-tiny">
+          <span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M5.0592 13.7272C4.72736 13.9004 4.32591 13.8699 4.02405 13.6485C3.72219 13.4272 3.57242 13.0535 3.63786 12.6849L4.16751 9.6491L1.93763 7.51219C1.66507 7.25226 1.56517 6.85934 1.68051 6.5008C1.79584 6.14226 2.10607 5.88126 2.47906 5.82898L5.57509 5.38641L6.97286 2.59808C7.13858 2.26368 7.47954 2.05212 7.85276 2.05212C8.22598 2.05212 8.56694 2.26368 8.73267 2.59808L10.1304 5.38641L13.2265 5.82898C13.5995 5.88126 13.9097 6.14226 14.025 6.5008C14.1403 6.85934 14.0405 7.25226 13.7679 7.51219L11.538 9.6491L12.0677 12.6856C12.1331 13.0541 11.9833 13.4278 11.6815 13.6492C11.3796 13.8705 10.9782 13.901 10.6463 13.7278L7.85276 12.2842L5.0592 13.7272Z"
+                fill="#FFAD0D"></path>
+            </svg>
+          </span>
+
+          <span>
+            5.0 • {today}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </Container>

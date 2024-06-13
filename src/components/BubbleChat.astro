@@ -93,7 +93,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
 
 <style is:global>
   .bb-chat {
-    @apply fixed text-base bottom-5 right-5 xl:bottom-20 xl:right-20;
+    @apply fixed text-base bottom-5 right-5 z-10 xl:bottom-20 xl:right-20;
   }
 
   .bb-chat-button {
@@ -142,7 +142,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
   }
 
   .bb-chat .bubble-chat .bubble-chat-content .avatar {
-    @apply w-[2rem] h-[2rem];
+    @apply w-[2rem] h-[2rem] flex-shrink-0;
   }
 
   .bb-chat .bubble-chat .bubble-chat-content .system-message {
