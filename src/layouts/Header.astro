@@ -112,12 +112,10 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
   document.addEventListener("scroll", () => {
     const header = document.querySelector("header");
 
-    setTimeout(() => {
-      if (window.scrollY > 0) {
-        header.classList.add(...stickyClassName);
-      } else {
-        header.classList.remove(...stickyClassName);
-      }
-    }, 1000);
+    if (window.scrollY > 0) {
+      header.classList.add(...stickyClassName);
+    } else {
+      header.classList.remove(...stickyClassName);
+    }
   });
 </script>

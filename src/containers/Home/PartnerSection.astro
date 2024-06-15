@@ -72,7 +72,7 @@ const partners = [
 ];
 ---
 
-<div class="max-w-[90rem] mx-auto md:px-12 xl:px-20 mt-32 md:mt-44 xl:mt-64">
+<div class="max-w-[90rem] mx-auto lg:px-12 xl:px-20 mt-32 md:mt-44 xl:mt-64">
   <div class="text-center px-5 xl:text-left">
     <Title centered className="xl:text-left">Đối tác của BeautyBooking</Title>
     <p class="text-title mt-4 text-opacity-semi">
@@ -138,7 +138,7 @@ const partners = [
   }
   .service-names .service-name {
     @apply cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph bg-grey-300;
-    @apply snap-start first:ml-4 last:mr-4 xl:last:mr-0;
+    @apply snap-start first:ml-4 lg:first:ml-0;
   }
 
   .service-names .service-name.active {
@@ -156,13 +156,13 @@ const partners = [
   }
 
   .partner-slide {
-    @apply relative whitespace-nowrap py-4 px-2 transition-all ease-linear duration-300;
+    @apply relative whitespace-nowrap py-4 pr-4 transition-all ease-linear duration-300 lg:pr-0;
     @apply overflow-auto snap-x snap-mandatory scroll-px-4 lg:overflow-hidden lg:snap-none lg:scroll-px-0;
   }
 
   .partner-slide .partner {
-    @apply cursor-pointer w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block ml-4 snap-start lg:ml-6 lg:first:ml-0 lg:mr-0;
-    @apply last:mr-2 xl:last:mr-0;
+    @apply cursor-pointer w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block snap-start;
+    @apply ml-4 lg:ml-6 lg:first:ml-0 lg:mr-0;
   }
 </style>
 

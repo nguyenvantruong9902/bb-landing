@@ -100,7 +100,7 @@ const plans = [
 ---
 
 <div class="mt-32 md:mt-44 xl:mt-52">
-  <div>
+  <div class="px-5">
     <Title className="md:text-center">Trở thành đối tác</Title>
 
     <p class="mt-4 mb-11 text-title text-center text-opacity-semi">
@@ -108,71 +108,71 @@ const plans = [
         class="hidden md:block"
       />BB còn là 1 người bạn đồng hành cùng phát triển với doanh nghiệp
     </p>
+  </div>
 
-    <div class="plans">
-      {
-        plans.map((plan) => (
-          <div
-            class="planning"
-            style={
-              plan?.isBestPrice
-                ? "background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%);"
-                : ""
-            }
-          >
-            <div class="px-8 py-6 rounded-3xl h-full bg-white">
-              <div class="flex justify-between">
-                <p class="text-title font-bold text-dark">{plan.name}</p>
-                {plan?.isBestPrice && (
-                  <p
-                    class="text-tiny px-3 py-2 rounded-2xl text-white font-bold"
-                    style="background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%)"
-                  >
-                    GIÁ TỐT NHẤT
-                  </p>
-                )}
-              </div>
-              <p class="text-caption text-opacity-neutral mt-1 mb-4">
-                {plan.happening}
-              </p>
-              <p class="text-h2 text-primary-800 font-semibold">
-                {plan.discountPrice}
-              </p>
-              <del class="text-title text-primary-400 font-semibold">
-                {plan.price}
-              </del>
-              <p class="mt-1 mb-4">{plan.context}</p>
-              <button
-                class={`bb-chat-visible py-[0.94125rem] w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white md:rounded-2xl ${
-                  plan?.isBestPrice ? "bg-primary-600 text-white" : ""
-                }`}
-              >
-                Liên hệ dùng thử
-              </button>
+  <div class="plans">
+    {
+      plans.map((plan) => (
+        <div
+          class="planning"
+          style={
+            plan?.isBestPrice
+              ? "background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%);"
+              : ""
+          }
+        >
+          <div class="px-8 py-6 rounded-3xl h-full bg-white">
+            <div class="flex justify-between">
+              <p class="text-title font-bold text-dark">{plan.name}</p>
+              {plan?.isBestPrice && (
+                <p
+                  class="text-tiny px-3 py-2 rounded-2xl text-white font-bold"
+                  style="background: linear-gradient(180deg, #7F55F1 0%, #5A39F0 100%)"
+                >
+                  GIÁ TỐT NHẤT
+                </p>
+              )}
+            </div>
+            <p class="text-caption text-opacity-neutral mt-1 mb-4">
+              {plan.happening}
+            </p>
+            <p class="text-h2 text-primary-800 font-semibold">
+              {plan.discountPrice}
+            </p>
+            <del class="text-title text-primary-400 font-semibold">
+              {plan.price}
+            </del>
+            <p class="mt-1 mb-4">{plan.context}</p>
+            <button
+              class={`bb-chat-visible py-[0.94125rem] w-full border border-primary-500 text-primary-700 text-sub-header rounded-lg hover:bg-primary-600 hover:text-white md:rounded-2xl ${
+                plan?.isBestPrice ? "bg-primary-600 text-white" : ""
+              }`}
+            >
+              Liên hệ dùng thử
+            </button>
 
-              <div class="flex flex-col gap-y-4 pt-6 mt-6 border-t border-grey-400">
-                {plan.includeList.map((include) => (
-                  <div class="flex gap-x-2">
-                    <span>
-                      <Fragment set:html={TickIcon} />
-                    </span>
+            <div class="flex flex-col gap-y-4 pt-6 mt-6 border-t border-grey-400">
+              {plan.includeList.map((include) => (
+                <div class="flex gap-x-2">
+                  <span>
+                    <Fragment set:html={TickIcon} />
+                  </span>
 
-                    <div>
-                      <p class="text-sub-header text-opacity-semi">
-                        {include.title}
-                      </p>
-                      <p class="text-paragraph text-opacity-neutral">
-                        {include.description}
-                      </p>
-                    </div>
+                  <div>
+                    <p class="text-sub-header text-opacity-semi">
+                      {include.title}
+                    </p>
+                    <p class="text-paragraph text-opacity-neutral">
+                      {include.description}
+                    </p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))
-      }
-    </div>
+        </div>
+      ))
+    }
   </div>
 </div>
 
@@ -212,8 +212,23 @@ const plans = [
 </style>
 
 <script>
-  document.querySelector(".plans").scrollTo({
-    left: document.querySelector<HTMLDivElement>(".plans").scrollWidth / 3,
-    behavior: "smooth",
-  });
+  const onScrollToShowCenterElm = () => {
+    const container = document.querySelector<HTMLDivElement>(".plans");
+    const middleElm = container.children[
+      Math.floor((container.children.length - 1) / 2)
+    ] as HTMLDivElement;
+    const scrollLeft =
+      middleElm.offsetLeft +
+      middleElm.offsetWidth / 2 -
+      container.offsetWidth / 2;
+
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: "smooth",
+    });
+  };
+
+  onScrollToShowCenterElm();
+
+  window.addEventListener("resize", onScrollToShowCenterElm);
 </script>
