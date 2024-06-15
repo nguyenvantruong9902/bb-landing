@@ -31,7 +31,7 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
 
 <style>
   header {
-    @apply bg-white border-b border-b-grey-300 z-50 sticky md:static;
+    @apply bg-white border-b border-b-grey-300 z-50 sticky;
   }
 
   .menu {
@@ -111,10 +111,13 @@ import BBLogoTextIcon from "@assets/svgs/bbLogoText.svg?raw";
 
   document.addEventListener("scroll", () => {
     const header = document.querySelector("header");
-    if (window.scrollY > 0) {
-      header.classList.add(...stickyClassName);
-    } else {
-      header.classList.remove(...stickyClassName);
-    }
+
+    setTimeout(() => {
+      if (window.scrollY > 0) {
+        header.classList.add(...stickyClassName);
+      } else {
+        header.classList.remove(...stickyClassName);
+      }
+    }, 1000);
   });
 </script>

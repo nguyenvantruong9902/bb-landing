@@ -2,18 +2,18 @@
 import { Image } from "astro:assets";
 
 import FooterBgImg from "@assets/images/footerBg.png";
-import PartnershipFooterImg from "@assets/images/partnershipFooter.png";
+import PartnershipFooterImg from "@assets/images/partnership/partnershipFooter.png";
 ---
 
 <div class="max-w-[90rem] mx-auto mt-28 md:px-0 xl:mt-48 xl:px-20">
   <div class="wrapper">
     <div class="relative md:max-w-[22.625rem] lg:max-w-lg">
       <h3 class="text-h3 text-white font-semibold">
-        Tham gia cộng đồng BeautyBooking
+        Nâng tầm thương hiệu, tăng doanh thu & khách hàng mới
       </h3>
       <p class="mt-4 text-title text-white text-opacity-semi">
-        Tham gia ngay hôm nay để tiếp cận nguồn khách hàng đa dạng & phát triển
-        kinh doanh cơ sở của bạn.
+        Hãy để BeautyBooking giúp bạn tăng trưởng kinh doanh một cách hiệu quả.
+        Hợp tác mang lại trải nghiệm làm đẹp tuyệt vời cho khách hàng.
       </p>
 
       <div class="hidden md:block md:pb-12 xl:pb-20">
@@ -50,5 +50,9 @@ import PartnershipFooterImg from "@assets/images/partnershipFooter.png";
   .wrapper button {
     @apply bg-white w-full rounded-xl text-title hover:bg-opacity-80 md:rounded-2xl md:max-w-xs md:w-[25rem];
     @apply py-3 xl:py-[1.1875rem];
+
+    @media screen and (max-width: 768px) {
+      box-shadow: 16px 0px 32px 0px #00000029;
+    }
   }
 </style>

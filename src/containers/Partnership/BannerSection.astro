@@ -1,28 +1,30 @@
 ---
 import { Image } from "astro:assets";
+import Particles from "astro-particles";
+import type { ISourceOptions } from "tsparticles-engine";
 
 import Container from "@components/Container.astro";
 import Title from "@components/Title.astro";
 
-import AvatarNotifyImg from "@assets/images/avatarNotify.png";
-import CloverLogoImg from "@assets/images/clover.png";
-import GNailsLogoImg from "@assets/images/gNails.png";
-import HanaLogoImg from "@assets/images/hana.png";
-import HazuLogoImg from "@assets/images/hazu.png";
-import JessiLogoImg from "@assets/images/jessi.png";
-import KimSaNguLogoImg from "@assets/images/kimSaNgu.png";
-import LaSolLogoImg from "@assets/images/laSol.png";
-import LizLogoImg from "@assets/images/liz.png";
-import LuaSpaLogoImg from "@assets/images/luaSpa.png";
-import LunaLogoImg from "@assets/images/luna.png";
-import MamHomeLogoImg from "@assets/images/mamHome.png";
-import NeoLogoImg from "@assets/images/neo.png";
-import OmotenashiLogoImg from "@assets/images/omotenashi.png";
-import PartnershipBannerImg from "@assets/images/partnershipBanner.png";
-import PrettyMeLogoImg from "@assets/images/prettyMe.png";
-import RakuLogoImg from "@assets/images/raku.png";
-import SamLogoImg from "@assets/images/sam.png";
-import VyAnLogoImg from "@assets/images/vyAn.png";
+import AvatarNotifyImg from "@assets/images/partnership/avatarNotify.png";
+import CloverLogoImg from "@assets/images/partnership/clover.png";
+import GNailsLogoImg from "@assets/images/partnership/gNails.png";
+import HanaLogoImg from "@assets/images/partnership/hana.png";
+import HazuLogoImg from "@assets/images/partnership/hazu.png";
+import JessiLogoImg from "@assets/images/partnership/jessi.png";
+import KimSaNguLogoImg from "@assets/images/partnership/kimSaNgu.png";
+import LaSolLogoImg from "@assets/images/partnership/laSol.png";
+import LizLogoImg from "@assets/images/partnership/liz.png";
+import LuaSpaLogoImg from "@assets/images/partnership/luaSpa.png";
+import LunaLogoImg from "@assets/images/partnership/luna.png";
+import MamHomeLogoImg from "@assets/images/partnership/mamHome.png";
+import NeoLogoImg from "@assets/images/partnership/neo.png";
+import OmotenashiLogoImg from "@assets/images/partnership/omotenashi.png";
+import PartnershipBannerImg from "@assets/images/partnership/partnershipBanner.png";
+import PrettyMeLogoImg from "@assets/images/partnership/prettyMe.png";
+import RakuLogoImg from "@assets/images/partnership/raku.png";
+import SamLogoImg from "@assets/images/partnership/sam.png";
+import VyAnLogoImg from "@assets/images/partnership/vyAn.png";
 
 const storeLogos = [
   LizLogoImg,
@@ -43,6 +45,81 @@ const storeLogos = [
   RakuLogoImg,
   LuaSpaLogoImg,
 ];
+
+const options: ISourceOptions = {
+  fullScreen: {
+    enable: false,
+    zIndex: -1,
+  },
+  particles: {
+    color: {
+      value: ["#5552FF", "#3ED3A3", "#FFBB38", "#4BA7FE"],
+    },
+    size: {
+      value: {
+        min: 5,
+        max: 10,
+      },
+    },
+    move: {
+      direction: "bottom",
+      enable: true,
+      outModes: {
+        default: "out",
+      },
+      size: true,
+      speed: {
+        min: 1,
+        max: 3,
+      },
+    },
+    number: {
+      value: 60,
+      density: {
+        enable: true,
+        area: 800,
+      },
+    },
+    opacity: {
+      value: 0.4,
+      animation: {
+        enable: false,
+        startValue: "max",
+        destroy: "min",
+        speed: 0.3,
+        sync: true,
+      },
+    },
+    rotate: {
+      value: {
+        min: 0,
+        max: 360,
+      },
+      direction: "random",
+      move: true,
+      animation: {
+        enable: true,
+        speed: 60,
+      },
+    },
+    tilt: {
+      direction: "random",
+      enable: true,
+      move: true,
+      value: {
+        min: 0,
+        max: 360,
+      },
+      animation: {
+        enable: true,
+        speed: 60,
+      },
+    },
+    shape: {
+      type: ["circle", "square"],
+    },
+  },
+};
 ---
 
 <div class="main-container">
@@ -56,7 +133,7 @@ const storeLogos = [
         <div class="flex justify-center mt-4">
           <p class="text-center text-title">
             Quản lý và phát triển doanh nghiệp của bạn <br
-              class="hidden xl:block"
+              class="hidden md:block"
             /> cùng BeautyBooking đưa thương hiệu đến gần hơn với người tiêu
             dùng
           </p>
@@ -182,6 +259,13 @@ const storeLogos = [
   </Container>
 </div>
 
+<Particles
+  id="tsparticles"
+  options={options}
+  init="particlesInit"
+  loaded="particlesLoaded"
+/>
+
 <style>
   .main-container {
     @apply relative;
@@ -278,3 +362,27 @@ const storeLogos = [
     }
   }
 </style>
+
+<script>
+  import { type Container, type Engine } from "tsparticles-engine";
+  import { loadFull } from "tsparticles";
+
+  // the function name is the parameter passed to the init attribute
+  // required
+  // add the function to window is mandatory, it will be searched there
+  window.particlesInit = async function (engine: Engine) {
+    await loadFull(engine);
+  };
+
+  // the function name is the parameter passed to the loaded attribute
+  // optional
+  // add the function to window is mandatory, it will be searched there
+  window.particlesLoaded = function (_: Container) {
+    const tsPaticles = document.querySelector<HTMLDivElement>("#tsparticles");
+    const mainContent =
+      document.querySelector<HTMLDivElement>(".main-container");
+    tsPaticles.style.height = mainContent.offsetHeight + "px";
+
+    document.body.removeChild(document.querySelector("astro-particles"));
+  };
+</script>

@@ -217,7 +217,7 @@ const lastIdx = statistics.length - 1;
                 </div>
 
                 <div
-                  class="py-0.5 px-2 rounded-md bg-primary-200 text-primary-800 h-fit"
+                  class="py-0.5 px-2 font-bold rounded-md bg-primary-200 text-primary-800 h-fit"
                 >
                   ĐÃ XÁC NHẬN
                 </div>
@@ -317,7 +317,7 @@ const lastIdx = statistics.length - 1;
   }
 
   .income-booking {
-    @apply absolute bottom-6 left-6 p-4 bg-white rounded-xl;
+    @apply absolute bottom-6 left-6 p-4 bg-white rounded-xl backdrop-blur-sm;
     @apply cursor-pointer bg-opacity-80 hover:bg-opacity w-[calc(100%-3rem)] lg:max-w-[23.375rem];
   }
 
@@ -354,13 +354,14 @@ const lastIdx = statistics.length - 1;
   import ArrowUpIcon from "@assets/svgs/arrowUp.svg";
   import ArrowDownIcon from "@assets/svgs/arrowDown.svg";
 
+  const incomeBooking =
+    document.querySelector<HTMLDivElement>(".income-booking");
   const collapse = document.querySelector<HTMLDivElement>(".collapsible");
 
   const booking = document.querySelector<HTMLDivElement>(".booking");
-  const collapseBtn = collapse.querySelector("button");
   const collapseImg = collapse.querySelector("img");
 
-  collapseBtn.addEventListener("click", () => {
+  const onVisibleChange = () => {
     if (booking.clientHeight) {
       booking.style.height = "0";
       booking.style.marginTop = "0";
@@ -372,5 +373,7 @@ const lastIdx = statistics.length - 1;
 
       collapseImg.setAttribute("src", ArrowUpIcon.src);
     }
-  });
+  };
+
+  incomeBooking.addEventListener("click", onVisibleChange);
 </script>

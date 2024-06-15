@@ -11,15 +11,15 @@ import CheckedIcon from "@assets/svgs/checked.svg?raw";
 const checklist = [
   {
     title: "Đa dạng các loại dịch vụ",
-    description: "Tất cả các dịch vụ làm đẹp mà bạn đang tìm kiếm",
+    description: "Tất cả các dịch vụ làm đẹp mà bạn đang tìm",
   },
   {
     title: "Khung thời gian trống phù hợp",
     description: "Khung thời gian phù hợp với sự bận rộn của bạn",
   },
   {
-    title: "Giá cả rõ ràng",
-    description: "Giá dịch vụ/sản phẩm đc thể hiện trực tiếp & minh bạch",
+    title: "Giá cả rõ ràng, minh bạch",
+    description: "Giá dịch vụ/sản phẩm đc thể hiện trực tiếp. Dễ dàng so sánh",
   },
   {
     title: "Tham khảo trải nghiệm",
@@ -53,7 +53,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
         {
           checklist.map(({ title, description }) => (
             <div class="flex flex-col md:flex-row">
-              <div class="flex justify-center items-center border-2 border-primary-600 rounded-full w-6 h-6 ml-2 mb-2 md:min-w-[1.5rem] md:mt-1">
+              <div class="flex justify-center items-center border-2 border-primary-600 rounded-full w-6 h-6 mb-2 md:min-w-[1.5rem] md:mt-1.5">
                 <Fragment set:html={CheckedIcon} />
               </div>
               <div class="ml-2 xl:ml-4">
@@ -76,11 +76,17 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
       </div>
     </div>
 
-    <div class="relative mt-16 md:mt-12 xl:mt-0">
-      <Image src={ExploreImg} alt="explore" />
+    <div
+      class="relative overflow-x-hidden mt-16 ml-0 md:mt-12 md:ml-10 xl:mt-0 xl:ml-0"
+    >
+      <Image
+        src={ExploreImg}
+        alt="explore"
+        class="max-w-[calc(100%+1.5rem)] md:max-w-lg xl:max-w-full"
+      />
 
       <div
-        class="absolute cursor-pointer bottom-6 left-6 p-4 rounded-xl bg-white bg-opacity-80 max-w-[23.375rem] flex flex-col gap-2 hover:bg-opacity"
+        class="absolute cursor-pointer bottom-6 left-6 p-4 rounded-xl bg-white bg-opacity-80 w-[calc(100%-3rem)] max-w-[calc(100%-2rem)] md:max-w-[23.375rem] flex flex-col gap-2 hover:bg-opacity backdrop-blur-sm"
       >
         <p class="text-base">
           Highly Recommend!!!!!! Sau bao ngày lặn lội tìm chỗ cắt tóc thì e đã

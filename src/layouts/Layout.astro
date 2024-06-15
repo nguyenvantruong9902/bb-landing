@@ -24,8 +24,10 @@ import Header from "./Header.astro";
 </html>
 
 <style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
   * {
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     @apply font-medium text-dark;
   }
 
@@ -37,5 +39,9 @@ import Header from "./Header.astro";
     display: none;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+
+  body #tsparticles {
+    @apply absolute -z-[1] top-0 right-0 bottom-0 left-0;
   }
 </style>

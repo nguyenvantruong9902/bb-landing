@@ -5,21 +5,21 @@ import Container from "@components/Container.astro";
 import DownloadOn from "@components/DownloadOn.astro";
 import Title from "@components/Title.astro";
 
-import NeedingImg from "@assets/images/needing.png";
-import NeedingAvatarImg from "@assets/images/needingAvatar.png";
+import NeedingImg from "@assets/images/partnership/needing.png";
+import NeedingAvatarImg from "@assets/images/partnership/needingAvatar.png";
 import BBMerchantLogoIcon from "@assets/svgs/bbMerchantLogo.svg?raw";
 ---
 
 <Container className="mt-32">
   <div class="flex flex-col justify-between items-center xl:flex-row xl:gap-20">
-    <div class="relative flex flex-col max-w-[31.25rem] px-5 md:px-0">
+    <div class="relative flex flex-col max-w-lg px-5 md:px-0">
       <div class="flex items-center gap-4 self-center mb-8 xl:self-auto">
         <Fragment set:html={BBMerchantLogoIcon} />
 
-        <span class="text-title text-opacity-neutral">
-          BeautyBooking<br />
-           Merchant
-        </span>
+        <div class="text-title">
+          <p class="text-opacity-neutral">BeautyBooking</p>
+          <p class="text-opacity-neutral -mt-1.5">Merchant</p>
+        </div>
       </div>
 
       <Title centered className="xl:text-left">
@@ -50,11 +50,17 @@ import BBMerchantLogoIcon from "@assets/svgs/bbMerchantLogo.svg?raw";
       </div>
     </div>
 
-    <div class="relative mt-16 md:mt-12 xl:mt0">
-      <Image src={NeedingImg} alt="Needing" />
+    <div
+      class="relative mt-16 ml-0 overflow-x-hidden md:mt-12 md:ml-10 xl:mt-0 xl:ml-0"
+    >
+      <Image
+        src={NeedingImg}
+        alt="Needing"
+        class="max-w-[calc(100%+1.25rem)] md:max-w-xl"
+      />
 
       <div
-        class="absolute cursor-pointer bottom-6 left-6 p-4 rounded-xl bg-white bg-opacity-80 max-w-[23.375rem] flex flex-col gap-2 hover:bg-opacity"
+        class="absolute cursor-pointer bottom-6 left-6 p-4 rounded-xl bg-white bg-opacity-80 w-[calc(100%-3rem)] max-w-[23.375rem] flex flex-col gap-2 hover:bg-opacity backdrop-blur-sm"
       >
         <p class="text-base">
           Beautybooking đáp ứng mọi nhu cầu quản lý khắt khe của chúng tôi. Từ

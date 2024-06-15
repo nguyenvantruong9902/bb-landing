@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import Container from "@components/Container.astro";
 import Title from "@components/Title.astro";
 
-import PlusIcon from "@assets/svgs/plus.svg";
+import PlusIcon from "@assets/svgs/partnership/plus.svg";
 
 const questions = [
   {
@@ -93,18 +93,17 @@ const questions = [
 </style>
 
 <script>
-  import PlusIcon from "@assets/svgs/plus.svg";
-  import MinusIcon from "@assets/svgs/minus.svg";
+  import PlusIcon from "@assets/svgs/partnership/plus.svg";
+  import MinusIcon from "@assets/svgs/partnership/minus.svg";
 
   const collapses = document.querySelectorAll<HTMLDivElement>(".collapsible");
 
   for (let index = 0; index < collapses.length; index++) {
     const collapse = collapses[index];
     const answer = collapse.querySelector<HTMLDivElement>(".answer");
-    const collapseBtn = collapse.querySelector("button");
     const collapseImg = collapse.querySelector("img");
 
-    collapseBtn.addEventListener("click", () => {
+    const onVisibleChange = () => {
       if (answer.clientHeight) {
         answer.classList.remove("mt-6");
         answer.style.height = "0";
@@ -116,6 +115,8 @@ const questions = [
 
         collapseImg.setAttribute("src", MinusIcon.src);
       }
-    });
+    };
+
+    collapse.addEventListener("click", onVisibleChange);
   }
 </script>
