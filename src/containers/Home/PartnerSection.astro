@@ -130,15 +130,14 @@ const partners = [
 <style>
   .service-names {
     @apply relative flex whitespace-nowrap gap-4 xl:flex-wrap;
-    @apply overflow-auto snap-x snap-mandatory scroll-px-4 w-full mr-4 xl:mr-0 xl:snap-none xl:overflow-visible;
+    @apply overflow-auto snap-x snap-mandatory scroll-px-4 w-full px-4 lg:px-5 xl:snap-none xl:overflow-visible;
 
     @media screen and (min-width: 1024px) {
       max-width: calc(100% - 8rem);
     }
   }
   .service-names .service-name {
-    @apply cursor-pointer px-4 py-[0.81rem] rounded-lg text-opacity-semi text-paragraph bg-grey-300;
-    @apply snap-start first:ml-4 lg:first:ml-0;
+    @apply cursor-pointer px-4 py-[0.81rem] snap-start rounded-lg text-opacity-semi text-paragraph bg-grey-300;
   }
 
   .service-names .service-name.active {
@@ -156,13 +155,13 @@ const partners = [
   }
 
   .partner-slide {
-    @apply relative whitespace-nowrap py-4 pr-4 transition-all ease-linear duration-300 lg:pr-0;
-    @apply overflow-auto snap-x snap-mandatory scroll-px-4 lg:overflow-hidden lg:snap-none lg:scroll-px-0;
+    @apply relative whitespace-nowrap py-4 px-4 transition-all ease-linear duration-300;
+    @apply overflow-auto snap-x snap-mandatory scroll-px-4 lg:px-5 lg:scroll-px-5;
   }
 
   .partner-slide .partner {
-    @apply cursor-pointer w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] rounded-3xl shadow-md bg-white inline-block snap-start;
-    @apply ml-4 lg:ml-6 lg:first:ml-0 lg:mr-0;
+    @apply cursor-pointer rounded-3xl shadow-md bg-white inline-block snap-start;
+    @apply w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] ml-4 lg:ml-6;
   }
 </style>
 
@@ -183,7 +182,6 @@ const partners = [
   const partnerSlide = document.querySelector<HTMLDivElement>(".partner-slide");
 
   const itemW = 404;
-  const step = 8;
   const disabledClass = [
     "opacity-50",
     "!shadow-none",
@@ -194,75 +192,39 @@ const partners = [
   // Initialize states
   prevButton.classList.add(...disabledClass);
 
-  const onChangeButtonState = (isPrev: boolean, isNext: boolean) => {
-    if (isPrev) prevButton.classList.add(...disabledClass);
-    else if (isNext) nextButton.classList.add(...disabledClass);
-    else {
+  const onChangeButtonState = (prevDisabled = false, nextDisabled = false) => {
+    if (prevDisabled) {
+      prevButton.classList.add(...disabledClass);
+      nextButton.classList.remove(...disabledClass);
+    } else if (nextDisabled) {
+      nextButton.classList.add(...disabledClass);
+      prevButton.classList.remove(...disabledClass);
+    } else {
       prevButton.classList.remove(...disabledClass);
       nextButton.classList.remove(...disabledClass);
     }
   };
 
-  const sideScroll = (
-    element: HTMLDivElement,
-    direction: "left" | "right",
-    distance: number,
-    step: number,
-  ) => {
-    let scrollAmount = 0;
-    let scrollLeft = element.scrollLeft;
-    const scrolledLeft = scrollLeft;
-    const maxScrollLeft = element.scrollWidth - element.clientWidth;
+  prevButton.addEventListener("click", () => {
+    const toPrev = partnerSlide.scrollLeft - itemW;
 
-    const slideTimer = setInterval(() => {
-      if (direction === "right") {
-        scrollLeft += step;
-      } else {
-        scrollLeft -= step;
-      }
+    partnerSlide.scrollTo({
+      left: toPrev,
+      behavior: "smooth",
+    });
 
-      scrollAmount += step;
+    onChangeButtonState(toPrev <= 0);
+  });
 
-      if (scrollAmount > distance) {
-        if (direction === "right") {
-          scrollLeft = scrolledLeft + distance;
-        }
+  nextButton.addEventListener("click", () => {
+    const toNext = partnerSlide.scrollLeft + itemW;
+    const maxScrollLeft = partnerSlide.scrollWidth - partnerSlide.clientWidth;
 
-        if (direction === "left") {
-          scrollLeft = scrolledLeft - distance;
-        }
-      }
+    partnerSlide.scrollTo({
+      left: toNext,
+      behavior: "smooth",
+    });
 
-      element.scrollLeft = scrollLeft;
-
-      if (
-        scrollAmount >= distance ||
-        scrollLeft <= 0 ||
-        scrollLeft >= maxScrollLeft
-      ) {
-        window.clearInterval(slideTimer);
-        onChangeButtonState(scrollLeft <= 0, scrollLeft >= maxScrollLeft - 2);
-      }
-    }, 0);
-  };
-
-  const prev = () => {
-    const isToLeft = partnerSlide.scrollLeft === 0;
-    if (isToLeft) return;
-
-    sideScroll(partnerSlide, "left", itemW, step);
-  };
-
-  const next = () => {
-    const isToRight =
-      partnerSlide.scrollLeft ===
-      partnerSlide.scrollWidth - partnerSlide.clientWidth;
-    if (isToRight) return;
-
-    sideScroll(partnerSlide, "right", itemW, step);
-  };
-
-  prevButton.addEventListener("click", prev);
-
-  nextButton.addEventListener("click", next);
+    onChangeButtonState(false, toNext >= maxScrollLeft);
+  });
 </script>

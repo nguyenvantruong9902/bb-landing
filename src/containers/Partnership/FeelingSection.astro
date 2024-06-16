@@ -67,11 +67,11 @@ const columns = [
       </p>
     </div>
 
-    <div class="relative mx-auto mt-[2.62rem] md:mt-16">
-      <div class="reviews">
+    <div class="relative mx-auto mt-[2.62rem] md:mt-16 lg:px-5">
+      <div class="feelings">
         {
           columns.map(({ content, img, owner, role }) => (
-            <div class="review">
+            <div class="feeling">
               <div>{content}</div>
 
               <div class="flex items-center gap-2 relative text-sub-header md:mt-11">
@@ -93,22 +93,21 @@ const columns = [
 </div>
 
 <style>
-  .reviews {
-    @apply flex overflow-auto m-auto gap-4 pb-4 xl:gap-5;
-    @apply snap-x snap-mandatory scroll-px-4 pr-4 md:pr-0 xl:block xl:overflow-visible xl:max-w-7xl xl:snap-none;
+  .feelings {
+    @apply flex overflow-auto mx-auto gap-4 px-4 pb-4 lg:block lg:gap-5 lg:px-0;
+    @apply snap-x snap-mandatory scroll-px-4 lg:overflow-visible lg:max-w-7xl lg:snap-none;
 
-    @media screen and (min-width: 1208px) {
+    @media screen and (min-width: 1024px) {
       columns: 3 25.75rem;
     }
   }
 
-  .reviews .review {
-    @apply flex flex-col justify-between xl:block;
-    @apply relative bg-white rounded-3xl pt-10 pb-8 px-8 text-left text-title shadow-md xl:self-start;
-    @apply snap-start min-w-[calc(100%-2rem)] min-h-[26.25rem] xs:min-w-[23.75rem] xl:w-auto xl:min-h-fit;
-    @apply first:ml-4 xl:first:ml-0;
+  .feelings .feeling {
+    @apply flex flex-col justify-between lg:block lg:break-inside-avoid-column;
+    @apply relative bg-white rounded-3xl pt-10 pb-8 px-8 text-left text-title shadow-md lg:self-start;
+    @apply snap-start min-w-[calc(100%-2rem)] min-h-[26.25rem] xs:min-w-[23.75rem] lg:w-auto lg:min-h-fit;
 
-    @media screen and (min-width: 1208px) {
+    @media screen and (min-width: 1024px) {
       margin: 0 0 1.25rem;
     }
   }

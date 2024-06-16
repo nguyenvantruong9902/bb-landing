@@ -211,52 +211,52 @@ const options: ISourceOptions = {
           </div>
         </div>
       </div>
-
-      <div class="w-full">
-        <!-- Row 1 -->
-        <div class="store-logos">
-          <div class="inner">
-            {
-              storeLogos.slice(0, 8).map((logo) => (
-                <div class="w-60 inline-block">
-                  <Image src={logo} alt="Partnership" />
-                </div>
-              ))
-            }
-            <!-- Duplicated -->
-            {
-              storeLogos.slice(0, 8).map((logo) => (
-                <div class="w-60 inline-block">
-                  <Image src={logo} alt="Partnership" />
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Row 2 -->
-        <div class="store-logos">
-          <div class="inner direction-reverse">
-            {
-              storeLogos.slice(8, storeLogos.length).map((logo) => (
-                <div class="w-60 inline-block">
-                  <Image src={logo} alt="Partnership" />
-                </div>
-              ))
-            }
-            <!-- Duplicated -->
-            {
-              storeLogos.slice(8, storeLogos.length).map((logo) => (
-                <div class="w-60 inline-block">
-                  <Image src={logo} alt="Partnership" />
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
     </div>
   </Container>
+
+  <div class="w-full mx-auto max-w-[90rem]">
+    <!-- Row 1 -->
+    <div class="store-logos">
+      <div class="inner">
+        {
+          storeLogos.slice(0, 8).map((logo) => (
+            <div class="w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+        <!-- Duplicated -->
+        {
+          storeLogos.slice(0, 8).map((logo) => (
+            <div class="w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="store-logos">
+      <div class="inner direction-reverse">
+        {
+          storeLogos.slice(8, storeLogos.length).map((logo) => (
+            <div class="w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+        <!-- Duplicated -->
+        {
+          storeLogos.slice(8, storeLogos.length).map((logo) => (
+            <div class="w-60 inline-block">
+              <Image src={logo} alt="Partnership" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </div>
 
 <Particles
@@ -312,7 +312,19 @@ const options: ISourceOptions = {
   }
 
   .store-logos {
-    @apply w-full whitespace-nowrap overflow-hidden;
+    @apply relative w-full whitespace-nowrap overflow-hidden;
+  }
+
+  .store-logos::after {
+    @apply content-[''] absolute w-full h-full left-0 top-0;
+
+    background: linear-gradient(
+      to right,
+      white,
+      rgba(255, 255, 255, 0) 80px,
+      rgba(255, 255, 255, 0) calc(100% - 80px),
+      white
+    );
   }
 
   .store-logos .inner {

@@ -178,28 +178,15 @@ const plans = [
 
 <style>
   .plans {
-    @apply flex gap-4 snap-x snap-mandatory pb-4 scroll-px-5 overflow-auto pr-5 xl:pr-0;
-
-    @media screen and (min-width: 1270px) {
-      justify-content: center;
-      padding-inline: 0;
-      scroll-snap-type: none;
-    }
+    @apply flex gap-4 snap-x snap-mandatory scroll-px-4 overflow-auto xl:justify-center;
+    @apply px-4 pb-4 xl:px-5;
   }
 
   .plans .planning {
     @apply shadow-md max-w-[410px] snap-center cursor-pointer bg-transparent xs:min-w-[23.75rem];
-    @apply first:ml-5;
 
     padding: 2px;
     border-radius: 26px;
-  }
-
-  .plans .planning:first,
-  .plans .planning:last-of-type {
-    @media screen and (min-width: 1270px) {
-      margin-inline: 0;
-    }
   }
 
   .plans .planning:hover {
