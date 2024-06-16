@@ -73,7 +73,7 @@ const partners = [
 ---
 
 <div class="max-w-[90rem] mx-auto lg:px-12 xl:px-20 mt-32 md:mt-44 xl:mt-64">
-  <div class="text-center px-5 xl:text-left">
+  <div class="text-center px-5 xl:px-0 xl:text-left">
     <Title centered className="xl:text-left">Đối tác của BeautyBooking</Title>
     <p class="text-title mt-4 text-opacity-semi">
       Hơn 100 cửa hàng đã tin tưởng BeautyBooking
@@ -130,7 +130,7 @@ const partners = [
 <style>
   .service-names {
     @apply relative flex whitespace-nowrap gap-4 xl:flex-wrap;
-    @apply overflow-auto snap-x snap-mandatory scroll-px-4 w-full px-4 lg:px-5 xl:snap-none xl:overflow-visible;
+    @apply overflow-auto snap-x snap-mandatory scroll-px-4 w-full px-4 lg:px-0;
 
     @media screen and (min-width: 1024px) {
       max-width: calc(100% - 8rem);
@@ -156,12 +156,12 @@ const partners = [
 
   .partner-slide {
     @apply relative whitespace-nowrap py-4 px-4 transition-all ease-linear duration-300;
-    @apply overflow-auto snap-x snap-mandatory scroll-px-4 lg:px-5 lg:scroll-px-5;
+    @apply overflow-auto snap-x snap-mandatory scroll-px-4 lg:px-3 lg:scroll-px-3;
   }
 
   .partner-slide .partner {
     @apply cursor-pointer rounded-3xl shadow-md bg-white inline-block snap-start;
-    @apply w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] ml-4 lg:ml-6;
+    @apply w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] ml-4 lg:ml-6 lg:first:ml-0;
   }
 </style>
 
@@ -226,5 +226,13 @@ const partners = [
     });
 
     onChangeButtonState(false, toNext >= maxScrollLeft);
+  });
+
+  partnerSlide.addEventListener("scroll", () => {
+    const toPrev = partnerSlide.scrollLeft - itemW;
+    const toNext = partnerSlide.scrollLeft + itemW;
+    const maxScrollLeft = partnerSlide.scrollWidth - partnerSlide.clientWidth;
+
+    onChangeButtonState(toPrev <= 0, toNext >= maxScrollLeft);
   });
 </script>
