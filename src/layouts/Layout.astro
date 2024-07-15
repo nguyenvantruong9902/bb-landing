@@ -1,6 +1,8 @@
 ---
 import BubbleChat from "@components/BubbleChat.astro";
 
+import BackToTopIcon from "@assets/svgs/backToTop.svg?raw";
+
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 ---
@@ -18,7 +20,12 @@ import Header from "./Header.astro";
   <body>
     <Header />
     <slot />
+    <!-- Bubble Chat -->
     <BubbleChat />
+    <!-- Back To Top -->
+    <div id="back-to-top">
+      <Fragment set:html={BackToTopIcon} />
+    </div>
     <Footer />
   </body>
 </html>
@@ -44,4 +51,31 @@ import Header from "./Header.astro";
   body #tsparticles {
     @apply absolute -z-[1] top-0 right-0 bottom-0 left-0;
   }
+
+  body #back-to-top {
+    @apply fixed right-7 -bottom-full z-50 cursor-pointer xl:right-20;
+    @apply invisible opacity-disable transition-all duration-700 ease-in-out;
+    @apply bg-black hover:bg-opacity-20 p-5 rounded-full;
+  }
+
+  body #back-to-top.active {
+    @apply opacity visible bg-opacity-10 bottom-6;
+  }
 </style>
+
+<script>
+  const backToTop = document.querySelector("#back-to-top");
+
+  document.addEventListener("scroll", () => {
+    // show the back to top button when the user scrolls past 60% of the page
+    if (window.scrollY > document.body.scrollHeight * 0.6) {
+      backToTop.classList.add("active");
+    } else {
+      backToTop.classList.remove("active");
+    }
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>

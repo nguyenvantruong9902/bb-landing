@@ -120,6 +120,12 @@ const options: ISourceOptions = {
     },
   },
 };
+
+const days = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+
+const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
+  "en-GB",
+)}`;
 ---
 
 <div class="main-container">
@@ -176,16 +182,17 @@ const options: ISourceOptions = {
               <span class="text-opacity-neutral">11:32</span>
             </p>
 
-            <p class="font-semibold">
+            <p class="text-base font-semibold">
               Jenny
-              <span class="text-opacity-neutral">đã đặt 1 lịch hẹn vào</span>
-               9:20-Thứ 3, 17/10/2024.
+              <span class="text-opacity-neutral">đã đặt 1 lịch hẹn vào</span><br
+              />
+               9:20 - 11:00, {today}.
             </p>
           </div>
         </div>
 
         <div class="revenue">
-          <p class="font-semibold text-title">8,122,450,000 đ</p>
+          <p class="revenue-money">0</p>
           <p class="mt-0.5 mb-2 text-caption text-opacity-neutral">
             Tổng doanh thu năm
           </p>
@@ -197,10 +204,7 @@ const options: ISourceOptions = {
 
                 return (
                   <div class="mt-auto">
-                    <p
-                      class="w-2.5 rounded-full bg-primary-600"
-                      style={`height: ${height}px;`}
-                    />
+                    <p class="revenue-money-of-month" data-height={height} />
                     <p class="text-tiny text-opacity-neutral font-semibold">
                       {idx + 1}
                     </p>
@@ -280,19 +284,28 @@ const options: ISourceOptions = {
   }
 
   .notification {
-    @apply absolute bg-white top-16 w-80 px-5 py-3 shadow-lg rounded-xl;
-    @apply gap-x-4 cursor-pointer right-2 md:right-0 lg:-right-6 xl:-right-16;
+    @apply absolute bg-white top-16 w-[21.5rem] px-5 py-3 shadow-lg rounded-xl;
+    @apply gap-x-4 cursor-pointer right-2 md:right-0 lg:-right-6;
     @apply hidden md:flex;
   }
 
   .revenue {
-    @apply absolute bg-white pb-1.5 rounded-xl bottom-[40%] text-center cursor-pointer;
-    @apply p-2.5 left-2 md:left-0 lg:-left-6 xl:-left-14 xl:p-4;
+    @apply absolute bg-white pb-1.5 rounded-xl bottom-[30%] text-center cursor-pointer;
+    @apply p-2.5 left-2 md:left-0 lg:-left-6 xl:p-4;
     @apply hidden md:block;
 
     box-shadow:
       0px 9.7px 33.94px -3.23px rgba(24, 39, 75, 0.12),
       0px 6.46px 14.55px -4.85px rgba(24, 39, 75, 0.12);
+  }
+
+  .revenue .revenue-money {
+    @apply font-semibold text-title;
+  }
+
+  .revenue .revenue-money-of-month {
+    @apply h-0 w-2.5 rounded-full bg-primary-600;
+    @apply transition-all duration-[5s] ease-in-out;
   }
 
   .notification:hover,
@@ -397,4 +410,38 @@ const options: ISourceOptions = {
 
     document.body.removeChild(document.querySelector("astro-particles"));
   };
+
+  // revenue money
+  let moneyCount = 0;
+  let timer = 0;
+  const money = 8122450000;
+
+  const revenueMoney = document.querySelector<HTMLDivElement>(
+    ".revenue .revenue-money",
+  );
+  const revenueMoneyOfMonth = document.querySelectorAll<HTMLDivElement>(
+    ".revenue .revenue-money-of-month",
+  );
+
+  const updateCounter = () => {
+    moneyCount += Math.random() * 100000000; // random number from 0 to 100 thousands
+
+    if (moneyCount < money) {
+      revenueMoney.innerHTML =
+        new Intl.NumberFormat("en-US").format(moneyCount) + " đ";
+      timer = setTimeout(updateCounter, 20);
+    } else {
+      revenueMoney.innerHTML =
+        new Intl.NumberFormat("en-US").format(money) + " đ";
+
+      clearTimeout(timer);
+    }
+  };
+
+  updateCounter();
+
+  revenueMoneyOfMonth.forEach((item) => {
+    const height = item.dataset.height;
+    item.style.height = height + "px";
+  });
 </script>

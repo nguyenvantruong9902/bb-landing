@@ -12,7 +12,6 @@ interface Option {
   id: string;
   label: string;
   question: string;
-  href?: string;
 }
 
 const days = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
@@ -34,7 +33,6 @@ const options: Option[] = [
     id: "call",
     label: "📞 Gọi cho BB",
     question: "📞 Mình sẽ gọi trực tiếp cho BB",
-    href: "tel:0915276769",
   },
 ];
 
@@ -84,11 +82,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
         {
           options.map((option) => (
             <div class="question-option" data-question-id={option.id}>
-              {option.href ? (
-                <a href={option.href}>{option.label}</a>
-              ) : (
-                option.label
-              )}
+              {option.label}
             </div>
           ))
         }
@@ -99,7 +93,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
 
 <style is:global>
   .bb-chat {
-    @apply fixed text-base bottom-5 right-5 z-10 xl:bottom-20 xl:right-20;
+    @apply fixed text-base bottom-5 right-5 z-40 xl:bottom-20 xl:right-20;
   }
 
   .bb-chat-button {
@@ -374,7 +368,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
                   <img width="20" src="${messengerSrc}"/>
                   <span>Messenger</span>
                 </a>
-                <a class="flex gap-2 contact-option" href="#">
+                <a class="flex gap-2 contact-option" href="https://zalo.me/0915276769" target="_blank">
                   <img width="20" src="${zaloSrc}"/>
                   <span>Zalo</span>
                 </a>
@@ -409,6 +403,7 @@ const today = `${days[new Date().getDay()]}, ${new Date().toLocaleDateString(
           1000 + Math.random() * 20 * 100,
         );
       } else {
+        window.location.href = "tel:0915276769";
         repThankMessage();
       }
     });

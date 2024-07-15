@@ -161,7 +161,7 @@ const partners = [
 
   .partner-slide .partner {
     @apply cursor-pointer rounded-3xl shadow-md bg-white inline-block snap-start;
-    @apply w-[calc(100%-2rem)] max-w-[23.75rem] h-[26.25rem] ml-4 lg:ml-6 lg:first:ml-0;
+    @apply w-[calc(100%-2rem)] max-w-[23.75rem] max-h-[26.25rem] ml-4 lg:ml-6 lg:first:ml-0;
   }
 </style>
 
@@ -229,10 +229,11 @@ const partners = [
   });
 
   partnerSlide.addEventListener("scroll", () => {
-    const toPrev = partnerSlide.scrollLeft - itemW;
-    const toNext = partnerSlide.scrollLeft + itemW;
     const maxScrollLeft = partnerSlide.scrollWidth - partnerSlide.clientWidth;
 
-    onChangeButtonState(toPrev <= 0, toNext >= maxScrollLeft);
+    onChangeButtonState(
+      partnerSlide.scrollLeft <= 0,
+      partnerSlide.scrollLeft + 1 >= maxScrollLeft, // 1 is to avoid rounding errors
+    );
   });
 </script>
